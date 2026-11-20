@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adresse mail temporaire gratuite et jetable | Adresse-Temporaire.fr</title><meta name="description" content="Obtenez une adresse e-mail temporaire gratuite en un clic, sans inscription. Recevez vos codes et liens de validation, puis tout s'efface au bout d'une heure.">
+<link rel="canonical" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="fr" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="en" href="https://adresse-temporaire.fr/en/"><link rel="alternate" hreflang="x-default" href="https://adresse-temporaire.fr/">
+<meta property="og:title" content="Adresse mail temporaire gratuite et jetable | Adresse-Temporaire.fr"><meta property="og:description" content="Obtenez une adresse e-mail temporaire gratuite en un clic, sans inscription. Recevez vos codes et liens de validation, puis tout s'efface au bout d'une heure."><meta property="og:url" content="https://adresse-temporaire.fr/"><meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='7' width='28' height='19' rx='2' fill='%23fff' stroke='%2316213b' stroke-width='2'/%3E%3Cpath d='M3 9l13 9 13-9' fill='none' stroke='%23c8323a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>
+:root{--ink:#16213b;--ink2:#4a5672;--paper:#f6f7fa;--card:#fff;--line:#dde2ec;--red:#c8323a;--blue:#2852b8;--blue-d:#1d3f92;--ok:#1d7a4b}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,sans-serif}
+a{color:var(--blue)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.air{height:8px;background:repeating-linear-gradient(-45deg,var(--red) 0 14px,#fff 14px 22px,var(--blue) 22px 36px,#fff 36px 44px)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font:700 18px "Familjen Grotesk",sans-serif;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--red)}
+.lng{font-size:14px;color:var(--ink2)}
+h1{font:700 clamp(30px,5.4vw,46px)/1.08 "Familjen Grotesk",sans-serif;letter-spacing:-.025em;margin:18px 0 12px;max-width:16ch}
+.lead{color:var(--ink2);max-width:60ch;margin:0 0 26px;font-size:17px}
+.env{background:var(--card);border:1px solid var(--line);border-radius:6px;position:relative;box-shadow:0 1px 0 var(--line)}
+.env:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.addr{padding:24px 22px 18px}
+.addr label{display:block;font-size:14px;color:var(--ink2);margin-bottom:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+#addr{flex:1 1 320px;min-width:0;font:500 clamp(16px,3.4vw,22px) "JetBrains Mono",monospace;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;overflow-wrap:anywhere}
+.btn{cursor:pointer;font:600 15px "Public Sans",sans-serif;border-radius:4px;padding:12px 18px;border:1px solid var(--blue);background:var(--blue);color:#fff}
+.btn:hover{background:var(--blue-d)}
+.btn.ghost{background:#fff;color:var(--blue)}.btn.ghost:hover{background:#eef2fb}
+.btn.done{background:var(--ok);border-color:var(--ok)}
+.tools{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#pick{display:none;margin-top:12px;gap:8px;flex-wrap:wrap;align-items:center}
+#pick.on{display:flex}
+#pick input{font:500 15px "JetBrains Mono",monospace;padding:9px 10px;border:1px solid var(--line);border-radius:4px;width:220px}
+#pick .dom{font:500 15px "JetBrains Mono",monospace;color:var(--ink2)}
+#pickerr{color:var(--red);font-size:14px;width:100%}
+.box{border-top:1px solid var(--line)}
+.boxh{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;font-weight:600}
+.live{font-size:13px;color:var(--ink2);font-weight:400;display:flex;align-items:center;gap:7px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+@media (prefers-reduced-motion:no-preference){.live i{animation:p 2s ease-in-out infinite}@keyframes p{50%{opacity:.25}}}
+ul.msgs{list-style:none;margin:0;padding:0}
+ul.msgs li{border-top:1px solid var(--line)}
+ul.msgs button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:2px 14px;width:100%;padding:14px 22px;cursor:pointer}
+ul.msgs button:hover{background:#f3f5fa}ul.msgs button:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.f{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.t{font-size:13px;color:var(--ink2);white-space:nowrap}
+.s{grid-column:1/-1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.p{grid-column:1/-1;font-size:14px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.new .f:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:middle}
+.empty{padding:34px 22px 38px;text-align:center;color:var(--ink2)}
+.empty b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+#view{display:none;border-top:1px solid var(--line);padding:16px 22px 22px}
+#view.on{display:block}
+.vh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#vsubj{font:700 22px/1.25 "Familjen Grotesk",sans-serif;margin:6px 0 4px}
+#vfrom{font-size:14px;color:var(--ink2);overflow-wrap:anywhere}
+.imgbar{font-size:13px;color:var(--ink2);margin:10px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#vframe{width:100%;min-height:420px;border:1px solid var(--line);border-radius:4px;background:#fff}
+#vtext{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px}
+.note{font-size:13px;color:var(--ink2);padding:0 22px 16px}
+#err{display:none;color:var(--red);font-size:14px;padding:0 22px 12px}
+section.c{margin:56px 0}
+section.c h2{font:700 26px/1.2 "Familjen Grotesk",sans-serif;letter-spacing:-.015em;margin:0 0 18px}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+ol.steps li{counter-increment:s}
+ol.steps li:before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid var(--blue);color:var(--blue);border-radius:50%;font:700 15px "Familjen Grotesk";margin-bottom:8px}
+ol.steps b{display:block;margin-bottom:4px}
+ol.steps p,section.c>p{margin:0;color:var(--ink2);max-width:66ch}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
+footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
+footer a{color:var(--ink2)}
+@media (max-width:520px){.row .btn{flex:1}}
+footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "fr", "mainEntity": [{"@type": "Question", "name": "C'est vraiment gratuit ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, entièrement, sans inscription ni limite d'utilisation raisonnable."}}, {"@type": "Question", "name": "Combien de temps les messages restent-ils ?", "acceptedAnswer": {"@type": "Answer", "text": "Une heure après leur arrivée, puis ils sont supprimés définitivement. Rien n'est conservé."}}, {"@type": "Question", "name": "Puis-je envoyer des e-mails ?", "acceptedAnswer": {"@type": "Answer", "text": "Non. L'adresse sert uniquement à recevoir, ce qui évite qu'elle soit utilisée pour envoyer du spam."}}, {"@type": "Question", "name": "Quelqu'un d'autre peut-il lire mes messages ?", "acceptedAnswer": {"@type": "Answer", "text": "Toute personne qui connaît exactement l'adresse peut voir sa boîte. Ne l'utilisez pas pour des informations sensibles (banque, santé, administration) et préférez une adresse générée au hasard."}}, {"@type": "Question", "name": "Je retrouve mon adresse si je reviens ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, elle est gardée dans votre navigateur. Vous pouvez aussi en créer une nouvelle à tout moment."}}, {"@type": "Question", "name": "Pourquoi certains sites refusent l'adresse ?", "acceptedAnswer": {"@type": "Answer", "text": "Certains services bloquent les adresses jetables. Dans ce cas, utilisez votre adresse habituelle."}}]}</script></head><body><div class="air"></div><div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><a class="lng" href="/en/" hreflang="en">English</a></header><main>
+<h1>Une adresse mail jetable, prête tout de suite.</h1><p class="lead">Gardez votre vraie boîte loin des spams. Utilisez cette adresse pour vous inscrire, recevez le code ou le lien de validation ici, et oubliez-la.</p>
+<div class="env">
+ <div class="addr"><label for="addr" id="addrl">Votre adresse temporaire</label>
+  <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">Copier</button></div>
+  <div class="tools"><button class="link" id="new" type="button">Nouvelle adresse</button><button class="link" id="choose" type="button" aria-controls="pick">Choisir mon adresse</button></div>
+  <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="nom-de-votre-choix" aria-label="Choisir mon adresse"><span class="dom">@adresse-temporaire.fr</span><button class="btn ghost" type="submit">Utiliser</button><span id="pickerr" role="alert"></span></div></form>
+ </div>
+ <div class="box">
+  <div id="listwrap"><div class="boxh"><span>Boîte de réception</span><span class="live"><i></i>Actualisation auto</span></div>
+   <div id="err" role="status">Connexion impossible pour le moment. Nouvel essai dans quelques secondes.</div>
+   <ul class="msgs" id="list" aria-live="polite"></ul>
+   <div class="empty" id="empty"><b>En attente de messages...</b>Les nouveaux messages arrivent ici automatiquement.</div>
+   <p class="note">Les messages sont effacés automatiquement au bout d'une heure.</p></div>
+  <div id="view"><div class="vh"><button class="btn ghost" id="back" type="button">Retour à la boîte</button><button class="btn ghost" id="del" type="button">Supprimer</button></div>
+   <h2 id="vsubj" tabindex="-1"></h2><div id="vfrom"></div>
+   <div class="imgbar" id="imgbar"><span>Images masquées pour protéger votre vie privée.</span><button class="link" id="imgs" type="button">Afficher les images</button></div>
+   <iframe id="vframe" title="Message" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin" referrerpolicy="no-referrer"></iframe><div id="vtext"></div></div>
+ </div>
+</div>
+<section class="c"><h2>Comment ça marche</h2><ol class="steps"><li><b>Copiez l'adresse</b><p>Une adresse est créée pour vous dès l'ouverture de la page. Aucune inscription, aucun mot de passe.</p></li><li><b>Utilisez-la</b><p>Collez-la dans le formulaire d'inscription, de téléchargement ou de jeu-concours qui vous demande un e-mail.</p></li><li><b>Lisez le message</b><p>Le code ou le lien de validation s'affiche ici en quelques secondes. Une heure plus tard, tout est effacé.</p></li></ol></section>
+<section class="c"><h2>Pourquoi utiliser une adresse mail temporaire ?</h2><p>Chaque fois que vous donnez votre vraie adresse, vous prenez le risque de recevoir des pubs pendant des années, ou de la voir fuiter lors d'un piratage. Une adresse jetable vous protège : vous testez un service, téléchargez un livre blanc ou accédez à un Wi-Fi sans rien laisser derrière vous.</p></section>
+<section class="c"><h2>Questions fréquentes</h2><details><summary>C'est vraiment gratuit ?</summary><p>Oui, entièrement, sans inscription ni limite d'utilisation raisonnable.</p></details><details><summary>Combien de temps les messages restent-ils ?</summary><p>Une heure après leur arrivée, puis ils sont supprimés définitivement. Rien n'est conservé.</p></details><details><summary>Puis-je envoyer des e-mails ?</summary><p>Non. L'adresse sert uniquement à recevoir, ce qui évite qu'elle soit utilisée pour envoyer du spam.</p></details><details><summary>Quelqu'un d'autre peut-il lire mes messages ?</summary><p>Toute personne qui connaît exactement l'adresse peut voir sa boîte. Ne l'utilisez pas pour des informations sensibles (banque, santé, administration) et préférez une adresse générée au hasard.</p></details><details><summary>Je retrouve mon adresse si je reviens ?</summary><p>Oui, elle est gardée dans votre navigateur. Vous pouvez aussi en créer une nouvelle à tout moment.</p></details><details><summary>Pourquoi certains sites refusent l'adresse ?</summary><p>Certains services bloquent les adresses jetables. Dans ce cas, utilisez votre adresse habituelle.</p></details></section>
+</main><footer><div>Usage interdit pour toute fraude, harcèlement ou activité illégale.</div><div class="fl"><a href="/mentions-legales.html">Mentions légales et confidentialité</a><a href="mailto:contact@adresse-temporaire.fr">Signaler un abus</a><span>&copy; 2026 adresse-temporaire.fr</span></div></footer></div><script>
+(function(){
+var L={"copy": "Copier", "copied": "Copiée", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.", "from": "De", "ago": ["à l'instant", "il y a {} min", "il y a {} h"], "nosubj": "(sans objet)"},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOM="adresse-temporaire.fr",K="at_addr",seen={},cur=null,showImgs=false,tm=null,fails=0;
+var $=function(i){return document.getElementById(i)};
+function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
+function get(){try{return localStorage.getItem(K)}catch(e){return null}}
+function put(v){try{localStorage.setItem(K,v)}catch(e){}}
+var me=get();if(!me||!/^[a-z0-9][a-z0-9._-]{2,39}$/.test(me)){me=rnd();put(me);ping()}
+function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
+function full(){return me+"@"+DOM}
+function setAddr(v){me=v;put(v);seen={};cur=null;$("addr").textContent=full();closeView();render([]);load()}
+$("addr").textContent=full();
+$("copy").onclick=function(){var b=this;var done=function(){b.textContent=L.copied;b.classList.add("done");setTimeout(function(){b.textContent=L.copy;b.classList.remove("done")},1600)};
+ if(navigator.clipboard)navigator.clipboard.writeText(full()).then(done,function(){sel();done()});else{sel();done()}};
+function sel(){var r=document.createRange();r.selectNodeContents($("addr"));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy")}catch(e){}}
+$("new").onclick=function(){setAddr(rnd());ping()};
+$("choose").onclick=function(){$("pick").classList.toggle("on");$("pickin").focus()};
+$("pickform").onsubmit=function(e){e.preventDefault();var v=$("pickin").value.trim().toLowerCase();
+ if(!/^[a-z0-9][a-z0-9._-]{2,39}$/.test(v)){$("pickerr").textContent=L.choose_bad;return}
+ $("pickerr").textContent="";$("pick").classList.remove("on");setAddr(v);ping()};
+function ago(t){var d=(Date.now()-new Date(t).getTime())/60000;if(d<1)return L.ago[0];if(d<60)return L.ago[1].replace("{}",Math.floor(d));return L.ago[2].replace("{}",Math.floor(d/60))}
+function txt(s){return document.createTextNode(s||"")}
+function render(ms){var ul=$("list");ul.innerHTML="";$("empty").style.display=ms.length?"none":"block";
+ ms.forEach(function(m){var li=document.createElement("li");var b=document.createElement("button");b.type="button";if(!seen[m.id])li.className="new";
+  var f=document.createElement("span");f.className="f";f.appendChild(txt(m.from));var t=document.createElement("span");t.className="t";t.appendChild(txt(ago(m.at)));
+  var s=document.createElement("span");s.className="s";s.appendChild(txt(m.subject||L.nosubj));var p=document.createElement("span");p.className="p";p.appendChild(txt(m.preview));
+  b.appendChild(f);b.appendChild(t);b.appendChild(s);b.appendChild(p);b.onclick=function(){open(m.id)};li.appendChild(b);ul.appendChild(li)})}
+var last=[];
+function load(){var a=me;fetch(API+"/box?a="+encodeURIComponent(a),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(a!==me)return;fails=0;$("err").style.display="none";last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1)$("err").style.display="block"})}
+function loop(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)load();loop()},5000)}
+document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
+function closeView(){$("view").classList.remove("on");$("listwrap").style.display="block"}
+$("back").onclick=function(){closeView();render(last)};
+$("del").onclick=function(){if(!cur)return;var id=cur.id;fetch(API+"/del?a="+encodeURIComponent(me)+"&id="+id,{method:"POST"}).then(function(){last=last.filter(function(m){return m.id!==id});closeView();render(last)})};
+$("imgs").onclick=function(){showImgs=true;paint()};
+function paint(){var m=cur;if(!m)return;var fr=$("vframe"),tx=$("vtext");
+ if(m.html){tx.style.display="none";fr.style.display="block";$("imgbar").style.display=showImgs?"none":"flex";
+  var csp=showImgs?"default-src 'none'; img-src data: https: http:; style-src 'unsafe-inline' https:; font-src https: data:":"default-src 'none'; img-src data:; style-src 'unsafe-inline'";
+  fr.srcdoc='<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="'+csp+'"><base target="_blank"><style>body{font:15px/1.5 system-ui,sans-serif;margin:12px;color:#16213b;overflow-wrap:anywhere}img{max-width:100%;height:auto}</style></head><body>'+m.html+'</body></html>';
+  fr.onload=function(){try{fr.style.height=Math.max(420,fr.contentDocument.documentElement.scrollHeight+20)+"px"}catch(e){}}}
+ else{fr.style.display="none";$("imgbar").style.display="none";tx.style.display="block";tx.textContent=m.text||""}}
+function open(id){fetch(API+"/msg?a="+encodeURIComponent(me)+"&id="+id,{cache:"no-store"}).then(function(r){return r.json()}).then(function(m){if(!m||!m.id)return;seen[id]=1;cur=m;showImgs=false;
+ $("vsubj").textContent=m.subject||L.nosubj;$("vfrom").textContent=L.from+" : "+(m.from||"")+" · "+ago(m.at);
+ $("listwrap").style.display="none";$("view").classList.add("on");paint();$("vsubj").focus()})}
+load();loop();
+})();
+</script></body></html>

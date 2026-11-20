@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adresse-temporaire.fr/sitemap.xml
