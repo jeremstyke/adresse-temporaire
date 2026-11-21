@@ -9,8 +9,8 @@ DOMAIN = "adresse-temporaire.fr"
 T = {
  "fr": {
   "lang": "fr", "path": "/", "other": "/en/", "other_label": "English",
-  "title": "Mail jetable gratuit : adresse mail temporaire en 1 clic | Adresse-Temporaire.fr",
-  "desc": "Mail jetable gratuit et sans inscription : votre adresse mail temporaire est prête en un clic. Recevez codes et liens de validation, en français, messages effacés automatiquement.",
+  "title": "Mail jetable gratuit : adresse mail temporaire en 1 clic",
+  "desc": "Mail jetable gratuit, sans inscription : votre adresse mail jetable est prête en un clic. Recevez codes et liens de validation, puis tout s'efface.",
   "h1": "Votre mail jetable, prêt tout de suite.",
   "lead": "Gardez votre vraie boîte loin des spams. Utilisez cette adresse pour vous inscrire, recevez le code ou le lien de validation ici, et oubliez-la.",
   "your": "Votre adresse temporaire",
@@ -25,13 +25,14 @@ T = {
   "how": [["Copiez l'adresse", "Une adresse est créée pour vous dès l'ouverture de la page. Aucune inscription, aucun mot de passe."],
           ["Utilisez-la", "Collez-la dans le formulaire d'inscription, de téléchargement ou de jeu-concours qui vous demande un e-mail."],
           ["Lisez le message", "Le code ou le lien de validation s'affiche ici en quelques secondes. Une heure plus tard, tout est effacé."]],
-  "why_h": "Pourquoi utiliser une adresse mail temporaire ?",
-  "why": "Chaque fois que vous donnez votre vraie adresse, vous prenez le risque de recevoir des pubs pendant des années, ou de la voir fuiter lors d'un piratage. Une adresse jetable vous protège : vous testez un service, téléchargez un livre blanc ou accédez à un Wi-Fi sans rien laisser derrière vous.",
+  "why_h": "Pourquoi utiliser une adresse mail jetable ?",
+  "why": "Chaque fois que vous donnez votre vraie adresse, vous prenez le risque de recevoir des pubs pendant des années, ou de la voir fuiter lors d'un piratage. Une adresse jetable vous protège : vous testez un service, téléchargez un livre blanc ou accédez à un Wi-Fi sans rien laisser derrière vous. Ce générateur d'e-mail jetable crée une nouvelle adresse à chaque clic, gratuitement et sans inscription, sur un domaine français.",
   "faq_h": "Questions fréquentes",
   "faq": [["C'est vraiment gratuit ?", "Oui. Sans compte, c'est gratuit et sans inscription. Le compte gratuit ajoute une adresse réservée et privée. Le Premium, à 2,99 € par mois, en permet jusqu'à 100, garde les messages 30 jours, transfère vos messages vers votre vraie boîte et garde les pièces jointes."],
           ["Combien de temps les messages restent-ils ?", "Une heure sans compte, 24 heures sur une adresse réservée avec le compte gratuit, 30 jours en Premium. Ensuite, ils sont supprimés définitivement."],
           ["Puis-je envoyer des e-mails ?", "Non. L'adresse sert uniquement à recevoir, ce qui évite qu'elle soit utilisée pour envoyer du spam."],
           ["Quelqu'un d'autre peut-il lire mes messages ?", "Sans compte, toute personne qui connaît exactement l'adresse peut voir sa boîte : préférez une adresse générée au hasard. Avec un compte, vos adresses réservées sont privées : vous seul pouvez lire leurs messages. Dans tous les cas, ne l'utilisez pas pour des informations sensibles (banque, santé, administration)."],
+          ["Quelle différence entre e-mail jetable et adresse mail temporaire ?", "Aucune : on parle de mail jetable, d'e-mail jetable, d'adresse mail jetable ou d'adresse mail temporaire pour le même service, une boîte que l'on utilise le temps d'une inscription puis que l'on abandonne."],
           ["Je retrouve mon adresse si je reviens ?", "Oui, elle est gardée dans votre navigateur. Vous pouvez aussi en créer une nouvelle à tout moment."],
           ["Pourquoi certains sites refusent l'adresse ?", "Certains services bloquent les adresses jetables. Dans ce cas, utilisez votre adresse habituelle."]],
   "rules": "Usage interdit pour toute fraude, harcèlement ou activité illégale.",
@@ -468,7 +469,7 @@ arts = sorted(ARTICLES, key=lambda a: a["date"], reverse=True)
 cards = "".join(card(a) for a in arts)
 bl_schema = [{"@context": "https://schema.org", "@type": "Blog", "name": "Guides du mail jetable", "url": SITE + "/blog/", "inLanguage": "fr", "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": f'{SITE}/blog/{a["slug"]}/', "datePublished": a["date"]} for a in arts]},
              {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE + "/blog/"}]}]
-w("blog/index.html", bhead("Guides du mail jetable et de l'adresse mail temporaire | Adresse-Temporaire.fr", "Nos guides pour utiliser un mail jetable : créer une adresse temporaire, éviter les spams, alias Gmail, sécurité et questions fréquentes.", SITE + "/blog/", bl_schema) + btop() + f"""<main><div class="bh"><p class="kick">Le blog d'adresse-temporaire.fr</p><h1>Guides du mail jetable</h1><p class="lead">Comment protéger votre vraie boîte mail, quand utiliser une adresse temporaire, et les réponses aux questions qu'on nous pose le plus.</p></div>
+w("blog/index.html", bhead("Guides du mail jetable et de l'adresse mail temporaire", "Nos guides pour bien utiliser un mail jetable : créer une adresse mail temporaire, éviter les spams, alias Gmail, sécurité et réponses aux questions fréquentes.", SITE + "/blog/", bl_schema) + btop() + f"""<main><div class="bh"><p class="kick">Le blog d'adresse-temporaire.fr</p><h1>Guides du mail jetable</h1><p class="lead">Comment protéger votre vraie boîte mail, quand utiliser une adresse temporaire, et les réponses aux questions qu'on nous pose le plus.</p></div>
 <div class="posts">{cards}</div>{CTA}</main>""" + bfoot())
 
 for a in arts:
@@ -479,7 +480,7 @@ for a in arts:
            {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE + "/blog/"}, {"@type": "ListItem", "position": 3, "name": a["title"], "item": url}]}]
     body = a["body"].strip()
     first, rest = body.split("</p>", 1)
-    html = bhead(a["title"] + " | Adresse-Temporaire.fr", a["desc"], url, sch).replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">') + btop() + f"""<main><article class="art">
+    html = bhead(a["title"] if len(a["title"]) > 42 else a["title"] + " | Adresse-Temporaire.fr", a["desc"], url, sch).replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">') + btop() + f"""<main><article class="art">
 <p class="crumb"><a href="/">Accueil</a> / <a href="/blog/">Guides</a> / {esc(a["cat"])}</p>
 <h1>{esc(a["title"])}</h1><p class="meta">Publié le {fdate(a["date"])}, {rtime(body)} min de lecture</p>
 {first.replace('<p>', '<p class="lead">', 1)}</p><aside class="vpnb"><div><span class="sp">Partenaire recommandé</span><b>Votre adresse est cachée. Et votre connexion ?</b><p>Sur un Wi-Fi public, à l'hôtel ou au café, n'importe qui peut espionner ce que vous faites. NordVPN chiffre tout votre trafic et masque votre adresse IP, sur téléphone comme sur ordinateur.</p></div><a class="btn vb" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-guide" target="_blank" rel="sponsored noopener">Protéger ma connexion avec NordVPN</a><small>Lien affilié, sans surcoût pour vous.</small></aside>{rest}
