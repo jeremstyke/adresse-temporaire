@@ -1,4 +1,5 @@
 # Articles du blog. Chaque article : slug, titre, description, date, mot-clé, corps HTML.
+# RÈGLE (21 nov 2026) : chaque nouveau guide fait au moins 900 à 1200 mots, avec plusieurs sections H2, des exemples concrets et un bloc "Questions fréquentes" en H3. Jamais de tiret long.
 CTA = '<div class="cta"><b>Besoin d\'une adresse tout de suite ?</b><p>Votre adresse jetable est prête sur la page d\'accueil, sans inscription.</p><a class="btn" href="/">Obtenir mon adresse temporaire</a></div>'
 
 ARTICLES = [
