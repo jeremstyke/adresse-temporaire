@@ -354,7 +354,7 @@ function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Comp
  $("pd").textContent=acct.addrs.length+" / "+acct.max+" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"30 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"");
  $("ptag").textContent=acct.premium?"Premium":"Gratuit";$("ptag").className="tag"+(acct.premium?" p":"");
  var ul=$("my");ul.innerHTML="";$("mye").textContent=acct.addrs.length?"":"Aucune adresse réservée pour l'instant.";
- acct.addrs.forEach(function(a){var li=document.createElement("li");var s=el("span","a"+(a===me?" cur":""),a+"@"+DOM);
+ acct.addrs.forEach(function(a){var li=document.createElement("li");var s=el("span","a"+(a===me?" cur":""),a+"@"+DOM);s.appendChild(document.createElement("br"));s.appendChild(document.createTextNode(a+"@"+(DOM===DOMS[0]?DOMS[1]:DOMS[0])));
   var o=el("button","link sm",a===me?"Ouverte":"Ouvrir");o.type="button";o.disabled=(a===me);o.onclick=function(){setAddr(a);fill();closeDlg()};
   var r=el("button","link sm","Libérer");r.type="button";r.onclick=function(){if(!confirm("Libérer "+a+"@"+DOM+" ? Ses messages seront supprimés."))return;post("/release",{addr:a}).then(function(j){if(j.email){setAcct(j);fill()}})};
   li.appendChild(s);li.appendChild(o);li.appendChild(r);
