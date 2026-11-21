@@ -34,6 +34,7 @@ ARTICLES = [
 </ul>
 <h2>Quand ne pas utiliser de mail jetable</h2>
 <p>Pour tout compte important, utilisez votre vraie adresse : banque, impôts, CAF, santé, assurance, ou un service que vous paierez. Ces comptes ont besoin d'une adresse que vous garderez des années, notamment pour récupérer votre mot de passe. Un mail jetable est fait pour les inscriptions de passage, pas pour votre vie administrative.</p>
+<p>Même chose pour une recherche d'emploi : sur votre CV et dans vos candidatures, un recruteur doit pouvoir vous recontacter dans trois semaines. Utilisez une adresse sérieuse à votre nom (nos voisins de <a href="https://cvlibre.com/blog/mail-de-candidature/">CVLibre expliquent comment rédiger un mail de candidature</a>). Et pour envoyer vos pièces justificatives à la CAF, à l'ANTS ou aux impôts, <a href="https://demarches.cvlibre.com/">PDF Démarches</a> aide à mettre vos documents au bon format et à la bonne taille.</p>
 <h2>En résumé</h2>
 <p>Le mail jetable est un réflexe simple pour garder votre boîte principale propre et limiter la circulation de vos données. Gardez-le pour les sites de passage, et votre vraie adresse pour ce qui compte vraiment.</p>
 """},
