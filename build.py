@@ -188,6 +188,7 @@ ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
 .atts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}.atts button{font:600 13px "Public Sans",sans-serif;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer;color:var(--ink)}.atts button:hover{border-color:var(--blue)}
 .vpn{border:1px dashed var(--line);border-radius:6px;padding:18px 20px;margin:28px 0;background:var(--card)}.vpn b{display:block;font:700 18px "Familjen Grotesk",sans-serif;margin:2px 0 6px}.vpn p{margin:0 0 12px;color:var(--ink2)}.vpn small{display:block;margin-top:10px;font-size:12px;color:var(--ink2)}.vpn .sp{font-size:12px;color:var(--ink2)}
 .my select{font:13px "Public Sans",sans-serif;border:1px solid var(--line);border-radius:4px;padding:3px 4px;background:var(--card);color:var(--ink);max-width:150px}
+.vpnb{display:grid;grid-template-columns:1fr auto;gap:10px 24px;align-items:center;background:var(--ink);color:#fff;border-radius:6px;padding:22px 24px;margin:28px 0;box-shadow:inset 6px 0 0 var(--red)}.vpnb b{display:block;font:700 21px/1.25 "Familjen Grotesk",sans-serif;margin:4px 0 6px}.vpnb p{margin:0;color:#d5dbea}.vpnb .sp{font-size:12px;color:#aeb8d0}.vpnb small{grid-column:1/-1;font-size:12px;color:#aeb8d0}.top .nav{margin-left:14px}@media(max-width:420px){.top .brand{font-size:14px}.top .nav{margin-left:8px;gap:8px}.top .nav a,.top .acct{font-size:13px}.top .acct{padding:6px 8px}}.vpnb .vb{text-decoration:none;background:#fff;color:var(--ink);border-color:#fff;white-space:nowrap}.vpnb .vb:hover{background:#e8ecf6}@media(max-width:700px){.vpnb{grid-template-columns:1fr}.vpnb .vb{white-space:normal;text-align:center}}
 .plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
 """
@@ -243,7 +244,7 @@ def head(t, title, desc, canon, alt_fr, alt_en, extra=""):
 {FONTS}<style>{CSS}{BCSS}</style>{extra}</head><body><div class="air"></div>"""
 
 def topbar(t, other_href):
-    return f"""<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="/blog/">Guides</a><button class="acct" id="acct" type="button">Mon compte</button></nav></header>"""
+    return f"""<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-menu" target="_blank" rel="sponsored noopener">VPN</a><a href="/blog/">Guides</a><button class="acct" id="acct" type="button">Mon compte</button></nav></header>"""
 
 def foot(t):
     return f"""<footer><div>{esc(t['rules'])}</div><div class="fl"><a href="/blog/">Guides du mail jetable</a><a href="{t['legal_href']}">{esc(t['legal'])}</a><a href="mailto:contact@{DOMAIN}">{esc(t['report'])}</a><span>&copy; 2026 adresse-temporaire.fr</span></div></footer></div>"""
@@ -407,6 +408,7 @@ def index(t):
    <iframe id="vframe" title="Message" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin" referrerpolicy="no-referrer"></iframe><div id="vtext"></div></div>
  </div>
 </div>
+<aside class="vpnb"><div><span class="sp">Partenaire recommandé</span><b>Votre adresse est cachée. Et votre connexion ?</b><p>Sur un Wi-Fi public, à l'hôtel ou au café, n'importe qui peut espionner ce que vous faites. NordVPN chiffre tout votre trafic et masque votre adresse IP, sur téléphone comme sur ordinateur.</p></div><a class="btn vb" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-accueil" target="_blank" rel="sponsored noopener">Protéger ma connexion avec NordVPN</a><small>Lien affilié, sans surcoût pour vous.</small></aside>
 <section class="c" id="offres"><h2>Gratuit ou Premium</h2><div class="plans">
  <div><h3>Sans compte</h3><p class="pr">0 €</p><ul><li>Une adresse jetable tout de suite</li><li>Messages effacés après 1 heure</li><li>Boîte publique : toute personne qui connaît l'adresse peut la lire</li></ul></div>
  <div><h3>Compte gratuit</h3><p class="pr">0 €</p><ul><li>1 adresse réservée à votre nom</li><li>Privée : vous seul lisez ses messages</li><li>Messages gardés 24 heures</li></ul><button class="btn ghost" type="button" data-acct>Créer mon compte</button></div>
@@ -458,7 +460,7 @@ def bhead(title, desc, canon, schema):
     t = T["fr"]
     return head(t, title, desc, canon, canon, canon, ''.join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False) + '</script>' for x in schema)).replace('<link rel="canonical"', '<link rel="alternate" type="application/rss+xml" title="Guides du mail jetable" href="/blog/rss.xml"><link rel="canonical"')
 def btop():
-    return '<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="/blog/">Guides</a><a class="acct" href="/?compte=1" style="text-decoration:none">Mon compte</a></nav></header>'
+    return '<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-menu" target="_blank" rel="sponsored noopener">VPN</a><a href="/blog/">Guides</a><a class="acct" href="/?compte=1" style="text-decoration:none">Mon compte</a></nav></header>'
 def bfoot():
     return foot(T["fr"]) + "</body></html>"
 
@@ -480,7 +482,7 @@ for a in arts:
     html = bhead(a["title"] + " | Adresse-Temporaire.fr", a["desc"], url, sch).replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">') + btop() + f"""<main><article class="art">
 <p class="crumb"><a href="/">Accueil</a> / <a href="/blog/">Guides</a> / {esc(a["cat"])}</p>
 <h1>{esc(a["title"])}</h1><p class="meta">Publié le {fdate(a["date"])}, {rtime(body)} min de lecture</p>
-{first.replace('<p>', '<p class="lead">', 1)}</p>{rest}
+{first.replace('<p>', '<p class="lead">', 1)}</p><aside class="vpnb"><div><span class="sp">Partenaire recommandé</span><b>Votre adresse est cachée. Et votre connexion ?</b><p>Sur un Wi-Fi public, à l'hôtel ou au café, n'importe qui peut espionner ce que vous faites. NordVPN chiffre tout votre trafic et masque votre adresse IP, sur téléphone comme sur ordinateur.</p></div><a class="btn vb" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-guide" target="_blank" rel="sponsored noopener">Protéger ma connexion avec NordVPN</a><small>Lien affilié, sans surcoût pour vous.</small></aside>{rest}
 {CTA}
 <aside class="vpn"><span class="sp">Partenaire</span><b>Protégez aussi votre connexion</b><p>Le mail jetable protège votre adresse. Sur un Wi-Fi public ou pour masquer votre adresse IP, un VPN chiffre tout votre trafic. Nous recommandons NordVPN.</p><a class="btn ghost" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire" target="_blank" rel="sponsored noopener">Découvrir NordVPN</a><small>Lien affilié : nous touchons une commission si vous vous abonnez, sans surcoût pour vous.</small></aside>
 <div class="rel"><h2>À lire aussi</h2><ul>{rel}</ul></div>
