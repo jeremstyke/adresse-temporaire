@@ -295,7 +295,7 @@ function full(){return me+"@"+DOM}
 function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
 function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load();if(lg("at_push")==="1")pushSub(false)}
 (function(){var d=lg("at_dom");if(d&&DOMS.indexOf(d)>=0)DOM=d})();
-function doms(){Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
+function doms(){var pd=$("pickdom");if(pd)pd.textContent="@"+DOM;Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
 $("addr").textContent=full();
 $("copy").onclick=function(){var b=this;var done=function(){b.textContent=L.copied;b.classList.add("done");setTimeout(function(){b.textContent=L.copy;b.classList.remove("done")},1600)};
  if(navigator.clipboard)navigator.clipboard.writeText(full()).then(done,function(){sel();done()});else{sel();done()}};
@@ -440,7 +440,7 @@ def index(t):
   <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">{esc(t['copy'])}</button></div>
   <div class="tools"><button class="link" id="new" type="button">{esc(t['new'])}</button><button class="link" id="choose" type="button" aria-controls="pick">{esc(t['choose'])}</button><button class="link" id="push" type="button" hidden>{esc(t['push_off'])}</button></div><p class="sm" id="pushmsg" role="status"></p>
   <div class="doms" id="doms" role="group" aria-label="{'Domaine' if t['lang'] == 'fr' else 'Domain'}"><span>{'Domaine :' if t['lang'] == 'fr' else 'Domain:'}</span><button type="button" data-d="adresse-temporaire.fr">@adresse-temporaire.fr</button><button type="button" data-d="jetboxmail.com">@jetboxmail.com</button><small>{'même boîte, au choix si un site refuse l\'une des deux' if t['lang'] == 'fr' else 'same inbox, switch if a site refuses one of them'}</small></div>
-  <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="{esc(t['choose_ph'])}" aria-label="{esc(t['choose'])}"><span class="dom">@{DOMAIN}</span><button class="btn ghost" type="submit">{esc(t['choose_ok'])}</button><span id="pickerr" role="alert"></span></div></form>
+  <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="{esc(t['choose_ph'])}" aria-label="{esc(t['choose'])}"><span class="dom" id="pickdom">@{DOMAIN}</span><button class="btn ghost" type="submit">{esc(t['choose_ok'])}</button><span id="pickerr" role="alert"></span></div></form>
   <p class="keep" id="keep"></p>
  </div>
  <div class="box">
