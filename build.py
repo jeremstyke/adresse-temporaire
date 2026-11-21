@@ -553,7 +553,7 @@ def jetify(h):
     h = h.replace('<a class="brand" href="/en/">adresse<span>-</span>temporaire.fr</a>', '<a class="brand" href="/">jetbox<span>mail</span>.com</a>')
     h = h.replace(SITE + "/en/legal.html", JET + "/legal.html").replace('href="/en/legal.html"', 'href="/legal.html"')
     h = h.replace('<link rel="canonical" href="' + SITE + '/en/">', '<link rel="canonical" href="' + JET + '/">').replace('<meta property="og:url" content="' + SITE + '/en/">', '<meta property="og:url" content="' + JET + '/">')
-    h = h.replace('href="/blog/" hreflang="fr">Guides (FR)</a>', 'href="' + SITE + '/blog/" hreflang="fr">Guides (FR)</a>').replace('<a href="/blog/">Guides (in French)</a>', '<a href="' + SITE + '/blog/">Guides (in French)</a>')
+    h = h.replace('href="/blog/" hreflang="fr">Guides (FR)</a>', 'href="/guides/">Guides</a>').replace('<a href="/blog/">Guides (in French)</a>', '<a href="/guides/">Disposable email guides</a>')
     h = h.replace('<a class="lng" href="/" hreflang="fr"', '<a class="lng" href="' + SITE + '/" hreflang="fr"')
     h = h.replace('DOM="adresse-temporaire.fr"', 'DOM="jetboxmail.com"').replace("&copy; 2026 adresse-temporaire.fr", "&copy; 2026 jetboxmail.com")
     h = h.replace("Adresse-Temporaire.fr", "Jetbox Mail").replace('"url": "' + SITE + '/"', '"url": "' + JET + '/"')
@@ -564,8 +564,55 @@ EN_HOME = index_en()
 w("jet/index.html", jetify(EN_HOME))
 w("jet/legal.html", jetify(legal(T["en"], LEGAL_EN, "/en/legal.html", "Legal notice and privacy | Adresse-Temporaire.fr").replace("Mon compte", "My account").replace('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>').replace("Guides du mail jetable</a>", "Guides (in French)</a>").replace('<a class="brand" href="/">', '<a class="brand" href="/en/">')))
 w("jet/404.html", jetify(head(T["en"], "Page not found | Jetbox Mail", "Page not found", SITE + "/en/", "", "", "") + topbar(T["en"], "/") + '<main><h1>This page does not exist.</h1><p class="lead"><a href="/">Get a disposable email address</a></p></main>' + foot(T["en"]) + "</body></html>").replace("Mon compte", "My account").replace('<a class="brand" href="/">adresse<span>-</span>temporaire.fr</a>', '<a class="brand" href="/">jetbox<span>mail</span>.com</a>'))
+# ---------------- GUIDES ANGLAIS (jetboxmail.com/guides/) ----------------
+from guides_en import GUIDES_EN
+import datetime as _dt, re
+MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+def edate(d):
+    y, m, dd = map(int, d.split("-")); return f"{MONTHS[m-1]} {dd}, {y}"
+def jcard(a):
+    return f'<div class="post"><span class="cat">{esc(a["cat"])}</span><h3 class="pt"><a href="/guides/{a["slug"]}/">{esc(a["title"])}</a></h3><p>{esc(a["desc"])}</p><span class="meta">{edate(a["date"])}, {rtime(a["body"])} min read</span></div>'
+JCTA = '<div class="cta"><b>Need an address right now?</b><p>Your disposable address is ready on the home page, no sign-up needed.</p><a class="btn" href="/">Get my temporary email</a></div>'
+def jpage(title, desc, canon, schema, body, art=False):
+    ld = "".join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False) + '</script>' for x in schema)
+    h = head(T["en"], title, desc, canon, "", "", ld) + topbar(T["en"], "/") + body + foot(T["en"]) + "</body></html>"
+    h = h.replace("Mon compte", "My account").replace('<button class="acct" id="acct" type="button">My account</button>', '<a class="acct" href="/?compte=1" style="text-decoration:none">My account</a>')
+    h = h.replace('<a class="brand" href="/">adresse<span>-</span>temporaire.fr</a>', '<a class="brand" href="/">jetbox<span>mail</span>.com</a>').replace('<a href="/blog/">Guides</a>', '<a href="/guides/">Guides</a>')
+    h = h.replace('<a class="lng" href="/" hreflang="fr" lang="fr">FR</a>', '<a class="lng" href="' + SITE + '/" hreflang="fr" lang="fr">FR</a>')
+    h = h.replace('<a href="/blog/">Guides du mail jetable</a>', '<a href="/guides/">Disposable email guides</a>').replace("&copy; 2026 adresse-temporaire.fr", "&copy; 2026 jetboxmail.com")
+    h = h.replace('href="/en/legal.html"', 'href="/legal.html"')
+    if art: h = h.replace('<meta property="og:type" content="website">', '<meta property="og:type" content="article">')
+    h = h.replace('<meta charset="utf-8">', '<meta charset="utf-8"><meta name="robots" content="noindex">', 1)  # retiré par le worker sur jetboxmail.com
+    return h
+garts = sorted(GUIDES_EN, key=lambda a: (a["date"], a["slug"]), reverse=True)
+assert len({a["slug"] for a in garts}) == len(garts), "slug en double"
+for a in garts:
+    assert "\u2014" not in a["body"] + a["title"] + a["desc"] and "\u2013" not in a["body"] + a["title"] + a["desc"], "tiret long dans " + a["slug"]
+    assert len(a["title"]) <= 65, "title trop long " + a["slug"]
+    for l in re.findall(r'href="/guides/([^"/]+)/"', a["body"]):
+        assert any(o["slug"] == l for o in garts), "lien cassé " + a["slug"] + " -> " + l
+crumb = lambda extra: {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": JET + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": JET + "/guides/"}] + extra}
+w("jet/guides/index.html", jpage("Disposable Email Guides: Temp Mail Tips and Answers", "Guides to temp mail and disposable email addresses: how they work, how to stay safe, how to keep the same address and answers to the questions people ask most.", JET + "/guides/",
+  [{"@context": "https://schema.org", "@type": "Blog", "name": "Disposable email guides", "url": JET + "/guides/", "inLanguage": "en", "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": f'{JET}/guides/{a["slug"]}/', "datePublished": a["date"]} for a in garts]}, crumb([])],
+  f"""<main><div class="bh"><p class="kick">Jetbox Mail guides</p><h1>Disposable email guides</h1><p class="lead">How temp mail works, how to keep your real inbox out of reach, and straight answers to the questions people ask us most.</p></div><div class="posts">{"".join(jcard(a) for a in garts)}</div>{JCTA}</main>"""))
+for a in garts:
+    url = f'{JET}/guides/{a["slug"]}/'
+    rel = "".join(f'<li><a href="/guides/{o["slug"]}/">{esc(o["title"])}</a></li>' for o in [o for o in garts if o["slug"] != a["slug"]][:4])
+    body = a["body"].strip(); first, rest = body.split("</p>", 1)
+    sch = [{"@context": "https://schema.org", "@type": "BlogPosting", "headline": a["title"], "description": a["desc"], "datePublished": a["date"], "dateModified": a.get("updated", a["date"]), "inLanguage": "en", "mainEntityOfPage": url, "image": SITE + "/og.png", "author": {"@type": "Organization", "name": "Jetbox Mail", "url": JET + "/"}, "publisher": {"@type": "Organization", "name": "Jetbox Mail", "url": JET + "/"}}, crumb([{"@type": "ListItem", "position": 3, "name": a["title"], "item": url}])]
+    w(f'jet/guides/{a["slug"]}/index.html', jpage(a["title"] if len(a["title"]) > 42 else a["title"] + " | Jetbox Mail", a["desc"], url, sch, f"""<main><article class="art">
+<p class="crumb"><a href="/">Home</a> / <a href="/guides/">Guides</a> / {esc(a["cat"])}</p>
+<h1>{esc(a["title"])}</h1><p class="meta">Published {edate(a["date"])}, {rtime(body)} min read</p>
+{first.replace('<p>', '<p class="lead">', 1)}</p><aside class="vpnb"><div><span class="sp">Recommended partner</span><b>Your address is hidden. What about your connection?</b><p>On public Wi-Fi, at a hotel or a café, anyone can snoop on what you do. NordVPN encrypts all your traffic and hides your IP address, on your phone and your computer.</p></div><a class="btn vb" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=jetboxmail-guide" target="_blank" rel="sponsored noopener">Protect my connection with NordVPN</a><small>Affiliate link, no extra cost for you.</small></aside>{rest}
+{JCTA}
+<div class="rel"><h2>Read next</h2><ul>{rel}</ul></div>
+</article></main>""", art=True))
+# accueil anglais : derniers guides
+_jh = open(os.path.join(ROOT, "jet/index.html")).read()
+_jh = _jh.replace("</main><footer>", f'<section class="c"><h2>Disposable email guides</h2><div class="posts home">{"".join(jcard(a) for a in garts[:3])}</div><p class="more"><a class="btn ghost" href="/guides/">See all guides</a></p></section></main><footer>', 1)
+w("jet/index.html", _jh)
 w("jet/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {JET}/sitemap.xml\n")
-w("jet/sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{JET}/</loc><priority>1.0</priority></url><url><loc>{JET}/legal.html</loc><priority>0.2</priority></url></urlset>\n')
+w("jet/sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{JET}/</loc><priority>1.0</priority></url><url><loc>{JET}/guides/</loc><priority>0.8</priority></url>' + "".join(f'<url><loc>{JET}/guides/{a["slug"]}/</loc><lastmod>{a.get("updated", a["date"])}</lastmod><priority>0.7</priority></url>' for a in garts) + f'<url><loc>{JET}/legal.html</loc><priority>0.2</priority></url></urlset>\n')
 w("jet/site.webmanifest", json.dumps({"name": "Jetbox Mail", "short_name": "Jetbox", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}], "theme_color": "#16213b", "background_color": "#ffffff", "display": "standalone", "start_url": "/"}))
 import shutil
 for f in ["favicon.ico", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png"]:
