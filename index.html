@@ -171,7 +171,7 @@ article.art th{background:#eef1f7}
  </div>
  <div class="box">
   <div id="listwrap"><div class="boxh"><span>Boîte de réception</span><span class="live"><i></i>Actualisation auto</span></div>
-   <div id="err" role="status">Connexion impossible pour le moment. Nouvel essai dans quelques secondes.</div>
+   <div id="err" role="status"></div>
    <ul class="msgs" id="list" aria-live="polite"></ul>
    <div class="empty" id="empty"><b>En attente de messages...</b>Les nouveaux messages arrivent ici automatiquement.</div>
    <p class="note" id="knote">Les messages sont effacés automatiquement au bout d'une heure.</p></div>
@@ -207,7 +207,7 @@ article.art th{background:#eef1f7}
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button></div>
 </dialog><script>
 (function(){
-var L={"copy": "Copier", "copied": "Copiée", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.", "from": "De", "ago": ["à l'instant", "il y a {} min", "il y a {} h"], "nosubj": "(sans objet)", "push_off": "🔔 Être alerté à chaque e-mail", "push_on": "🔔 Alertes activées (désactiver)", "push_no": "Alertes refusées. Autorisez les notifications pour ce site dans les réglages du navigateur.", "push_ios": "Sur iPhone : touchez Partager puis « Sur l'écran d'accueil », ouvrez l'appli et activez les alertes.", "push_ok": "C'est noté : une notification arrivera à chaque nouvel e-mail, même site fermé.", "app_ios": "Sur iPhone : touchez le bouton Partager de Safari, puis « Sur l'écran d'accueil ».", "app_other": "Ouvrez le menu de votre navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».", "ban_t": "Installez l'appli sur votre téléphone", "ban_pc": "Installez l'appli sur votre ordinateur", "app_mac": "Sur Mac avec Safari : menu Fichier, puis « Ajouter au Dock »."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="adresse-temporaire.fr",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var L={"copy": "Copier", "copied": "Copiée", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.", "from": "De", "ago": ["à l'instant", "il y a {} min", "il y a {} h"], "nosubj": "(sans objet)", "push_off": "🔔 Être alerté à chaque e-mail", "push_on": "🔔 Alertes activées (désactiver)", "push_no": "Alertes refusées. Autorisez les notifications pour ce site dans les réglages du navigateur.", "push_ios": "Sur iPhone : touchez Partager puis « Sur l'écran d'accueil », ouvrez l'appli et activez les alertes.", "push_ok": "C'est noté : une notification arrivera à chaque nouvel e-mail, même site fermé.", "app_ios": "Sur iPhone : touchez le bouton Partager de Safari, puis « Sur l'écran d'accueil ».", "app_other": "Ouvrez le menu de votre navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».", "ban_t": "Installez l'appli sur votre téléphone", "ban_pc": "Installez l'appli sur votre ordinateur", "app_mac": "Sur Mac avec Safari : menu Fichier, puis « Ajouter au Dock ».", "err": "Connexion impossible pour le moment. Nouvel essai dans quelques secondes."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="adresse-temporaire.fr",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
 var $=function(i){return document.getElementById(i)};
 var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
 function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
@@ -251,7 +251,7 @@ function keep(){var k=$("keep");k.innerHTML="";
  k.appendChild(b);if(!acct)k.appendChild(txt(" (compte gratuit)"))}
 function load(){var a=me;api("/box?a="+encodeURIComponent(a)).then(function(j){if(a!==me)return;fails=0;$("err").style.display="none";
   if(j._s===403){$("err").textContent="Cette adresse est réservée par un autre compte. Choisissez-en une autre.";$("err").style.display="block";last=[];render([]);return}
-  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1)$("err").style.display="block"})}
+  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1){$("err").textContent=L.err;$("err").style.display="block"}})}
 function loop(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)load();loop()},5000)}
 document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
 function closeView(){$("view").classList.remove("on");$("listwrap").style.display="block"}

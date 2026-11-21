@@ -321,7 +321,7 @@ function keep(){var k=$("keep");k.innerHTML="";
  k.appendChild(b);if(!acct)k.appendChild(txt(" (compte gratuit)"))}
 function load(){var a=me;api("/box?a="+encodeURIComponent(a)).then(function(j){if(a!==me)return;fails=0;$("err").style.display="none";
   if(j._s===403){$("err").textContent="Cette adresse est réservée par un autre compte. Choisissez-en une autre.";$("err").style.display="block";last=[];render([]);return}
-  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1)$("err").style.display="block"})}
+  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1){$("err").textContent=L.err;$("err").style.display="block"}})}
 function loop(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)load();loop()},5000)}
 document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
 function closeView(){$("view").classList.remove("on");$("listwrap").style.display="block"}
@@ -431,7 +431,7 @@ def index(t):
     how = "".join(f"<li><b>{esc(a)}</b><p>{esc(b)}</p></li>" for a, b in t["how"])
     faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in t["faq"])
     HOMECARDS = "".join(card(a) for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True)[:4])
-    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj", "push_off", "push_on", "push_no", "push_ios", "push_ok", "app_ios", "app_other", "ban_t", "ban_pc", "app_mac"]}
+    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj", "push_off", "push_on", "push_no", "push_ios", "push_ok", "app_ios", "app_other", "ban_t", "ban_pc", "app_mac", "err"]}
     js = JS.replace("__T__", json.dumps(jsT, ensure_ascii=False)).replace("__API__", API).replace("__DOM__", DOMAIN)
     return h + topbar(t, other) + f"""<main>
 <h1>{esc(t['h1'])}</h1><p class="lead">{esc(t['lead'])}</p>
@@ -445,7 +445,7 @@ def index(t):
  </div>
  <div class="box">
   <div id="listwrap"><div class="boxh"><span>{esc(t['inbox'])}</span><span class="live"><i></i>{esc(t['live'])}</span></div>
-   <div id="err" role="status">{esc(t['err'])}</div>
+   <div id="err" role="status"></div>
    <ul class="msgs" id="list" aria-live="polite"></ul>
    <div class="empty" id="empty"><b>{esc(t['waiting'])}</b>{esc(t['waiting_sub'])}</div>
    <p class="note" id="knote">{esc(t['kept'])}</p></div>

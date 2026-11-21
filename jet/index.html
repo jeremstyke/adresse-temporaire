@@ -171,7 +171,7 @@ article.art th{background:#eef1f7}
  </div>
  <div class="box">
   <div id="listwrap"><div class="boxh"><span>Inbox</span><span class="live"><i></i>Auto refresh</span></div>
-   <div id="err" role="status">Can't connect right now. Retrying in a few seconds.</div>
+   <div id="err" role="status"></div>
    <ul class="msgs" id="list" aria-live="polite"></ul>
    <div class="empty" id="empty"><b>Waiting for messages...</b>New messages show up here automatically.</div>
    <p class="note" id="knote">Messages are erased automatically after one hour.</p></div>
@@ -207,7 +207,7 @@ article.art th{background:#eef1f7}
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Sign out</button></div>
 </dialog><script>
 (function(){
-var L={"copy": "Copy", "copied": "Copied", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.", "from": "From", "ago": ["just now", "{} min ago", "{} h ago"], "nosubj": "(no subject)", "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed.", "app_ios": "On iPhone: tap the Share button in Safari, then Add to Home Screen.", "app_other": "Open your browser menu, then Install app or Add to Home Screen.", "ban_t": "Install the app on your phone", "ban_pc": "Install the app on your computer", "app_mac": "On a Mac with Safari: File menu, then Add to Dock."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="jetboxmail.com",GUM="https://jeremstyke.gumroad.com/l/jssxfa",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var L={"copy": "Copy", "copied": "Copied", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.", "from": "From", "ago": ["just now", "{} min ago", "{} h ago"], "nosubj": "(no subject)", "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed.", "app_ios": "On iPhone: tap the Share button in Safari, then Add to Home Screen.", "app_other": "Open your browser menu, then Install app or Add to Home Screen.", "ban_t": "Install the app on your phone", "ban_pc": "Install the app on your computer", "app_mac": "On a Mac with Safari: File menu, then Add to Dock.", "err": "Can't connect right now. Retrying in a few seconds."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="jetboxmail.com",GUM="https://jeremstyke.gumroad.com/l/jssxfa",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
 var $=function(i){return document.getElementById(i)};
 var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
 function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
@@ -251,7 +251,7 @@ function keep(){var k=$("keep");k.innerHTML="";
  k.appendChild(b);if(!acct)k.appendChild(txt(" (free account)"))}
 function load(){var a=me;api("/box?a="+encodeURIComponent(a)).then(function(j){if(a!==me)return;fails=0;$("err").style.display="none";
   if(j._s===403){$("err").textContent="This address is reserved by another account. Pick another one.";$("err").style.display="block";last=[];render([]);return}
-  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1)$("err").style.display="block"})}
+  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1){$("err").textContent=L.err;$("err").style.display="block"}})}
 function loop(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)load();loop()},5000)}
 document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
 function closeView(){$("view").classList.remove("on");$("listwrap").style.display="block"}
