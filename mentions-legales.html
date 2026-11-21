@@ -72,11 +72,51 @@ details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
 footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
 footer a{color:var(--ink2)}
 @media (max-width:520px){.row .btn{flex:1}}
+.acct{cursor:pointer;font:600 14px "Public Sans",sans-serif;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:8px 12px}
+.acct:hover{border-color:var(--blue);color:var(--blue)}
+.acct.on{border-color:var(--blue);color:var(--blue)}
+.keep{margin:12px 0 0;font-size:14px;color:var(--ink2)}
+.keep b{color:var(--ok)}
+dialog{border:1px solid var(--line);border-radius:6px;padding:0;max-width:460px;width:calc(100% - 32px);color:var(--ink);box-shadow:0 20px 60px rgba(22,33,59,.25)}
+dialog::backdrop{background:rgba(22,33,59,.45)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font:700 20px "Familjen Grotesk",sans-serif;margin:0}
+.x{all:unset;cursor:pointer;font-size:24px;line-height:1;padding:4px 8px;color:var(--ink2)}
+.x:focus-visible{outline:3px solid var(--blue)}
+.db{padding:18px 20px 22px}
+.db p{margin:0 0 12px;color:var(--ink2);font-size:15px}
+.db label{display:block;font-size:14px;margin:0 0 6px;color:var(--ink2)}
+.db input{width:100%;font:16px "Public Sans",sans-serif;padding:11px 12px;border:1px solid var(--line);border-radius:4px;margin-bottom:12px}
+.db input.code{font:500 24px "JetBrains Mono",monospace;letter-spacing:8px;text-align:center}
+.db .btn{width:100%}
+.derr{color:var(--red);font-size:14px;min-height:20px;margin:6px 0 0}
+.plan{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:0 0 16px}
+.plan b{font:700 16px "Familjen Grotesk",sans-serif}
+.tag{font-size:12px;font-weight:600;padding:3px 8px;border-radius:20px;background:#e8ecf6;color:var(--blue)}
+.tag.p{background:var(--red);color:#fff}
+ul.my{list-style:none;padding:0;margin:0 0 14px}
+ul.my li{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding:9px 0}
+ul.my li:last-child{border-bottom:1px solid var(--line)}
+ul.my .a{flex:1;min-width:0;font:500 14px "JetBrains Mono",monospace;overflow-wrap:anywhere}
+ul.my .cur{color:var(--blue)}
+.sm{font-size:13px}
+.row2{display:flex;gap:8px;margin-bottom:12px}.row2 input{margin:0;flex:1;min-width:0;font-family:"JetBrains Mono",monospace;font-size:15px}.row2 .btn{width:auto}
+.prem{display:block;text-align:center;text-decoration:none;margin:4px 0 12px;background:var(--red);border-color:var(--red)}
+.prem:hover{background:#a8272e}
+.out{margin-top:6px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.plans>div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.plans h3{font:700 19px "Familjen Grotesk",sans-serif;margin:0 0 4px}
+.plans .pr{font:700 26px "Familjen Grotesk",sans-serif;margin:0 0 10px}
+.plans .pr small{font:400 14px "Public Sans",sans-serif;color:var(--ink2)}
+.plans ul{margin:0 0 14px;padding-left:18px;color:var(--ink2)}
+.plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
-</style><meta name="robots" content="noindex,follow"></head><body><div class="air"></div><div class="wrap"><header class="top"><a class="brand" href="./">adresse<span>-</span>temporaire.fr</a></header><main><h1>Mentions légales et confidentialité</h1>
+</style><meta name="robots" content="noindex,follow"></head><body><div class="air"></div><div class="wrap"><header class="top"><a class="brand" href="./">adresse<span>-</span>temporaire.fr</a><button class="acct" id="acct" type="button">Mon compte</button></header><main><h1>Mentions légales et confidentialité</h1>
 <section class="c"><h2>Éditeur</h2><p>Le site adresse-temporaire.fr est édité par Jérémy Dacier-Jury, entrepreneur individuel (immatriculation en cours). Contact : <a href="mailto:contact@adresse-temporaire.fr">contact@adresse-temporaire.fr</a>.</p></section>
 <section class="c"><h2>Hébergement</h2><p>Pages du site : GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Réception des e-mails : Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis. Stockage temporaire des messages : Supabase, Inc., 970 Toa Payoh North #07-04, Singapour.</p></section>
-<section class="c"><h2>Fonctionnement et conservation</h2><p>Les adresses servent uniquement à recevoir des messages. Chaque message reçu est conservé une heure au maximum, puis supprimé définitivement. Aucun compte n'est créé et aucune donnée personnelle n'est demandée. L'adresse que vous utilisez est gardée uniquement dans votre navigateur (stockage local), que vous pouvez effacer à tout moment.</p></section>
+<section class="c"><h2>Fonctionnement et conservation</h2><p>Les adresses servent uniquement à recevoir des messages. Sans compte, chaque message est conservé une heure au maximum. Sur une adresse réservée, il est conservé 24 heures (compte gratuit) ou 7 jours (Premium), puis supprimé définitivement. L'adresse que vous utilisez et votre session sont gardées dans votre navigateur (stockage local).</p></section>
+<section class="c"><h2>Comptes</h2><p>Si vous créez un compte, nous conservons votre adresse e-mail, vos adresses réservées et la date de fin de votre Premium, tant que le compte existe. Les codes de connexion sont envoyés par Resend (Resend, Inc., États-Unis). Le paiement du Premium est géré par Gumroad (Gumroad, Inc., États-Unis), qui nous transmet uniquement l'e-mail d'achat et le statut de l'abonnement. Pour supprimer votre compte, écrivez à <a href="mailto:contact@adresse-temporaire.fr">contact@adresse-temporaire.fr</a>.</p></section>
 <section class="c"><h2>Cookies et statistiques</h2><p>Le site n'utilise pas de cookies. Seul un compteur anonyme du nombre d'adresses créées et de messages reçus par jour est tenu, sans adresse IP ni identifiant.</p></section>
 <section class="c"><h2>Usage interdit et signalement</h2><p>Il est interdit d'utiliser ce service pour une fraude, du harcèlement, l'usurpation d'identité ou toute activité illégale. Pour signaler un abus ou un contenu illicite, écrivez à <a href="mailto:contact@adresse-temporaire.fr">contact@adresse-temporaire.fr</a> en indiquant l'adresse concernée. Les contenus signalés sont supprimés sans délai.</p></section>
 <section class="c"><h2>Vos droits</h2><p>Conformément au RGPD, vous pouvez demander l'accès ou la suppression de données vous concernant à l'adresse de contact ci-dessus. Les messages étant effacés au bout d'une heure, il est en général impossible d'en fournir une copie après ce délai.</p></section></main><footer><div>Usage interdit pour toute fraude, harcèlement ou activité illégale.</div><div class="fl"><a href="mentions-legales.html">Mentions légales et confidentialité</a><a href="mailto:contact@adresse-temporaire.fr">Signaler un abus</a><span>&copy; 2026 adresse-temporaire.fr</span></div></footer></div></body></html>
