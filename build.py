@@ -103,6 +103,7 @@ h1{font:700 clamp(30px,5.4vw,46px)/1.08 "Familjen Grotesk",sans-serif;letter-spa
 .btn.ghost{background:#fff;color:var(--blue)}.btn.ghost:hover{background:#eef2fb}
 .btn.done{background:var(--ok);border-color:var(--ok)}
 .tools{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.doms{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13px;color:var(--ink2)}.doms button{font:inherit;font-size:13px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer}.doms button[aria-pressed=true]{background:#2852b8;border-color:#2852b8;color:#fff}.doms small{flex-basis:100%;color:var(--ink2)}
 .link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 #pick{display:none;margin-top:12px;gap:8px;flex-wrap:wrap;align-items:center}
 #pick.on{display:flex}
@@ -268,7 +269,7 @@ DIALOG = """<dialog id="dlg" aria-labelledby="dlgt"><div class="dh"><h2 id="dlgt
 
 JS = r"""
 (function(){
-var L=__T__,API="__API__",DOM="__DOM__",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var L=__T__,API="__API__",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="__DOM__",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
 var $=function(i){return document.getElementById(i)};
 var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
 function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
@@ -278,13 +279,15 @@ var tok=lg(KT);
 function H(x){var h=x||{};if(tok)h.Authorization="Bearer "+tok;return h}
 function api(p,o){o=o||{};o.headers=H(o.headers);o.cache="no-store";return fetch(API+p,o).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
-if(DOM&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("/en/"+location.search);return}
+if(location.hostname==="adresse-temporaire.fr"&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("https://jetboxmail.com/"+location.search);return}
 Array.prototype.forEach.call(document.querySelectorAll("a.lng"),function(x){x.onclick=function(){ls("at_lang",x.getAttribute("hreflang"))}});
 var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];if(qa&&RX.test(qa)){me=qa;ls(K,me)}if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
 function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
 function full(){return me+"@"+DOM}
 function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
 function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load()}
+(function(){var d=lg("at_dom");if(d&&DOMS.indexOf(d)>=0)DOM=d})();
+function doms(){Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
 $("addr").textContent=full();
 $("copy").onclick=function(){var b=this;var done=function(){b.textContent=L.copied;b.classList.add("done");setTimeout(function(){b.textContent=L.copy;b.classList.remove("done")},1600)};
  if(navigator.clipboard)navigator.clipboard.writeText(full()).then(done,function(){sel();done()});else{sel();done()}};
@@ -389,7 +392,7 @@ def card(a):
 def index(t):
     other = t["other"]
     canon = SITE + t["path"]
-    h = head(t, t["title"], t["desc"], canon, SITE + "/", SITE + "/en/",
+    h = head(t, t["title"], t["desc"], canon, SITE + "/", "https://jetboxmail.com/",
              '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "WebApplication", "name": "Adresse-Temporaire.fr", "url": SITE + "/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "inLanguage": "fr", "description": t["desc"], "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "EUR", "name": "Gratuit"}, {"@type": "Offer", "price": "2.99", "priceCurrency": "EUR", "name": "Premium"}]}, ensure_ascii=False) + '</script><script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": t["lang"], "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t["faq"]]}, ensure_ascii=False) + "</script>")
     how = "".join(f"<li><b>{esc(a)}</b><p>{esc(b)}</p></li>" for a, b in t["how"])
     faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in t["faq"])
@@ -402,6 +405,7 @@ def index(t):
  <div class="addr"><label for="addr" id="addrl">{esc(t['your'])}</label>
   <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">{esc(t['copy'])}</button></div>
   <div class="tools"><button class="link" id="new" type="button">{esc(t['new'])}</button><button class="link" id="choose" type="button" aria-controls="pick">{esc(t['choose'])}</button></div>
+  <div class="doms" id="doms" role="group" aria-label="{'Domaine' if t['lang'] == 'fr' else 'Domain'}"><span>{'Domaine :' if t['lang'] == 'fr' else 'Domain:'}</span><button type="button" data-d="adresse-temporaire.fr">@adresse-temporaire.fr</button><button type="button" data-d="jetboxmail.com">@jetboxmail.com</button><small>{'même boîte, au choix si un site refuse l\'une des deux' if t['lang'] == 'fr' else 'same inbox, switch if a site refuses one of them'}</small></div>
   <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="{esc(t['choose_ph'])}" aria-label="{esc(t['choose'])}"><span class="dom">@{DOMAIN}</span><button class="btn ghost" type="submit">{esc(t['choose_ok'])}</button><span id="pickerr" role="alert"></span></div></form>
   <p class="keep" id="keep"></p>
  </div>
@@ -544,8 +548,32 @@ def index_en():
         h = h.replace(a, b)
     h = h.replace('GUM="https://jeremstyke.gumroad.com/l/anvfvt"', 'GUM="' + GUM_EN + '"').replace('"inLanguage": "fr"', '"inLanguage": "en"').replace('"priceCurrency": "EUR", "name": "Premium"', '"priceCurrency": "USD", "name": "Premium"')
     return h
-w("en/index.html", index_en())
-w("en/legal.html", legal(T["en"], LEGAL_EN, "/en/legal.html", "Legal notice and privacy | Adresse-Temporaire.fr").replace("Mon compte", "My account").replace('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>').replace("Guides du mail jetable</a>", "Guides (in French)</a>").replace('<a class="brand" href="/">', '<a class="brand" href="/en/">'))
+JET = "https://jetboxmail.com"
+def jetify(h):
+    h = h.replace('<a class="brand" href="/en/">adresse<span>-</span>temporaire.fr</a>', '<a class="brand" href="/">jetbox<span>mail</span>.com</a>')
+    h = h.replace(SITE + "/en/legal.html", JET + "/legal.html").replace('href="/en/legal.html"', 'href="/legal.html"')
+    h = h.replace('<link rel="canonical" href="' + SITE + '/en/">', '<link rel="canonical" href="' + JET + '/">').replace('<meta property="og:url" content="' + SITE + '/en/">', '<meta property="og:url" content="' + JET + '/">')
+    h = h.replace('href="/blog/" hreflang="fr">Guides (FR)</a>', 'href="' + SITE + '/blog/" hreflang="fr">Guides (FR)</a>').replace('<a href="/blog/">Guides (in French)</a>', '<a href="' + SITE + '/blog/">Guides (in French)</a>')
+    h = h.replace('<a class="lng" href="/" hreflang="fr"', '<a class="lng" href="' + SITE + '/" hreflang="fr"')
+    h = h.replace('DOM="adresse-temporaire.fr"', 'DOM="jetboxmail.com"').replace("&copy; 2026 adresse-temporaire.fr", "&copy; 2026 jetboxmail.com")
+    h = h.replace("Adresse-Temporaire.fr", "Jetbox Mail").replace('"url": "' + SITE + '/"', '"url": "' + JET + '/"')
+    h = h.replace("post(\"/auth/start\",{email:email})", "post(\"/auth/start\",{email:email,lang:\"en\"})")
+    h = h.replace('<meta charset="utf-8">', '<meta charset="utf-8"><meta name="robots" content="noindex">', 1)
+    return h
+EN_HOME = index_en()
+w("jet/index.html", jetify(EN_HOME))
+w("jet/legal.html", jetify(legal(T["en"], LEGAL_EN, "/en/legal.html", "Legal notice and privacy | Adresse-Temporaire.fr").replace("Mon compte", "My account").replace('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>').replace("Guides du mail jetable</a>", "Guides (in French)</a>").replace('<a class="brand" href="/">', '<a class="brand" href="/en/">')))
+w("jet/404.html", jetify(head(T["en"], "Page not found | Jetbox Mail", "Page not found", SITE + "/en/", "", "", "") + topbar(T["en"], "/") + '<main><h1>This page does not exist.</h1><p class="lead"><a href="/">Get a disposable email address</a></p></main>' + foot(T["en"]) + "</body></html>").replace("Mon compte", "My account").replace('<a class="brand" href="/">adresse<span>-</span>temporaire.fr</a>', '<a class="brand" href="/">jetbox<span>mail</span>.com</a>'))
+w("jet/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {JET}/sitemap.xml\n")
+w("jet/sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{JET}/</loc><priority>1.0</priority></url><url><loc>{JET}/legal.html</loc><priority>0.2</priority></url></urlset>\n')
+w("jet/site.webmanifest", json.dumps({"name": "Jetbox Mail", "short_name": "Jetbox", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}], "theme_color": "#16213b", "background_color": "#ffffff", "display": "standalone", "start_url": "/"}))
+import shutil
+for f in ["favicon.ico", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png"]:
+    shutil.copy(f, "jet/" + f)
+# l'ancienne page anglaise renvoie vers jetboxmail.com
+REDIR = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{u}"><meta http-equiv="refresh" content="0;url={u}"><title>Jetbox Mail</title><script>location.replace("{u}"+location.search)</script></head><body><a href="{u}">jetboxmail.com</a></body></html>'
+w("en/index.html", REDIR.replace("{u}", JET + "/"))
+w("en/legal.html", REDIR.replace("{u}", JET + "/legal.html"))
 w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 w(".nojekyll", "")
@@ -593,7 +621,7 @@ w("blog/rss.xml", f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><ch
 
 # sitemap complet
 today = datetime.date.today().isoformat()
-urls = [(SITE + "/", today, "1.0"), (SITE + "/en/", today, "0.6"), (SITE + "/blog/", today, "0.8")] + [(f'{SITE}/blog/{a["slug"]}/', a["date"], "0.7") for a in arts] + [(SITE + "/mentions-legales.html", today, "0.2")]
+urls = [(SITE + "/", today, "1.0"), (SITE + "/blog/", today, "0.8")] + [(f'{SITE}/blog/{a["slug"]}/', a["date"], "0.7") for a in arts] + [(SITE + "/mentions-legales.html", today, "0.2")]
 w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n" for u, d, pr in urls) + "</urlset>\n")
 w("404.html", head(T["fr"], "Page introuvable | Adresse-Temporaire.fr", "Page introuvable", SITE + "/", "", "", '<meta name="robots" content="noindex">') + btop() + '<main><h1>Cette page n\'existe pas.</h1><p class="lead">Elle a peut-être été déplacée. Votre adresse mail jetable vous attend sur la page d\'accueil.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="/">Aller à l\'accueil</a></p></main>' + bfoot())
 print("blog ok", len(arts))

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="zOVKFpJBh1jvzMQHPHjjrzCtxGgENVeCLLiVSmmgdzg">
+<title>Free temporary email address, disposable inbox | Jetbox Mail</title><meta name="description" content="Get a free temporary email address in one click, no sign-up. Receive verification codes and links, then everything is erased after one hour.">
+<link rel="canonical" href="https://jetboxmail.com/"><link rel="alternate" hreflang="fr" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="en" href="https://jetboxmail.com/"><link rel="alternate" hreflang="x-default" href="https://adresse-temporaire.fr/">
+<meta property="og:title" content="Free temporary email address, disposable inbox | Jetbox Mail"><meta property="og:description" content="Get a free temporary email address in one click, no sign-up. Receive verification codes and links, then everything is erased after one hour."><meta property="og:url" content="https://jetboxmail.com/"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>
+:root{--ink:#16213b;--ink2:#4a5672;--paper:#f6f7fa;--card:#fff;--line:#dde2ec;--red:#c8323a;--blue:#2852b8;--blue-d:#1d3f92;--ok:#1d7a4b}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,sans-serif}
+a{color:var(--blue)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.air{height:8px;background:repeating-linear-gradient(-45deg,var(--red) 0 14px,#fff 14px 22px,var(--blue) 22px 36px,#fff 36px 44px)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font:700 18px "Familjen Grotesk",sans-serif;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--red)}
+.lng{font-size:14px;color:var(--ink2)}
+h1{font:700 clamp(30px,5.4vw,46px)/1.08 "Familjen Grotesk",sans-serif;letter-spacing:-.025em;margin:18px 0 12px;max-width:16ch}
+.lead{color:var(--ink2);max-width:60ch;margin:0 0 26px;font-size:17px}
+.env{background:var(--card);border:1px solid var(--line);border-radius:6px;position:relative;box-shadow:0 1px 0 var(--line)}
+.env:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.addr{padding:24px 22px 18px}
+.addr label{display:block;font-size:14px;color:var(--ink2);margin-bottom:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+#addr{flex:1 1 320px;min-width:0;font:500 clamp(16px,3.4vw,22px) "JetBrains Mono",monospace;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;overflow-wrap:anywhere}
+.btn{cursor:pointer;font:600 15px "Public Sans",sans-serif;border-radius:4px;padding:12px 18px;border:1px solid var(--blue);background:var(--blue);color:#fff}
+.btn:hover{background:var(--blue-d)}
+.btn.ghost{background:#fff;color:var(--blue)}.btn.ghost:hover{background:#eef2fb}
+.btn.done{background:var(--ok);border-color:var(--ok)}
+.tools{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.doms{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13px;color:var(--ink2)}.doms button{font:inherit;font-size:13px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer}.doms button[aria-pressed=true]{background:#2852b8;border-color:#2852b8;color:#fff}.doms small{flex-basis:100%;color:var(--ink2)}
+.link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#pick{display:none;margin-top:12px;gap:8px;flex-wrap:wrap;align-items:center}
+#pick.on{display:flex}
+#pick input{font:500 15px "JetBrains Mono",monospace;padding:9px 10px;border:1px solid var(--line);border-radius:4px;width:220px}
+#pick .dom{font:500 15px "JetBrains Mono",monospace;color:var(--ink2)}
+#pickerr{color:var(--red);font-size:14px;width:100%}
+.box{border-top:1px solid var(--line)}
+.boxh{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;font-weight:600}
+.live{font-size:13px;color:var(--ink2);font-weight:400;display:flex;align-items:center;gap:7px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+@media (prefers-reduced-motion:no-preference){.live i{animation:p 2s ease-in-out infinite}@keyframes p{50%{opacity:.25}}}
+ul.msgs{list-style:none;margin:0;padding:0}
+ul.msgs li{border-top:1px solid var(--line)}
+ul.msgs button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:2px 14px;width:100%;padding:14px 22px;cursor:pointer}
+ul.msgs button:hover{background:#f3f5fa}ul.msgs button:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.f{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.t{font-size:13px;color:var(--ink2);white-space:nowrap}
+.s{grid-column:1/-1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.p{grid-column:1/-1;font-size:14px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.new .f:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:middle}
+.empty{padding:34px 22px 38px;text-align:center;color:var(--ink2)}
+.empty b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+#view{display:none;border-top:1px solid var(--line);padding:16px 22px 22px}
+#view.on{display:block}
+.vh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#vsubj{font:700 22px/1.25 "Familjen Grotesk",sans-serif;margin:6px 0 4px}
+#vfrom{font-size:14px;color:var(--ink2);overflow-wrap:anywhere}
+.imgbar{font-size:13px;color:var(--ink2);margin:10px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#vframe{width:100%;min-height:420px;border:1px solid var(--line);border-radius:4px;background:#fff}
+#vtext{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px}
+.note{font-size:13px;color:var(--ink2);padding:0 22px 16px}
+#err{display:none;color:var(--red);font-size:14px;padding:0 22px 12px}
+section.c{margin:56px 0}
+section.c h2{font:700 26px/1.2 "Familjen Grotesk",sans-serif;letter-spacing:-.015em;margin:0 0 18px}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+ol.steps li{counter-increment:s}
+ol.steps li:before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid var(--blue);color:var(--blue);border-radius:50%;font:700 15px "Familjen Grotesk";margin-bottom:8px}
+ol.steps b{display:block;margin-bottom:4px}
+ol.steps p,section.c>p{margin:0;color:var(--ink2);max-width:66ch}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font:400 24px/1 "Public Sans",sans-serif;color:var(--blue)}details[open] summary:after{transform:rotate(45deg)}summary:after{transition:transform .15s}
+details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
+footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
+footer a{color:var(--ink2)}
+@media (max-width:520px){.row .btn{flex:1}}
+.nav{display:flex;align-items:center;gap:16px}.brand,.acct{white-space:nowrap}@media (max-width:420px){.brand{font-size:15px}.nav{gap:10px}.acct{padding:7px 9px;font-size:13px}.nav>a{font-size:13px}}.nav>a{color:var(--ink);font-weight:600;font-size:14px;text-decoration:none}.nav>a:hover{color:var(--blue)}
+.acct{cursor:pointer;font:600 14px "Public Sans",sans-serif;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:8px 12px}
+.acct:hover{border-color:var(--blue);color:var(--blue)}
+.acct.on{border-color:var(--blue);color:var(--blue)}
+.keep{margin:12px 0 0;font-size:14px;color:var(--ink2)}
+.keep b{color:var(--ok)}
+dialog{border:1px solid var(--line);border-radius:6px;padding:0;max-width:460px;width:calc(100% - 32px);color:var(--ink);box-shadow:0 20px 60px rgba(22,33,59,.25)}
+dialog::backdrop{background:rgba(22,33,59,.45)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font:700 20px "Familjen Grotesk",sans-serif;margin:0}
+.x{all:unset;cursor:pointer;font-size:24px;line-height:1;padding:4px 8px;color:var(--ink2)}
+.x:focus-visible{outline:3px solid var(--blue)}
+.db{padding:18px 20px 22px}
+.db p{margin:0 0 12px;color:var(--ink2);font-size:15px}
+.db label{display:block;font-size:14px;margin:0 0 6px;color:var(--ink2)}
+.db input{width:100%;font:16px "Public Sans",sans-serif;padding:11px 12px;border:1px solid var(--line);border-radius:4px;margin-bottom:12px}
+.db input.code{font:500 24px "JetBrains Mono",monospace;letter-spacing:8px;text-align:center}
+.db .btn{width:100%}
+.derr{color:var(--red);font-size:14px;min-height:20px;margin:6px 0 0}
+.plan{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:0 0 16px}
+.plan b{font:700 16px "Familjen Grotesk",sans-serif}
+.tag{font-size:12px;font-weight:600;padding:3px 8px;border-radius:20px;background:#e8ecf6;color:var(--blue)}
+.tag.p{background:var(--red);color:#fff}
+ul.my{list-style:none;padding:0;margin:0 0 14px}
+ul.my li{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding:9px 0}
+ul.my li:last-child{border-bottom:1px solid var(--line)}
+ul.my .a{flex:1;min-width:0;font:500 14px "JetBrains Mono",monospace;overflow-wrap:anywhere}
+ul.my .cur{color:var(--blue)}
+.sm{font-size:13px}
+.row2{display:flex;gap:8px;margin-bottom:12px}.row2 input{margin:0;flex:1;min-width:0;font-family:"JetBrains Mono",monospace;font-size:15px}.row2 .btn{width:auto}
+.prem{display:block;text-align:center;text-decoration:none;margin:4px 0 12px;background:var(--red);border-color:var(--red)}
+.prem:hover{background:#a8272e}
+.out{margin-top:6px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.plans>div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.plans h3{font:700 19px "Familjen Grotesk",sans-serif;margin:0 0 4px}
+.plans .pr{font:700 26px "Familjen Grotesk",sans-serif;margin:0 0 10px}
+.plans .pr small{font:400 14px "Public Sans",sans-serif;color:var(--ink2)}
+.plans ul{margin:0 0 14px;padding-left:18px;color:var(--ink2)}
+ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
+.atts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}.atts button{font:600 13px "Public Sans",sans-serif;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer;color:var(--ink)}.atts button:hover{border-color:var(--blue)}
+.vpn{border:1px dashed var(--line);border-radius:6px;padding:18px 20px;margin:28px 0;background:var(--card)}.vpn b{display:block;font:700 18px "Familjen Grotesk",sans-serif;margin:2px 0 6px}.vpn p{margin:0 0 12px;color:var(--ink2)}.vpn small{display:block;margin-top:10px;font-size:12px;color:var(--ink2)}.vpn .sp{font-size:12px;color:var(--ink2)}
+.my select{font:13px "Public Sans",sans-serif;border:1px solid var(--line);border-radius:4px;padding:3px 4px;background:var(--card);color:var(--ink);max-width:150px}
+.vpnb{display:grid;grid-template-columns:1fr auto;gap:10px 24px;align-items:center;background:var(--ink);color:#fff;border-radius:6px;padding:22px 24px;margin:28px 0;box-shadow:inset 6px 0 0 var(--red)}.vpnb b{display:block;font:700 21px/1.25 "Familjen Grotesk",sans-serif;margin:4px 0 6px}.vpnb p{margin:0;color:#d5dbea}.vpnb .sp{font-size:12px;color:#aeb8d0}.vpnb small{grid-column:1/-1;font-size:12px;color:#aeb8d0}.top .nav{margin-left:14px}@media(max-width:420px){.top .brand{font-size:14px}.top .nav{margin-left:8px;gap:8px}.top .nav a,.top .acct{font-size:13px}.top .acct{padding:6px 8px}}.vpnb .vb{text-decoration:none;background:#fff;color:var(--ink);border-color:#fff;white-space:nowrap}.vpnb .vb:hover{background:#e8ecf6}@media(max-width:700px){.vpnb{grid-template-columns:1fr}.vpnb .vb{white-space:normal;text-align:center}}
+.tgb{margin:6px 0 14px}.tgb .btn{width:100%}
+.tgx{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:4px solid #2aabee;border-radius:6px;padding:18px 22px;margin:0 0 28px}.tgx p{margin:4px 0 0;color:var(--ink2);max-width:560px}.tgx .btn{background:#2aabee;border-color:#2aabee;color:#fff;text-decoration:none}
+.plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
+footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+
+.bh{padding:26px 0 8px}
+.bh h1{max-width:20ch}
+.kick{font-size:14px;color:var(--ink2);margin:0}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}.posts.home{margin-top:8px}.more{margin:18px 0 0}.more .btn{display:inline-block;text-decoration:none}
+.post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;align-items:flex-start}
+.post:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.post h2,.post .pt{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
+.post h2 a,.post .pt a{color:var(--ink);text-decoration:none}.post h2 a:after,.post .pt a:after{content:"";position:absolute;inset:0}
+.post:hover h2 a,.post:hover .pt a{color:var(--blue)}
+.post p{margin:0 0 14px;color:var(--ink2);font-size:15px;flex:1;width:100%}
+.post .cat{margin-right:70px}
+.meta{font-size:13px;color:var(--ink2)}
+.cat{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:#e8ecf6;border-radius:20px;padding:3px 9px}
+.stamp{position:absolute;top:16px;right:16px;width:60px;height:60px;border:2px dashed var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--red);transform:rotate(-8deg);line-height:1.05}
+.stamp b{font:700 20px "Familjen Grotesk",sans-serif}.stamp i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.04em}
+article.art{max-width:68ch}
+.crumb{font-size:13px;color:var(--ink2);margin:20px 0 0}.crumb a{color:var(--ink2)}
+article.art h1{max-width:22ch;margin-top:14px}
+article.art .lead{margin-bottom:10px}
+article.art h2{font:700 24px/1.25 "Familjen Grotesk",sans-serif;margin:36px 0 10px;letter-spacing:-.01em}
+article.art h3{font:700 18px/1.3 "Familjen Grotesk",sans-serif;margin:22px 0 6px}
+article.art p,article.art li{font-size:17px;line-height:1.7}
+article.art ul{padding-left:22px}
+article.art li{margin:6px 0}
+article.art code{font:500 15px "JetBrains Mono",monospace;background:#eef1f7;padding:1px 6px;border-radius:3px;overflow-wrap:anywhere}
+article.art table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+article.art th,article.art td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+article.art th{background:#eef1f7}
+.cta{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 22px 22px;margin:40px 0}
+.cta:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.cta b{font:700 20px "Familjen Grotesk",sans-serif;display:block;margin-bottom:4px}
+.cta p{margin:0 0 14px!important;color:var(--ink2)}
+.cta .btn{display:inline-block;text-decoration:none}
+.rel h2{font:700 20px "Familjen Grotesk",sans-serif!important;margin:10px 0!important}
+.rel ul{padding-left:20px}
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Jetbox Mail", "url": "https://jetboxmail.com/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "inLanguage": "en", "description": "Get a free temporary email address in one click, no sign-up. Receive verification codes and links, then everything is erased after one hour.", "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "EUR", "name": "Free"}, {"@type": "Offer", "price": "2.99", "priceCurrency": "USD", "name": "Premium"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Is it really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely, with no sign-up."}}, {"@type": "Question", "name": "How long are messages kept?", "acceptedAnswer": {"@type": "Answer", "text": "One hour after they arrive, then they are permanently deleted. Nothing is kept."}}, {"@type": "Question", "name": "Can I send emails?", "acceptedAnswer": {"@type": "Answer", "text": "No. The address can only receive, so it can't be used to send spam."}}, {"@type": "Question", "name": "Can someone else read my messages?", "acceptedAnswer": {"@type": "Answer", "text": "Anyone who knows the exact address can see its inbox. Don't use it for anything sensitive (banking, health, government) and prefer a randomly generated address."}}, {"@type": "Question", "name": "Will I get my address back if I come back?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it's kept in your browser. You can also create a new one at any time."}}, {"@type": "Question", "name": "Why do some sites reject the address?", "acceptedAnswer": {"@type": "Answer", "text": "Some services block disposable addresses. In that case, use your usual address."}}]}</script></head><body><div class="air"></div><div class="wrap"><header class="top"><a class="brand" href="/">jetbox<span>mail</span>.com</a><nav class="nav"><a href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-en-menu" target="_blank" rel="sponsored noopener">VPN</a><a href="https://adresse-temporaire.fr/blog/" hreflang="fr">Guides (FR)</a><a class="lng" href="https://adresse-temporaire.fr/" hreflang="fr" lang="fr">FR</a><button class="acct" id="acct" type="button">My account</button></nav></header><main>
+<h1>A disposable email address, ready right now.</h1><p class="lead">Keep your real inbox away from spam. Use this address to sign up, receive the code or confirmation link here, and forget about it.</p>
+<div class="env">
+ <div class="addr"><label for="addr" id="addrl">Your temporary address</label>
+  <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">Copy</button></div>
+  <div class="tools"><button class="link" id="new" type="button">New address</button><button class="link" id="choose" type="button" aria-controls="pick">Pick my address</button></div>
+  <div class="doms" id="doms" role="group" aria-label="Domain"><span>Domain:</span><button type="button" data-d="adresse-temporaire.fr">@adresse-temporaire.fr</button><button type="button" data-d="jetboxmail.com">@jetboxmail.com</button><small>same inbox, switch if a site refuses one of them</small></div>
+  <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="name-of-your-choice" aria-label="Pick my address"><span class="dom">@adresse-temporaire.fr</span><button class="btn ghost" type="submit">Use</button><span id="pickerr" role="alert"></span></div></form>
+  <p class="keep" id="keep"></p>
+ </div>
+ <div class="box">
+  <div id="listwrap"><div class="boxh"><span>Inbox</span><span class="live"><i></i>Auto refresh</span></div>
+   <div id="err" role="status">Can't connect right now. Retrying in a few seconds.</div>
+   <ul class="msgs" id="list" aria-live="polite"></ul>
+   <div class="empty" id="empty"><b>Waiting for messages...</b>New messages show up here automatically.</div>
+   <p class="note" id="knote">Messages are erased automatically after one hour.</p></div>
+  <div id="view"><div class="vh"><button class="btn ghost" id="back" type="button">Back to inbox</button><button class="btn ghost" id="del" type="button">Delete</button></div>
+   <h2 id="vsubj" tabindex="-1"></h2><div id="vfrom"></div><div id="vatts" class="atts"></div>
+   <div class="imgbar" id="imgbar"><span>Images hidden to protect your privacy.</span><button class="link" id="imgs" type="button">Show images</button></div>
+   <iframe id="vframe" title="Message" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin" referrerpolicy="no-referrer"></iframe><div id="vtext"></div></div>
+ </div>
+</div>
+<aside class="vpnb"><div><span class="sp">Recommended partner</span><b>Your address is hidden. What about your connection?</b><p>On public Wi-Fi, at a hotel or a café, anyone can snoop on what you do. NordVPN encrypts all your traffic and hides your IP address, on your phone and your computer.</p></div><a class="btn vb" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-en-home" target="_blank" rel="sponsored noopener">Protect my connection with NordVPN</a><small>Affiliate link, no extra cost for you.</small></aside>
+<section class="c" id="offres"><h2>Free or Premium</h2><div class="plans">
+ <div><h3>No account</h3><p class="pr">$0</p><ul><li>A disposable address right away</li><li>Messages erased after 1 hour</li><li>Public inbox: anyone who knows the address can read it</li></ul></div>
+ <div><h3>Free account</h3><p class="pr">$0</p><ul><li>1 address reserved for you (released after 30 days without any message)</li><li>Private: only you can read its messages</li><li>Messages kept 24 hours</li><li>Telegram alert for every message</li></ul><button class="btn ghost" type="button" data-acct>Create my account</button></div>
+ <div class="hi"><h3>Premium</h3><p class="pr">$2.99 <small>per month</small></p><ul><li>Up to 100 reserved, private addresses</li><li>Messages forwarded to your real inbox, or a simple email alert (30 per day)</li><li>Messages kept 30 days</li><li>Attachments kept (10 MB per message), also delivered on Telegram</li><li>Cancel anytime</li></ul><button class="btn" type="button" data-acct>Go Premium</button></div>
+</div></section>
+<aside class="tgx"><div><b>Also on Telegram</b><p>The Temp Mail Inbox bot gives you a disposable address and shows your verification codes right inside Telegram. Free, no sign-up. Already have an account here? Link it from “My account”.</p></div><a class="btn" href="https://t.me/JetboxMailBot?start=src_site_en" target="_blank" rel="noopener">Open the Telegram bot</a></aside>
+<section class="c"><h2>How it works</h2><ol class="steps"><li><b>Copy the address</b><p>An address is created for you as soon as the page opens. No sign-up, no password.</p></li><li><b>Use it</b><p>Paste it into any sign-up, download or giveaway form that asks for an email.</p></li><li><b>Read the message</b><p>The code or confirmation link shows up here within seconds. One hour later, everything is erased.</p></li></ol></section>
+<section class="c"><h2>Why use a temporary email address?</h2><p>Every time you give out your real address, you risk years of marketing emails, or seeing it leak in a data breach. A disposable address protects you: try a service, download a white paper or get on a Wi-Fi network without leaving anything behind.</p></section>
+
+<section class="c"><h2>Frequently asked questions</h2><details><summary>Is it really free?</summary><p>Yes, completely, with no sign-up.</p></details><details><summary>How long are messages kept?</summary><p>One hour after they arrive, then they are permanently deleted. Nothing is kept.</p></details><details><summary>Can I send emails?</summary><p>No. The address can only receive, so it can't be used to send spam.</p></details><details><summary>Can someone else read my messages?</summary><p>Anyone who knows the exact address can see its inbox. Don't use it for anything sensitive (banking, health, government) and prefer a randomly generated address.</p></details><details><summary>Will I get my address back if I come back?</summary><p>Yes, it's kept in your browser. You can also create a new one at any time.</p></details><details><summary>Why do some sites reject the address?</summary><p>Some services block disposable addresses. In that case, use your usual address.</p></details></section>
+<section class="c"><aside class="vpn"><span class="sp">Partner</span><b>Protect your connection too</b><p>A disposable email protects your address. On public Wi-Fi or to hide your IP address, a VPN encrypts all your traffic. We recommend NordVPN.</p><a class="btn ghost" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-en" target="_blank" rel="sponsored noopener">Discover NordVPN</a><small>Affiliate link: we earn a commission if you subscribe, at no extra cost to you.</small></aside></section>
+</main><footer><div>Use for fraud, harassment or any illegal activity is forbidden.</div><div class="fl"><a href="https://adresse-temporaire.fr/blog/">Guides (in French)</a><a href="/legal.html">Legal notice and privacy</a><a href="mailto:contact@adresse-temporaire.fr">Report abuse</a><span>&copy; 2026 jetboxmail.com</span></div></footer></div><dialog id="dlg" aria-labelledby="dlgt"><div class="dh"><h2 id="dlgt">My account</h2><button class="x" id="dlgx" type="button" aria-label="Close">&times;</button></div>
+<div class="db" id="s1"><p>Get a code by email to sign in. No password.</p><form id="f1"><label for="em">Your email address</label><input id="em" type="email" autocomplete="email" required placeholder="you@example.com"><button class="btn" type="submit" id="b1">Send me my code</button><p class="derr" id="e1" role="alert"></p></form></div>
+<div class="db" id="s2" hidden><p id="s2t"></p><form id="f2"><label for="cd">6-digit code</label><input id="cd" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required><button class="btn" type="submit" id="b2">Sign in</button><p class="derr" id="e2" role="alert"></p></form><button class="link sm" id="back1" type="button">Use another email address</button></div>
+<div class="db" id="s3" hidden><div class="plan"><div><b id="pn"></b><div class="sm" id="pd"></div></div><span class="tag" id="ptag"></span></div>
+<label>My reserved addresses</label><ul class="my" id="my"></ul><p class="sm" id="mye"></p><p class="sm" id="fwdn"></p>
+<div class="tgb"><button class="btn ghost" id="tgl" type="button">Get my emails on Telegram</button><p class="sm" id="tgs"></p></div>
+<form id="f3"><div class="row2"><input id="ra" maxlength="40" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="name-of-your-choice" aria-label="Address to reserve"><button class="btn ghost" type="submit">Reserve</button></div></form>
+<p class="derr" id="e3" role="alert"></p>
+<a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Go Premium, $2.99 per month</a>
+<p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Sign out</button></div>
+</dialog><script>
+(function(){
+var L={"copy": "Copy", "copied": "Copied", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.", "from": "From", "ago": ["just now", "{} min ago", "{} h ago"], "nosubj": "(no subject)"},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="jetboxmail.com",GUM="https://jeremstyke.gumroad.com/l/jssxfa",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var $=function(i){return document.getElementById(i)};
+var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
+function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
+function lg(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function ls(k,v){try{if(v==null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}}
+var tok=lg(KT);
+function H(x){var h=x||{};if(tok)h.Authorization="Bearer "+tok;return h}
+function api(p,o){o=o||{};o.headers=H(o.headers);o.cache="no-store";return fetch(API+p,o).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
+function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
+if(location.hostname==="adresse-temporaire.fr"&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("https://jetboxmail.com/"+location.search);return}
+Array.prototype.forEach.call(document.querySelectorAll("a.lng"),function(x){x.onclick=function(){ls("at_lang",x.getAttribute("hreflang"))}});
+var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];if(qa&&RX.test(qa)){me=qa;ls(K,me)}if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
+function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
+function full(){return me+"@"+DOM}
+function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
+function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load()}
+(function(){var d=lg("at_dom");if(d&&DOMS.indexOf(d)>=0)DOM=d})();
+function doms(){Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
+$("addr").textContent=full();
+$("copy").onclick=function(){var b=this;var done=function(){b.textContent=L.copied;b.classList.add("done");setTimeout(function(){b.textContent=L.copy;b.classList.remove("done")},1600)};
+ if(navigator.clipboard)navigator.clipboard.writeText(full()).then(done,function(){sel();done()});else{sel();done()}};
+function sel(){var r=document.createRange();r.selectNodeContents($("addr"));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand("copy")}catch(e){}}
+$("new").onclick=function(){setAddr(rnd());ping()};
+$("choose").onclick=function(){$("pick").classList.toggle("on");$("pickin").focus()};
+$("pickform").onsubmit=function(e){e.preventDefault();var v=$("pickin").value.trim().toLowerCase();
+ if(!RX.test(v)){$("pickerr").textContent=L.choose_bad;return}
+ $("pickerr").textContent="";$("pick").classList.remove("on");setAddr(v);ping()};
+function ago(t){var d=(Date.now()-new Date(t).getTime())/60000;if(d<1)return L.ago[0];if(d<60)return L.ago[1].replace("{}",Math.floor(d));if(d<2880)return L.ago[2].replace("{}",Math.floor(d/60));return Math.floor(d/1440)+" d ago"}
+function txt(s){return document.createTextNode(s||"")}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.appendChild(txt(x));return e}
+function render(ms){var ul=$("list");ul.innerHTML="";$("empty").style.display=ms.length?"none":"block";
+ ms.forEach(function(m){var li=document.createElement("li");var b=document.createElement("button");b.type="button";if(!seen[m.id])li.className="new";
+  b.appendChild(el("span","f",m.from));b.appendChild(el("span","t",ago(m.at)));b.appendChild(el("span","s",m.subject||L.nosubj));b.appendChild(el("span","p",m.preview));
+  b.onclick=function(){open(m.id)};li.appendChild(b);ul.appendChild(li)})}
+var last=[];
+function keep(){var k=$("keep");k.innerHTML="";
+ if(mine(me)){k.appendChild(el("b",null,"Private address"));k.appendChild(txt(": reserved for your account, messages kept "+(acct.premium?"30 days":"24 hours")+"."));$("knote").textContent="Only your account can read this inbox.";return}
+ $("knote").textContent=L.kept;
+ var b=el("button","link",acct?"Reserve this address":"Keep this address and make it private");b.type="button";
+ b.onclick=function(){if(!acct){openDlg();return}reserve(me)};
+ k.appendChild(b);if(!acct)k.appendChild(txt(" (free account)"))}
+function load(){var a=me;api("/box?a="+encodeURIComponent(a)).then(function(j){if(a!==me)return;fails=0;$("err").style.display="none";
+  if(j._s===403){$("err").textContent="This address is reserved by another account. Pick another one.";$("err").style.display="block";last=[];render([]);return}
+  $("err").textContent=L.err;last=j.msgs||[];render(last)}).catch(function(){fails++;if(fails>1)$("err").style.display="block"})}
+function loop(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)load();loop()},5000)}
+document.addEventListener("visibilitychange",function(){if(!document.hidden)load()});
+function closeView(){$("view").classList.remove("on");$("listwrap").style.display="block"}
+$("back").onclick=function(){closeView();render(last)};
+$("del").onclick=function(){if(!cur)return;var id=cur.id;api("/del?a="+encodeURIComponent(me)+"&id="+id,{method:"POST"}).then(function(){last=last.filter(function(m){return m.id!==id});closeView();render(last)})};
+$("imgs").onclick=function(){showImgs=true;paint()};
+function paint(){var m=cur;if(!m)return;var fr=$("vframe"),tx=$("vtext");
+ if(m.html){tx.style.display="none";fr.style.display="block";$("imgbar").style.display=showImgs?"none":"flex";
+  var csp=showImgs?"default-src 'none'; img-src data: https: http:; style-src 'unsafe-inline' https:; font-src https: data:":"default-src 'none'; img-src data:; style-src 'unsafe-inline'";
+  fr.srcdoc='<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="'+csp+'"><base target="_blank"><style>body{font:15px/1.5 system-ui,sans-serif;margin:12px;color:#16213b;overflow-wrap:anywhere}img{max-width:100%;height:auto}</style></head><body>'+m.html+'</body></html>';
+  fr.onload=function(){try{fr.style.height=Math.max(420,fr.contentDocument.documentElement.scrollHeight+20)+"px"}catch(e){}}}
+ else{fr.style.display="none";$("imgbar").style.display="none";tx.style.display="block";tx.textContent=m.text||""}}
+function kb(n){return n>1048576?(n/1048576).toFixed(1)+" MB":Math.max(1,Math.round(n/1024))+" KB"}
+function atts(list){var d=$("vatts");d.innerHTML="";list.forEach(function(x){var b=el("button",null,"\u{1F4CE} "+x.name+" ("+kb(x.size)+")");b.type="button";
+ b.onclick=function(){fetch(API+"/att?a="+encodeURIComponent(me)+"&id="+x.id,{headers:H(),cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(bl){var u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download=x.name||"attachment";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000)}).catch(function(){alert("Download failed.")})};d.appendChild(b)})}
+function open(id){api("/msg?a="+encodeURIComponent(me)+"&id="+id).then(function(m){if(!m||!m.id)return;seen[id]=1;cur=m;showImgs=false;
+ $("vsubj").textContent=m.subject||L.nosubj;$("vfrom").textContent=L.from+" : "+(m.from||"")+", "+ago(m.at);atts(m.atts||[]);
+ $("listwrap").style.display="none";$("view").classList.add("on");paint();$("vsubj").focus()})}
+
+/* ---- compte ---- */
+var dlg=$("dlg"),email="";
+function step(n){["s1","s2","s3"].forEach(function(i,k){$(i).hidden=(k!==n-1)})}
+function openDlg(){if(acct){fill();step(3)}else step(1);if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","");setTimeout(function(){var f=acct?$("ra"):$("em");f&&f.focus()},50)}
+function closeDlg(){if(dlg.close)dlg.close();else dlg.removeAttribute("open")}
+$("acct").onclick=openDlg;$("dlgx").onclick=closeDlg;
+dlg.addEventListener("click",function(e){if(e.target===dlg)closeDlg()});
+Array.prototype.forEach.call(document.querySelectorAll("[data-acct]"),function(b){b.onclick=openDlg});
+var ERR={email:"Invalid email address.",rate:"Too many attempts. Try again in a moment.",send:"The code could not be sent. Try again.",expired:"Code expired. Ask for a new one.",code:"Wrong code.",limit:"Your plan limit is reached.",taken:"This address is already reserved by someone else.",addr:"3 to 40 characters: letters, numbers, dot, dash."};
+$("f1").onsubmit=function(e){e.preventDefault();email=$("em").value.trim().toLowerCase();$("e1").textContent="";$("b1").disabled=true;
+ post("/auth/start",{email:email,lang:"en"}).then(function(j){$("b1").disabled=false;if(j.ok){$("s2t").textContent="Code sent to "+email+". Check your spam folder too.";$("cd").value="";step(2);$("cd").focus()}else $("e1").textContent=ERR[j.error]||"Error, try again."}).catch(function(){$("b1").disabled=false;$("e1").textContent="Can't connect."})};
+$("back1").onclick=function(){step(1);$("em").focus()};
+$("f2").onsubmit=function(e){e.preventDefault();$("e2").textContent="";$("b2").disabled=true;
+ post("/auth/verify",{email:email,code:$("cd").value.trim()}).then(function(j){$("b2").disabled=false;if(j.token){tok=j.token;ls(KT,tok);setAcct(j.me);fill();step(3)}else $("e2").textContent=ERR[j.error]||"Error, try again."}).catch(function(){$("b2").disabled=false;$("e2").textContent="Can't connect."})};
+function setAcct(a){acct=a;$("acct").textContent=a?(a.premium?"My Premium account":"My account"):"My account";$("acct").classList.toggle("on",!!a);keep()}
+function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Free account";
+ $("pd").textContent=acct.addrs.length+" / "+acct.max+" reserved address"+(acct.max>1?"es":"")+", messages kept "+(acct.premium?"30 days":"24 hours")+(acct.premium&&acct.premium_until?", until "+new Date(acct.premium_until).toLocaleDateString("en-GB"):"");
+ $("ptag").textContent=acct.premium?"Premium":"Free";$("ptag").className="tag"+(acct.premium?" p":"");
+ var ul=$("my");ul.innerHTML="";$("mye").textContent=acct.addrs.length?"":"No reserved address yet.";
+ acct.addrs.forEach(function(a){var li=document.createElement("li");var s=el("span","a"+(a===me?" cur":""),a+"@"+DOM);
+  var o=el("button","link sm",a===me?"Open now":"Open");o.type="button";o.disabled=(a===me);o.onclick=function(){setAddr(a);fill();closeDlg()};
+  var r=el("button","link sm","Release");r.type="button";r.onclick=function(){if(!confirm("Release "+a+"@"+DOM+"? Its messages will be deleted."))return;post("/release",{addr:a}).then(function(j){if(j.email){setAcct(j);fill()}})};
+  li.appendChild(s);li.appendChild(o);li.appendChild(r);
+  if(acct.premium){var se=document.createElement("select");se.setAttribute("aria-label","Forwarding for "+a);[["off","No forwarding"],["notif","Email alert"],["full","Full forwarding"]].forEach(function(p){var op=document.createElement("option");op.value=p[0];op.textContent=p[1];se.appendChild(op)});se.value=(acct.fwd&&acct.fwd[a])||"off";
+   se.onchange=function(){post("/fwd",{addr:a,mode:se.value}).then(function(j){if(j.email){acct=j}})};li.appendChild(se)}
+  ul.appendChild(li)});
+ $("fwdn").textContent=acct.premium&&acct.addrs.length?"Forwarding: received messages are sent to "+acct.email+" (simple alert or full message with attachments), up to 30 per day. Beyond that, messages stay readable here.":"";
+ $("tgs").textContent=acct.tg?"Telegram linked: every message received on your reserved addresses also arrives in Telegram"+(acct.premium?", with its attachments.":"."):"Free: a Telegram alert for every message received on your reserved addresses.";$("tgl").textContent=acct.tg?"Link another Telegram account":"Get my emails on Telegram";
+ $("f3").style.display=acct.addrs.length<acct.max?"block":"none";
+ if(!$("ra").value)$("ra").value=mine(me)?"":me;
+ var g=$("gopro");g.style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
+ $("me-em").textContent="Signed in as "+acct.email}
+function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(function(j){
+  if(j.email){setAcct(j);$("ra").value="";if(a!==me)setAddr(a);else keep();fill();return}
+  if(j.error==="limit"){openDlg();$("e3").textContent=acct&&acct.premium?ERR.limit:"The free account allows 1 address. Go Premium for up to 100.";return}
+  if(!dlg.open)openDlg();$("e3").textContent=ERR[j.error]||"Error, try again."})}
+$("f3").onsubmit=function(e){e.preventDefault();var v=$("ra").value.trim().toLowerCase();if(!RX.test(v)){$("e3").textContent=ERR.addr;return}reserve(v)};
+$("tgl").onclick=function(){var w=window.open("","_blank");post("/tglink").then(function(j){if(j.url){if(w)w.location=j.url;else location.href=j.url}else if(w)w.close()}).catch(function(){if(w)w.close()})};
+$("logout").onclick=function(){post("/logout").finally(function(){tok=null;ls(KT,null);setAcct(null);closeDlg();if(!RX.test(me))setAddr(rnd());load()})};
+function refresh(){if(!tok){keep();return Promise.resolve()}return api("/me").then(function(j){if(j.email)setAcct(j);else{tok=null;ls(KT,null);setAcct(null)}}).catch(function(){keep()})}
+refresh().then(function(){load();if(/[?&]compte=1/.test(location.search))openDlg()});loop();
+window.addEventListener("focus",function(){if(tok)refresh()});
+})();
+</script></body></html>

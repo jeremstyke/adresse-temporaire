@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="zOVKFpJBh1jvzMQHPHjjrzCtxGgENVeCLLiVSmmgdzg">
 <title>Mail jetable gratuit : adresse mail temporaire en 1 clic</title><meta name="description" content="Mail jetable gratuit, sans inscription : votre adresse mail jetable est prête en un clic. Recevez codes et liens de validation, puis tout s'efface.">
-<link rel="canonical" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="fr" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="en" href="https://adresse-temporaire.fr/en/"><link rel="alternate" hreflang="x-default" href="https://adresse-temporaire.fr/">
+<link rel="canonical" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="fr" href="https://adresse-temporaire.fr/"><link rel="alternate" hreflang="en" href="https://jetboxmail.com/"><link rel="alternate" hreflang="x-default" href="https://adresse-temporaire.fr/">
 <meta property="og:title" content="Mail jetable gratuit : adresse mail temporaire en 1 clic"><meta property="og:description" content="Mail jetable gratuit, sans inscription : votre adresse mail jetable est prête en un clic. Recevez codes et liens de validation, puis tout s'efface."><meta property="og:url" content="https://adresse-temporaire.fr/"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
 <link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>
@@ -28,6 +28,7 @@ h1{font:700 clamp(30px,5.4vw,46px)/1.08 "Familjen Grotesk",sans-serif;letter-spa
 .btn.ghost{background:#fff;color:var(--blue)}.btn.ghost:hover{background:#eef2fb}
 .btn.done{background:var(--ok);border-color:var(--ok)}
 .tools{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.doms{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13px;color:var(--ink2)}.doms button{font:inherit;font-size:13px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);cursor:pointer}.doms button[aria-pressed=true]{background:#2852b8;border-color:#2852b8;color:#fff}.doms small{flex-basis:100%;color:var(--ink2)}
 .link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 #pick{display:none;margin-top:12px;gap:8px;flex-wrap:wrap;align-items:center}
 #pick.on{display:flex}
@@ -162,6 +163,7 @@ article.art th{background:#eef1f7}
  <div class="addr"><label for="addr" id="addrl">Votre adresse temporaire</label>
   <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">Copier</button></div>
   <div class="tools"><button class="link" id="new" type="button">Nouvelle adresse</button><button class="link" id="choose" type="button" aria-controls="pick">Choisir mon adresse</button></div>
+  <div class="doms" id="doms" role="group" aria-label="Domaine"><span>Domaine :</span><button type="button" data-d="adresse-temporaire.fr">@adresse-temporaire.fr</button><button type="button" data-d="jetboxmail.com">@jetboxmail.com</button><small>même boîte, au choix si un site refuse l'une des deux</small></div>
   <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="nom-de-votre-choix" aria-label="Choisir mon adresse"><span class="dom">@adresse-temporaire.fr</span><button class="btn ghost" type="submit">Utiliser</button><span id="pickerr" role="alert"></span></div></form>
   <p class="keep" id="keep"></p>
  </div>
@@ -201,7 +203,7 @@ article.art th{background:#eef1f7}
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button></div>
 </dialog><script>
 (function(){
-var L={"copy": "Copier", "copied": "Copiée", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.", "from": "De", "ago": ["à l'instant", "il y a {} min", "il y a {} h"], "nosubj": "(sans objet)"},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOM="adresse-temporaire.fr",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var L={"copy": "Copier", "copied": "Copiée", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.", "from": "De", "ago": ["à l'instant", "il y a {} min", "il y a {} h"], "nosubj": "(sans objet)"},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="adresse-temporaire.fr",GUM="https://jeremstyke.gumroad.com/l/anvfvt",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
 var $=function(i){return document.getElementById(i)};
 var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
 function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
@@ -211,13 +213,15 @@ var tok=lg(KT);
 function H(x){var h=x||{};if(tok)h.Authorization="Bearer "+tok;return h}
 function api(p,o){o=o||{};o.headers=H(o.headers);o.cache="no-store";return fetch(API+p,o).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
-if(DOM&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("/en/"+location.search);return}
+if(location.hostname==="adresse-temporaire.fr"&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("https://jetboxmail.com/"+location.search);return}
 Array.prototype.forEach.call(document.querySelectorAll("a.lng"),function(x){x.onclick=function(){ls("at_lang",x.getAttribute("hreflang"))}});
 var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];if(qa&&RX.test(qa)){me=qa;ls(K,me)}if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
 function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
 function full(){return me+"@"+DOM}
 function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
 function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load()}
+(function(){var d=lg("at_dom");if(d&&DOMS.indexOf(d)>=0)DOM=d})();
+function doms(){Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
 $("addr").textContent=full();
 $("copy").onclick=function(){var b=this;var done=function(){b.textContent=L.copied;b.classList.add("done");setTimeout(function(){b.textContent=L.copy;b.classList.remove("done")},1600)};
  if(navigator.clipboard)navigator.clipboard.writeText(full()).then(done,function(){sel();done()});else{sel();done()}};

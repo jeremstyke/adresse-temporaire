@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jetboxmail.com/sitemap.xml
