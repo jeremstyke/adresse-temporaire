@@ -16,6 +16,7 @@ T = {
   "your": "Votre adresse temporaire",
   "copy": "Copier", "copied": "Copiée", "new": "Nouvelle adresse", "choose": "Choisir mon adresse",
   "choose_ph": "nom-de-votre-choix", "choose_ok": "Utiliser", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.",
+  "push_off": "🔔 Être alerté à chaque e-mail", "push_on": "🔔 Alertes activées (désactiver)", "push_no": "Alertes refusées. Autorisez les notifications pour ce site dans les réglages du navigateur.", "push_ios": "Sur iPhone : touchez Partager puis « Sur l'écran d'accueil », ouvrez l'appli et activez les alertes.", "push_ok": "C'est noté : une notification arrivera à chaque nouvel e-mail, même site fermé.",
   "inbox": "Boîte de réception", "live": "Actualisation auto", "waiting": "En attente de messages...", "waiting_sub": "Les nouveaux messages arrivent ici automatiquement.",
   "back": "Retour à la boîte", "delete": "Supprimer", "from": "De", "imgs": "Afficher les images",
   "imgs_note": "Images masquées pour protéger votre vie privée.",
@@ -51,6 +52,7 @@ T = {
   "your": "Your temporary address",
   "copy": "Copy", "copied": "Copied", "new": "New address", "choose": "Pick my address",
   "choose_ph": "name-of-your-choice", "choose_ok": "Use", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.",
+  "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed.",
   "inbox": "Inbox", "live": "Auto refresh", "waiting": "Waiting for messages...", "waiting_sub": "New messages show up here automatically.",
   "back": "Back to inbox", "delete": "Delete", "from": "From", "imgs": "Show images",
   "imgs_note": "Images hidden to protect your privacy.",
@@ -285,7 +287,7 @@ var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];
 function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
 function full(){return me+"@"+DOM}
 function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
-function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load()}
+function setAddr(v){me=v;ls(K,v);seen={};cur=null;$("addr").textContent=full();closeView();last=[];render([]);keep();load();if(lg("at_push")==="1")pushSub(false)}
 (function(){var d=lg("at_dom");if(d&&DOMS.indexOf(d)>=0)DOM=d})();
 function doms(){Array.prototype.forEach.call(document.querySelectorAll("#doms button"),function(b){b.setAttribute("aria-pressed",b.getAttribute("data-d")===DOM?"true":"false");b.onclick=function(){DOM=b.getAttribute("data-d");ls("at_dom",DOM);$("addr").textContent=full();doms();if(acct)fill()}})}doms();
 $("addr").textContent=full();
@@ -347,7 +349,7 @@ $("f1").onsubmit=function(e){e.preventDefault();email=$("em").value.trim().toLow
 $("back1").onclick=function(){step(1);$("em").focus()};
 $("f2").onsubmit=function(e){e.preventDefault();$("e2").textContent="";$("b2").disabled=true;
  post("/auth/verify",{email:email,code:$("cd").value.trim()}).then(function(j){$("b2").disabled=false;if(j.token){tok=j.token;ls(KT,tok);setAcct(j.me);fill();step(3)}else $("e2").textContent=ERR[j.error]||"Erreur, réessayez."}).catch(function(){$("b2").disabled=false;$("e2").textContent="Connexion impossible."})};
-function setAcct(a){acct=a;$("acct").textContent=a?(a.premium?"Mon compte Premium":"Mon compte"):"Mon compte";$("acct").classList.toggle("on",!!a);keep()}
+function setAcct(a){if(a&&!acct&&lg("at_push")==="1")setTimeout(function(){pushSub(false)},0);acct=a;$("acct").textContent=a?(a.premium?"Mon compte Premium":"Mon compte"):"Mon compte";$("acct").classList.toggle("on",!!a);keep()}
 function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Compte gratuit";
  $("pd").textContent=acct.addrs.length+" / "+acct.max+" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"30 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"");
  $("ptag").textContent=acct.premium?"Premium":"Gratuit";$("ptag").className="tag"+(acct.premium?" p":"");
@@ -373,7 +375,19 @@ $("f3").onsubmit=function(e){e.preventDefault();var v=$("ra").value.trim().toLow
 $("tgl").onclick=function(){var w=window.open("","_blank");post("/tglink").then(function(j){if(j.url){if(w)w.location=j.url;else location.href=j.url}else if(w)w.close()}).catch(function(){if(w)w.close()})};
 $("logout").onclick=function(){post("/logout").finally(function(){tok=null;ls(KT,null);setAcct(null);closeDlg();if(!RX.test(me))setAddr(rnd());load()})};
 function refresh(){if(!tok){keep();return Promise.resolve()}return api("/me").then(function(j){if(j.email)setAcct(j);else{tok=null;ls(KT,null);setAcct(null)}}).catch(function(){keep()})}
-refresh().then(function(){load();if(/[?&]compte=1/.test(location.search))openDlg()});loop();
+// alertes à chaque e-mail (notifications du navigateur, même site fermé)
+var VK="BCWWlQ7VXaXH1E6Fse0IjuQIZFOlM0URL2X4KAzcY8A1it0NEHDDaIQyhsRbgkS5uOOpXJh7LPjL0GDIXghXVFc",LNG=document.documentElement.lang==="en"?"en":"fr";
+var canPush="serviceWorker"in navigator&&"PushManager"in window&&"Notification"in window;
+var iosTab=/iP(hone|ad|od)/.test(navigator.userAgent)&&!(navigator.standalone||matchMedia("(display-mode: standalone)").matches);
+function u8(x){x=x.replace(/-/g,"+").replace(/_/g,"/");var r=atob(x+"===".slice((x.length+3)%4));return Uint8Array.from(r,function(c){return c.charCodeAt(0)})}
+function pushUi(on){var b=$("push");b.hidden=!canPush&&!iosTab;b.textContent=on?L.push_on:L.push_off;b.classList.toggle("on",!!on)}
+function pushSub(ask){if(!canPush)return Promise.resolve(false);return navigator.serviceWorker.register("/sw.js").then(function(){return navigator.serviceWorker.ready}).then(function(reg){return reg.pushManager.getSubscription().then(function(x){if(x)return x;if(!ask)return null;return Notification.requestPermission().then(function(p){if(p!=="granted")return null;return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:u8(VK)})})})}).then(function(x){if(!x)return false;return post("/push/sub",{sub:x.toJSON(),addr:RX.test(me)?me:"",lang:LNG}).then(function(j){if(j.error)return false;ls("at_push","1");pushUi(true);return true})}).catch(function(){return false})}
+$("push").onclick=function(){var m=$("pushmsg");
+ if(!canPush){m.textContent=L.push_ios;return}
+ if(lg("at_push")==="1"){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription()}).then(function(x){if(x){post("/push/unsub",{endpoint:x.endpoint});x.unsubscribe()}}).finally(function(){ls("at_push",null);pushUi(false);m.textContent=""});return}
+ pushSub(true).then(function(ok){m.textContent=ok?L.push_ok:L.push_no})};
+pushUi(lg("at_push")==="1");if(lg("at_push")==="1")pushSub(false);
+refresh().then(function(){load();if(/[?&]compte=1/.test(location.search))openDlg();if(tok&&lg("at_push")==="1")pushSub(false)});loop();
 window.addEventListener("focus",function(){if(tok)refresh()});
 })();
 """
@@ -397,14 +411,14 @@ def index(t):
     how = "".join(f"<li><b>{esc(a)}</b><p>{esc(b)}</p></li>" for a, b in t["how"])
     faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in t["faq"])
     HOMECARDS = "".join(card(a) for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True)[:4])
-    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj"]}
+    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj", "push_off", "push_on", "push_no", "push_ios", "push_ok"]}
     js = JS.replace("__T__", json.dumps(jsT, ensure_ascii=False)).replace("__API__", API).replace("__DOM__", DOMAIN)
     return h + topbar(t, other) + f"""<main>
 <h1>{esc(t['h1'])}</h1><p class="lead">{esc(t['lead'])}</p>
 <div class="env">
  <div class="addr"><label for="addr" id="addrl">{esc(t['your'])}</label>
   <div class="row"><output id="addr" aria-labelledby="addrl" aria-live="polite">&nbsp;</output><button class="btn" id="copy" type="button">{esc(t['copy'])}</button></div>
-  <div class="tools"><button class="link" id="new" type="button">{esc(t['new'])}</button><button class="link" id="choose" type="button" aria-controls="pick">{esc(t['choose'])}</button></div>
+  <div class="tools"><button class="link" id="new" type="button">{esc(t['new'])}</button><button class="link" id="choose" type="button" aria-controls="pick">{esc(t['choose'])}</button><button class="link" id="push" type="button" hidden>{esc(t['push_off'])}</button></div><p class="sm" id="pushmsg" role="status"></p>
   <div class="doms" id="doms" role="group" aria-label="{'Domaine' if t['lang'] == 'fr' else 'Domain'}"><span>{'Domaine :' if t['lang'] == 'fr' else 'Domain:'}</span><button type="button" data-d="adresse-temporaire.fr">@adresse-temporaire.fr</button><button type="button" data-d="jetboxmail.com">@jetboxmail.com</button><small>{'même boîte, au choix si un site refuse l\'une des deux' if t['lang'] == 'fr' else 'same inbox, switch if a site refuses one of them'}</small></div>
   <form id="pickform"><div id="pick"><input id="pickin" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="40" placeholder="{esc(t['choose_ph'])}" aria-label="{esc(t['choose'])}"><span class="dom">@{DOMAIN}</span><button class="btn ghost" type="submit">{esc(t['choose_ok'])}</button><span id="pickerr" role="alert"></span></div></form>
   <p class="keep" id="keep"></p>
