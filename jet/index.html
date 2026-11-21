@@ -302,7 +302,7 @@ function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Free
  $("tgs").textContent=acct.tg?"Telegram linked: every message received on your reserved addresses also arrives in Telegram"+(acct.premium?", with its attachments.":"."):"Free: a Telegram alert for every message received on your reserved addresses.";$("tgl").textContent=acct.tg?"Link another Telegram account":"Get my emails on Telegram";
  $("f3").style.display=acct.addrs.length<acct.max?"block":"none";
  if(!$("ra").value)$("ra").value=mine(me)?"":me;
- var g=$("gopro");g.style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
+ var g=$("gopro");g.style.display=acct.premium?"none":"block";if($("gonote"))$("gonote").style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
  $("me-em").textContent="Signed in as "+acct.email}
 function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(function(j){
   if(j.email){setAcct(j);$("ra").value="";if(a!==me)setAddr(a);else keep();fill();return}

@@ -271,7 +271,7 @@ DIALOG = """<dialog id="dlg" aria-labelledby="dlgt"><div class="dh"><h2 id="dlgt
 <div class="tgb"><button class="btn ghost" id="tgl" type="button">Recevoir mes e-mails sur Telegram</button><p class="sm" id="tgs"></p></div>
 <form id="f3"><div class="row2"><input id="ra" maxlength="40" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="nom-de-votre-choix" aria-label="Adresse à réserver"><button class="btn ghost" type="submit">Réserver</button></div></form>
 <p class="derr" id="e3" role="alert"></p>
-<a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a>
+<a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a><p class="sm" id="gonote" style="margin:6px 0 0;color:#4a5672">Paiement sécurisé par Gumroad, débité en dollars (l'équivalent de 2,99 €, au taux du jour).</p>
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button></div>
 </dialog>"""
 
@@ -372,7 +372,7 @@ function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Comp
  $("tgs").textContent=acct.tg?"Telegram relié : chaque message reçu sur vos adresses réservées arrive aussi dans Telegram"+(acct.premium?", avec ses pièces jointes.":"."):"Gratuit : une alerte Telegram à chaque message reçu sur vos adresses réservées.";$("tgl").textContent=acct.tg?"Relier un autre compte Telegram":"Recevoir mes e-mails sur Telegram";
  $("f3").style.display=acct.addrs.length<acct.max?"block":"none";
  if(!$("ra").value)$("ra").value=mine(me)?"":me;
- var g=$("gopro");g.style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
+ var g=$("gopro");g.style.display=acct.premium?"none":"block";if($("gonote"))$("gonote").style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
  $("me-em").textContent="Connecté avec "+acct.email}
 function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(function(j){
   if(j.email){setAcct(j);$("ra").value="";if(a!==me)setAddr(a);else keep();fill();return}
@@ -525,6 +525,7 @@ EN_REPL = [
  ('2,99 € <small>par mois</small>', '$2.99 <small>per month</small>'),
  ("<li>Jusqu'à 100 adresses réservées et privées</li><li>Messages transférés vers votre vraie boîte, ou simple alerte par e-mail (30 par jour)</li><li>Messages gardés 30 jours</li><li>Pièces jointes conservées (10 Mo par message), reçues aussi sur Telegram</li><li>Sans engagement</li>", "<li>Up to 100 reserved, private addresses</li><li>Messages forwarded to your real inbox, or a simple email alert (30 per day)</li><li>Messages kept 30 days</li><li>Attachments kept (10 MB per message), also delivered on Telegram</li><li>Cancel anytime</li>"),
  ("Passer Premium, 2,99 € par mois", "Go Premium, $2.99 per month"),
+ ('<p class="sm" id="gonote" style="margin:6px 0 0;color:#4a5672">Paiement sécurisé par Gumroad, débité en dollars (l\'équivalent de 2,99 €, au taux du jour).</p>', ""),
  ("Passer Premium", "Go Premium"),
  ("<b>Aussi sur Telegram</b><p>Le bot Temp Mail Inbox vous donne une adresse jetable et affiche vos codes de confirmation directement dans Telegram. Gratuit, sans inscription. Déjà inscrit ici ? Reliez votre compte depuis « Mon compte ».</p>", "<b>Also on Telegram</b><p>The Temp Mail Inbox bot gives you a disposable address and shows your verification codes right inside Telegram. Free, no sign-up. Already have an account here? Link it from \u201cMy account\u201d.</p>"),
  ("Ouvrir le bot Telegram", "Open the Telegram bot"),

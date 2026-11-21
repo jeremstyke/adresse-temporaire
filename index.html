@@ -203,7 +203,7 @@ article.art th{background:#eef1f7}
 <div class="tgb"><button class="btn ghost" id="tgl" type="button">Recevoir mes e-mails sur Telegram</button><p class="sm" id="tgs"></p></div>
 <form id="f3"><div class="row2"><input id="ra" maxlength="40" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="nom-de-votre-choix" aria-label="Adresse à réserver"><button class="btn ghost" type="submit">Réserver</button></div></form>
 <p class="derr" id="e3" role="alert"></p>
-<a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a>
+<a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a><p class="sm" id="gonote" style="margin:6px 0 0;color:#4a5672">Paiement sécurisé par Gumroad, débité en dollars (l'équivalent de 2,99 €, au taux du jour).</p>
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button></div>
 </dialog><script>
 (function(){
@@ -302,7 +302,7 @@ function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Comp
  $("tgs").textContent=acct.tg?"Telegram relié : chaque message reçu sur vos adresses réservées arrive aussi dans Telegram"+(acct.premium?", avec ses pièces jointes.":"."):"Gratuit : une alerte Telegram à chaque message reçu sur vos adresses réservées.";$("tgl").textContent=acct.tg?"Relier un autre compte Telegram":"Recevoir mes e-mails sur Telegram";
  $("f3").style.display=acct.addrs.length<acct.max?"block":"none";
  if(!$("ra").value)$("ra").value=mine(me)?"":me;
- var g=$("gopro");g.style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
+ var g=$("gopro");g.style.display=acct.premium?"none":"block";if($("gonote"))$("gonote").style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
  $("me-em").textContent="Connecté avec "+acct.email}
 function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(function(j){
   if(j.email){setAcct(j);$("ra").value="";if(a!==me)setAddr(a);else keep();fill();return}
