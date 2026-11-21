@@ -244,7 +244,7 @@ def head(t, title, desc, canon, alt_fr, alt_en, extra=""):
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canon}">{('<link rel="alternate" hreflang="fr" href="' + alt_fr + '"><link rel="alternate" hreflang="en" href="' + alt_en + '"><link rel="alternate" hreflang="x-default" href="' + alt_fr + '">') if alt_fr and alt_en and alt_fr != alt_en else ''}
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="{"fr_FR" if t["lang"] == "fr" else "en_US"}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='7' width='28' height='19' rx='2' fill='%23fff' stroke='%2316213b' stroke-width='2'/%3E%3Cpath d='M3 9l13 9 13-9' fill='none' stroke='%23c8323a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 {FONTS}<style>{CSS}{BCSS}</style>{extra}</head><body><div class="air"></div>"""
 
 def topbar(t, other_href):
@@ -549,6 +549,7 @@ w("en/legal.html", legal(T["en"], LEGAL_EN, "/en/legal.html", "Legal notice and 
 w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 w(".nojekyll", "")
+w("site.webmanifest", json.dumps({"name": "Adresse-Temporaire.fr", "short_name": "Adresse temp", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}], "theme_color": "#16213b", "background_color": "#ffffff", "display": "standalone", "start_url": "/"}))
 # ---------------- BLOG ----------------
 import datetime
 def fdate(d):
