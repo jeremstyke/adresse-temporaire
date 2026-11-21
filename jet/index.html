@@ -118,6 +118,7 @@ ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
 .my select{font:13px "Public Sans",sans-serif;border:1px solid var(--line);border-radius:4px;padding:3px 4px;background:var(--card);color:var(--ink);max-width:150px}
 .vpnb{display:grid;grid-template-columns:1fr auto;gap:10px 24px;align-items:center;background:var(--ink);color:#fff;border-radius:6px;padding:22px 24px;margin:28px 0;box-shadow:inset 6px 0 0 var(--red)}.vpnb b{display:block;font:700 21px/1.25 "Familjen Grotesk",sans-serif;margin:4px 0 6px}.vpnb p{margin:0;color:#d5dbea}.vpnb .sp{font-size:12px;color:#aeb8d0}.vpnb small{grid-column:1/-1;font-size:12px;color:#aeb8d0}.top .nav{margin-left:14px}@media(max-width:420px){.top .brand{font-size:14px}.top .nav{margin-left:8px;gap:8px}.top .nav a,.top .acct{font-size:13px}.top .acct{padding:6px 8px}}.vpnb .vb{text-decoration:none;background:#fff;color:var(--ink);border-color:#fff;white-space:nowrap}.vpnb .vb:hover{background:#e8ecf6}@media(max-width:700px){.vpnb{grid-template-columns:1fr}.vpnb .vb{white-space:normal;text-align:center}}
 .tgb{margin:6px 0 14px}.tgb .btn{width:100%}
+.tgx.app{border-left-color:#2852b8}.tgx.app .btn{background:#2852b8;border-color:#2852b8;color:#fff}.tgx.app .sm:empty{display:none}
 .tgx{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:4px solid #2aabee;border-radius:6px;padding:18px 22px;margin:0 0 28px}.tgx p{margin:4px 0 0;color:var(--ink2);max-width:560px}.tgx .btn{background:#2aabee;border-color:#2aabee;color:#fff;text-decoration:none}
 .plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
@@ -185,6 +186,7 @@ article.art th{background:#eef1f7}
  <div><h3>Free account</h3><p class="pr">$0</p><ul><li>1 address reserved for you (released after 30 days without any message)</li><li>Private: only you can read its messages</li><li>Messages kept 24 hours</li><li>Telegram alert for every message</li></ul><button class="btn ghost" type="button" data-acct>Create my account</button></div>
  <div class="hi"><h3>Premium</h3><p class="pr">$2.99 <small>per month</small></p><ul><li>Up to 100 reserved, private addresses</li><li>Messages forwarded to your real inbox, or a simple email alert (30 per day)</li><li>Messages kept 30 days</li><li>Attachments kept (10 MB per message), also delivered on Telegram</li><li>Cancel anytime</li></ul><button class="btn" type="button" data-acct>Go Premium</button></div>
 </div></section>
+<aside class="tgx app" id="appx"><div><b>Get the app on your phone</b><p>Free, no app store: your disposable address one tap away on your home screen, with an alert for every email.</p><p class="sm" id="appmsg" role="status"></p></div><button class="btn" id="appbtn" type="button">Install the app</button></aside>
 <aside class="tgx"><div><b>Also on Telegram</b><p>The Temp Mail Inbox bot gives you a disposable address and shows your verification codes right inside Telegram. Free, no sign-up. Already have an account here? Link it from “My account”.</p></div><a class="btn" href="https://t.me/JetboxMailBot?start=src_site_en" target="_blank" rel="noopener">Open the Telegram bot</a></aside>
 <section class="c"><h2>How it works</h2><ol class="steps"><li><b>Copy the address</b><p>An address is created for you as soon as the page opens. No sign-up, no password.</p></li><li><b>Use it</b><p>Paste it into any sign-up, download or giveaway form that asks for an email.</p></li><li><b>Read the message</b><p>The code or confirmation link shows up here within seconds. One hour later, everything is erased.</p></li></ol></section>
 <section class="c"><h2>Why use a temporary email address?</h2><p>Every time you give out your real address, you risk years of marketing emails, or seeing it leak in a data breach. A disposable address protects you: try a service, download a white paper or get on a Wi-Fi network without leaving anything behind.</p></section>
@@ -203,7 +205,7 @@ article.art th{background:#eef1f7}
 <p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Sign out</button></div>
 </dialog><script>
 (function(){
-var L={"copy": "Copy", "copied": "Copied", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.", "from": "From", "ago": ["just now", "{} min ago", "{} h ago"], "nosubj": "(no subject)", "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="jetboxmail.com",GUM="https://jeremstyke.gumroad.com/l/jssxfa",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
+var L={"copy": "Copy", "copied": "Copied", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.", "from": "From", "ago": ["just now", "{} min ago", "{} h ago"], "nosubj": "(no subject)", "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed.", "app_ios": "On iPhone: tap the Share button in Safari, then Add to Home Screen.", "app_other": "Open your browser menu, then Install app or Add to Home Screen."},API="https://txvrlvcxfnylnrpdrxtt.supabase.co/functions/v1/tmail",DOMS=["adresse-temporaire.fr","jetboxmail.com"],DOM="jetboxmail.com",GUM="https://jeremstyke.gumroad.com/l/jssxfa",K="at_addr",KT="at_tok",seen={},cur=null,showImgs=false,tm=null,fails=0,acct=null;
 var $=function(i){return document.getElementById(i)};
 var RX=/^[a-z0-9][a-z0-9._-]{2,39}$/;
 function rnd(){var c="abcdefghijkmnpqrstuvwxyz23456789",s="";var a=new Uint32Array(10);crypto.getRandomValues(a);for(var i=0;i<10;i++)s+=c[a[i]%c.length];return s}
@@ -318,6 +320,12 @@ $("push").onclick=function(){var m=$("pushmsg");
  if(!canPush){m.textContent=L.push_ios;return}
  if(lg("at_push")==="1"){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription()}).then(function(x){if(x){post("/push/unsub",{endpoint:x.endpoint});x.unsubscribe()}}).finally(function(){ls("at_push",null);pushUi(false);m.textContent=""});return}
  pushSub(true).then(function(ok){m.textContent=ok?L.push_ok:L.push_no})};
+// installer l'appli (PWA)
+var standalone=navigator.standalone||matchMedia("(display-mode: standalone)").matches,dip=null;
+if(standalone)$("appx").hidden=true;
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dip=e});
+window.addEventListener("appinstalled",function(){$("appx").hidden=true});
+$("appbtn").onclick=function(){if(dip){dip.prompt();dip.userChoice.finally(function(){dip=null});return}$("appmsg").textContent=/iP(hone|ad|od)/.test(navigator.userAgent)?L.app_ios:L.app_other};
 pushUi(lg("at_push")==="1");if(lg("at_push")==="1")pushSub(false);
 refresh().then(function(){load();if(/[?&]compte=1/.test(location.search))openDlg();if(tok&&lg("at_push")==="1")pushSub(false)});loop();
 window.addEventListener("focus",function(){if(tok)refresh()});
