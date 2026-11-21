@@ -355,7 +355,8 @@ $("f1").onsubmit=function(e){e.preventDefault();email=$("em").value.trim().toLow
 $("back1").onclick=function(){step(1);$("em").focus()};
 $("f2").onsubmit=function(e){e.preventDefault();$("e2").textContent="";$("b2").disabled=true;
  post("/auth/verify",{email:email,code:$("cd").value.trim()}).then(function(j){$("b2").disabled=false;if(j.token){tok=j.token;ls(KT,tok);setAcct(j.me);fill();step(3)}else $("e2").textContent=ERR[j.error]||"Erreur, réessayez."}).catch(function(){$("b2").disabled=false;$("e2").textContent="Connexion impossible."})};
-function setAcct(a){if(a&&!acct&&lg("at_push")==="1")setTimeout(function(){pushSub(false)},0);acct=a;$("acct").textContent=a?(a.premium?"Mon compte Premium":"Mon compte"):"Mon compte";$("acct").classList.toggle("on",!!a);keep()}
+var acct0=false; // 22 nov 2026 (Jeremy): a signed-in visitor with a reserved address lands on it, not on a random one
+function setAcct(a){if(a&&!acct&&lg("at_push")==="1")setTimeout(function(){pushSub(false)},0);acct=a;$("acct").textContent=a?(a.premium?"Mon compte Premium":"Mon compte"):"Mon compte";$("acct").classList.toggle("on",!!a);var first=!!a&&!acct0;acct0=!!a;if(first&&!qa&&a.addrs&&a.addrs.length&&!mine(me)){setAddr(a.addrs[0]);return}keep()}
 function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Compte gratuit";
  $("pd").textContent=acct.addrs.length+" / "+acct.max+" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"30 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"");
  $("ptag").textContent=acct.premium?"Premium":"Gratuit";$("ptag").className="tag"+(acct.premium?" p":"");
