@@ -210,6 +210,7 @@ article.art{max-width:68ch}
 article.art h1{max-width:22ch;margin-top:14px}
 article.art .lead{margin-bottom:10px}
 article.art h2{font:700 24px/1.25 "Familjen Grotesk",sans-serif;margin:36px 0 10px;letter-spacing:-.01em}
+article.art h3{font:700 18px/1.3 "Familjen Grotesk",sans-serif;margin:22px 0 6px}
 article.art p,article.art li{font-size:17px;line-height:1.7}
 article.art ul{padding-left:22px}
 article.art li{margin:6px 0}

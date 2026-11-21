@@ -254,3 +254,7 @@ ARTICLES = [
 <p>Pour savoir quand utiliser une adresse jetable et quand l'éviter, lisez notre <a href="/blog/mail-jetable/">guide complet</a>.</p>
 """},
 ]
+
+from extra import EXTRA
+for _a in ARTICLES:
+    _a["body"] = _a["body"].rstrip() + "\n" + EXTRA.get(_a["slug"], "").strip() + "\n"
