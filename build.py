@@ -28,8 +28,8 @@ T = {
   "why_h": "Pourquoi utiliser une adresse mail temporaire ?",
   "why": "Chaque fois que vous donnez votre vraie adresse, vous prenez le risque de recevoir des pubs pendant des années, ou de la voir fuiter lors d'un piratage. Une adresse jetable vous protège : vous testez un service, téléchargez un livre blanc ou accédez à un Wi-Fi sans rien laisser derrière vous.",
   "faq_h": "Questions fréquentes",
-  "faq": [["C'est vraiment gratuit ?", "Oui. Sans compte, c'est gratuit et sans inscription. Le compte gratuit ajoute une adresse réservée et privée. Le Premium, à 2,99 € par mois, en permet jusqu'à 10 et garde les messages 7 jours."],
-          ["Combien de temps les messages restent-ils ?", "Une heure sans compte, 24 heures sur une adresse réservée avec le compte gratuit, 7 jours en Premium. Ensuite, ils sont supprimés définitivement."],
+  "faq": [["C'est vraiment gratuit ?", "Oui. Sans compte, c'est gratuit et sans inscription. Le compte gratuit ajoute une adresse réservée et privée. Le Premium, à 2,99 € par mois, en permet jusqu'à 100, garde les messages 30 jours, transfère vos messages vers votre vraie boîte et garde les pièces jointes."],
+          ["Combien de temps les messages restent-ils ?", "Une heure sans compte, 24 heures sur une adresse réservée avec le compte gratuit, 30 jours en Premium. Ensuite, ils sont supprimés définitivement."],
           ["Puis-je envoyer des e-mails ?", "Non. L'adresse sert uniquement à recevoir, ce qui évite qu'elle soit utilisée pour envoyer du spam."],
           ["Quelqu'un d'autre peut-il lire mes messages ?", "Sans compte, toute personne qui connaît exactement l'adresse peut voir sa boîte : préférez une adresse générée au hasard. Avec un compte, vos adresses réservées sont privées : vous seul pouvez lire leurs messages. Dans tous les cas, ne l'utilisez pas pour des informations sensibles (banque, santé, administration)."],
           ["Je retrouve mon adresse si je reviens ?", "Oui, elle est gardée dans votre navigateur. Vous pouvez aussi en créer une nouvelle à tout moment."],
@@ -185,6 +185,9 @@ ul.my .cur{color:var(--blue)}
 .plans .pr small{font:400 14px "Public Sans",sans-serif;color:var(--ink2)}
 .plans ul{margin:0 0 14px;padding-left:18px;color:var(--ink2)}
 ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
+.atts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}.atts button{font:600 13px "Public Sans",sans-serif;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:6px 10px;cursor:pointer;color:var(--ink)}.atts button:hover{border-color:var(--blue)}
+.vpn{border:1px dashed var(--line);border-radius:6px;padding:18px 20px;margin:28px 0;background:var(--card)}.vpn b{display:block;font:700 18px "Familjen Grotesk",sans-serif;margin:2px 0 6px}.vpn p{margin:0 0 12px;color:var(--ink2)}.vpn small{display:block;margin-top:10px;font-size:12px;color:var(--ink2)}.vpn .sp{font-size:12px;color:var(--ink2)}
+.my select{font:13px "Public Sans",sans-serif;border:1px solid var(--line);border-radius:4px;padding:3px 4px;background:var(--card);color:var(--ink);max-width:150px}
 .plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
 """
@@ -250,7 +253,7 @@ DIALOG = """<dialog id="dlg" aria-labelledby="dlgt"><div class="dh"><h2 id="dlgt
 <div class="db" id="s1"><p>Recevez un code par e-mail pour vous connecter. Pas de mot de passe.</p><form id="f1"><label for="em">Votre adresse e-mail</label><input id="em" type="email" autocomplete="email" required placeholder="vous@exemple.fr"><button class="btn" type="submit" id="b1">Recevoir mon code</button><p class="derr" id="e1" role="alert"></p></form></div>
 <div class="db" id="s2" hidden><p id="s2t"></p><form id="f2"><label for="cd">Code à 6 chiffres</label><input id="cd" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required><button class="btn" type="submit" id="b2">Me connecter</button><p class="derr" id="e2" role="alert"></p></form><button class="link sm" id="back1" type="button">Changer d'adresse e-mail</button></div>
 <div class="db" id="s3" hidden><div class="plan"><div><b id="pn"></b><div class="sm" id="pd"></div></div><span class="tag" id="ptag"></span></div>
-<label>Mes adresses réservées</label><ul class="my" id="my"></ul><p class="sm" id="mye"></p>
+<label>Mes adresses réservées</label><ul class="my" id="my"></ul><p class="sm" id="mye"></p><p class="sm" id="fwdn"></p>
 <form id="f3"><div class="row2"><input id="ra" maxlength="40" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="nom-de-votre-choix" aria-label="Adresse à réserver"><button class="btn ghost" type="submit">Réserver</button></div></form>
 <p class="derr" id="e3" role="alert"></p>
 <a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a>
@@ -269,7 +272,7 @@ var tok=lg(KT);
 function H(x){var h=x||{};if(tok)h.Authorization="Bearer "+tok;return h}
 function api(p,o){o=o||{};o.headers=H(o.headers);o.cache="no-store";return fetch(API+p,o).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
-var me=lg(K);if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
+var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];if(qa&&RX.test(qa)){me=qa;ls(K,me)}if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
 function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
 function full(){return me+"@"+DOM}
 function mine(a){return !!(acct&&acct.addrs.indexOf(a)>=0)}
@@ -292,7 +295,7 @@ function render(ms){var ul=$("list");ul.innerHTML="";$("empty").style.display=ms
   b.onclick=function(){open(m.id)};li.appendChild(b);ul.appendChild(li)})}
 var last=[];
 function keep(){var k=$("keep");k.innerHTML="";
- if(mine(me)){k.appendChild(el("b",null,"Adresse privée"));k.appendChild(txt(" : réservée à votre compte, messages gardés "+(acct.premium?"7 jours":"24 heures")+"."));$("knote").textContent="Seul votre compte peut lire cette boîte.";return}
+ if(mine(me)){k.appendChild(el("b",null,"Adresse privée"));k.appendChild(txt(" : réservée à votre compte, messages gardés "+(acct.premium?"30 jours":"24 heures")+"."));$("knote").textContent="Seul votre compte peut lire cette boîte.";return}
  $("knote").textContent=L.kept;
  var b=el("button","link",acct?"Réserver cette adresse":"Garder cette adresse et la rendre privée");b.type="button";
  b.onclick=function(){if(!acct){openDlg();return}reserve(me)};
@@ -312,8 +315,11 @@ function paint(){var m=cur;if(!m)return;var fr=$("vframe"),tx=$("vtext");
   fr.srcdoc='<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="'+csp+'"><base target="_blank"><style>body{font:15px/1.5 system-ui,sans-serif;margin:12px;color:#16213b;overflow-wrap:anywhere}img{max-width:100%;height:auto}</style></head><body>'+m.html+'</body></html>';
   fr.onload=function(){try{fr.style.height=Math.max(420,fr.contentDocument.documentElement.scrollHeight+20)+"px"}catch(e){}}}
  else{fr.style.display="none";$("imgbar").style.display="none";tx.style.display="block";tx.textContent=m.text||""}}
+function kb(n){return n>1048576?(n/1048576).toFixed(1)+" Mo":Math.max(1,Math.round(n/1024))+" Ko"}
+function atts(list){var d=$("vatts");d.innerHTML="";list.forEach(function(x){var b=el("button",null,"\u{1F4CE} "+x.name+" ("+kb(x.size)+")");b.type="button";
+ b.onclick=function(){fetch(API+"/att?a="+encodeURIComponent(me)+"&id="+x.id,{headers:H(),cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(bl){var u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download=x.name||"piece-jointe";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000)}).catch(function(){alert("Téléchargement impossible.")})};d.appendChild(b)})}
 function open(id){api("/msg?a="+encodeURIComponent(me)+"&id="+id).then(function(m){if(!m||!m.id)return;seen[id]=1;cur=m;showImgs=false;
- $("vsubj").textContent=m.subject||L.nosubj;$("vfrom").textContent=L.from+" : "+(m.from||"")+", "+ago(m.at);
+ $("vsubj").textContent=m.subject||L.nosubj;$("vfrom").textContent=L.from+" : "+(m.from||"")+", "+ago(m.at);atts(m.atts||[]);
  $("listwrap").style.display="none";$("view").classList.add("on");paint();$("vsubj").focus()})}
 
 /* ---- compte ---- */
@@ -332,20 +338,24 @@ $("f2").onsubmit=function(e){e.preventDefault();$("e2").textContent="";$("b2").d
  post("/auth/verify",{email:email,code:$("cd").value.trim()}).then(function(j){$("b2").disabled=false;if(j.token){tok=j.token;ls(KT,tok);setAcct(j.me);fill();step(3)}else $("e2").textContent=ERR[j.error]||"Erreur, réessayez."}).catch(function(){$("b2").disabled=false;$("e2").textContent="Connexion impossible."})};
 function setAcct(a){acct=a;$("acct").textContent=a?(a.premium?"Mon compte Premium":"Mon compte"):"Mon compte";$("acct").classList.toggle("on",!!a);keep()}
 function fill(){if(!acct)return;$("pn").textContent=acct.premium?"Premium":"Compte gratuit";
- $("pd").textContent=acct.addrs.length+" / "+acct.max+" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"7 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"");
+ $("pd").textContent=acct.addrs.length+" / "+acct.max+" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"30 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"");
  $("ptag").textContent=acct.premium?"Premium":"Gratuit";$("ptag").className="tag"+(acct.premium?" p":"");
  var ul=$("my");ul.innerHTML="";$("mye").textContent=acct.addrs.length?"":"Aucune adresse réservée pour l'instant.";
  acct.addrs.forEach(function(a){var li=document.createElement("li");var s=el("span","a"+(a===me?" cur":""),a+"@"+DOM);
   var o=el("button","link sm",a===me?"Ouverte":"Ouvrir");o.type="button";o.disabled=(a===me);o.onclick=function(){setAddr(a);fill();closeDlg()};
   var r=el("button","link sm","Libérer");r.type="button";r.onclick=function(){if(!confirm("Libérer "+a+"@"+DOM+" ? Ses messages seront supprimés."))return;post("/release",{addr:a}).then(function(j){if(j.email){setAcct(j);fill()}})};
-  li.appendChild(s);li.appendChild(o);li.appendChild(r);ul.appendChild(li)});
+  li.appendChild(s);li.appendChild(o);li.appendChild(r);
+  if(acct.premium){var se=document.createElement("select");se.setAttribute("aria-label","Transfert de "+a);[["off","Pas de transfert"],["notif","Alerte par e-mail"],["full","Transfert complet"]].forEach(function(p){var op=document.createElement("option");op.value=p[0];op.textContent=p[1];se.appendChild(op)});se.value=(acct.fwd&&acct.fwd[a])||"off";
+   se.onchange=function(){post("/fwd",{addr:a,mode:se.value}).then(function(j){if(j.email){acct=j}})};li.appendChild(se)}
+  ul.appendChild(li)});
+ $("fwdn").textContent=acct.premium&&acct.addrs.length?"Transfert : les messages reçus sont envoyés à "+acct.email+" (alerte simple ou message complet avec pièces jointes).":"";
  $("f3").style.display=acct.addrs.length<acct.max?"block":"none";
  if(!$("ra").value)$("ra").value=mine(me)?"":me;
  var g=$("gopro");g.style.display=acct.premium?"none":"block";g.href=GUM+"?wanted=true&uid="+encodeURIComponent(acct.uid)+"&email="+encodeURIComponent(acct.email);
  $("me-em").textContent="Connecté avec "+acct.email}
 function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(function(j){
   if(j.email){setAcct(j);$("ra").value="";if(a!==me)setAddr(a);else keep();fill();return}
-  if(j.error==="limit"){openDlg();$("e3").textContent=acct&&acct.premium?ERR.limit:"Le compte gratuit permet 1 adresse. Passez Premium pour en avoir jusqu'à 10.";return}
+  if(j.error==="limit"){openDlg();$("e3").textContent=acct&&acct.premium?ERR.limit:"Le compte gratuit permet 1 adresse. Passez Premium pour en avoir jusqu'à 100.";return}
   if(!dlg.open)openDlg();$("e3").textContent=ERR[j.error]||"Erreur, réessayez."})}
 $("f3").onsubmit=function(e){e.preventDefault();var v=$("ra").value.trim().toLowerCase();if(!RX.test(v)){$("e3").textContent=ERR.addr;return}reserve(v)};
 $("logout").onclick=function(){post("/logout").finally(function(){tok=null;ls(KT,null);setAcct(null);closeDlg();if(!RX.test(me))setAddr(rnd());load()})};
@@ -392,7 +402,7 @@ def index(t):
    <div class="empty" id="empty"><b>{esc(t['waiting'])}</b>{esc(t['waiting_sub'])}</div>
    <p class="note" id="knote">{esc(t['kept'])}</p></div>
   <div id="view"><div class="vh"><button class="btn ghost" id="back" type="button">{esc(t['back'])}</button><button class="btn ghost" id="del" type="button">{esc(t['delete'])}</button></div>
-   <h2 id="vsubj" tabindex="-1"></h2><div id="vfrom"></div>
+   <h2 id="vsubj" tabindex="-1"></h2><div id="vfrom"></div><div id="vatts" class="atts"></div>
    <div class="imgbar" id="imgbar"><span>{esc(t['imgs_note'])}</span><button class="link" id="imgs" type="button">{esc(t['imgs'])}</button></div>
    <iframe id="vframe" title="Message" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin" referrerpolicy="no-referrer"></iframe><div id="vtext"></div></div>
  </div>
@@ -400,19 +410,21 @@ def index(t):
 <section class="c" id="offres"><h2>Gratuit ou Premium</h2><div class="plans">
  <div><h3>Sans compte</h3><p class="pr">0 €</p><ul><li>Une adresse jetable tout de suite</li><li>Messages effacés après 1 heure</li><li>Boîte publique : toute personne qui connaît l'adresse peut la lire</li></ul></div>
  <div><h3>Compte gratuit</h3><p class="pr">0 €</p><ul><li>1 adresse réservée à votre nom</li><li>Privée : vous seul lisez ses messages</li><li>Messages gardés 24 heures</li></ul><button class="btn ghost" type="button" data-acct>Créer mon compte</button></div>
- <div class="hi"><h3>Premium</h3><p class="pr">2,99 € <small>par mois</small></p><ul><li>Jusqu'à 10 adresses réservées et privées</li><li>Messages gardés 7 jours</li><li>Sans engagement</li></ul><button class="btn" type="button" data-acct>Passer Premium</button></div>
+ <div class="hi"><h3>Premium</h3><p class="pr">2,99 € <small>par mois</small></p><ul><li>Jusqu'à 100 adresses réservées et privées</li><li>Messages transférés vers votre vraie boîte, ou simple alerte par e-mail</li><li>Messages gardés 30 jours</li><li>Pièces jointes conservées (10 Mo par message)</li><li>Sans engagement</li></ul><button class="btn" type="button" data-acct>Passer Premium</button></div>
 </div></section>
 <section class="c"><h2>{esc(t['how_h'])}</h2><ol class="steps">{how}</ol></section>
 <section class="c"><h2>{esc(t['why_h'])}</h2><p>{esc(t['why'])}</p></section>
 <section class="c"><h2>Guides du mail jetable</h2><div class="posts home">{HOMECARDS}</div><p class="more"><a class="btn ghost" href="/blog/">Voir tous les guides</a></p></section>
 <section class="c"><h2>{esc(t['faq_h'])}</h2>{faq}</section>
+<section class="c"><aside class="vpn"><span class="sp">Partenaire</span><b>Protégez aussi votre connexion</b><p>Le mail jetable protège votre adresse. Sur un Wi-Fi public ou pour masquer votre adresse IP, un VPN chiffre tout votre trafic. Nous recommandons NordVPN.</p><a class="btn ghost" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire" target="_blank" rel="sponsored noopener">Découvrir NordVPN</a><small>Lien affilié : nous touchons une commission si vous vous abonnez, sans surcoût pour vous.</small></aside></section>
 </main>""" + foot(t) + DIALOG + f"<script>{js}</script></body></html>"
 
 LEGAL_FR = f"""<main><h1>Mentions légales et confidentialité</h1>
 <section class="c"><h2>Éditeur</h2><p>Le site adresse-temporaire.fr est édité par Jérémy Dacier-Jury, entrepreneur individuel (immatriculation en cours). Contact : <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a>.</p></section>
 <section class="c"><h2>Hébergement</h2><p>Pages du site : GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Réception des e-mails : Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis. Stockage temporaire des messages : Supabase, Inc., 970 Toa Payoh North #07-04, Singapour.</p></section>
-<section class="c"><h2>Fonctionnement et conservation</h2><p>Les adresses servent uniquement à recevoir des messages. Sans compte, chaque message est conservé une heure au maximum. Sur une adresse réservée, il est conservé 24 heures (compte gratuit) ou 7 jours (Premium), puis supprimé définitivement. L'adresse que vous utilisez et votre session sont gardées dans votre navigateur (stockage local).</p></section>
+<section class="c"><h2>Fonctionnement et conservation</h2><p>Les adresses servent uniquement à recevoir des messages. Sans compte, chaque message est conservé une heure au maximum. Sur une adresse réservée, il est conservé 24 heures (compte gratuit) ou 30 jours (Premium), puis supprimé définitivement. En Premium, les pièces jointes sont conservées avec le message, et si vous l'activez, chaque message reçu est transféré (ou signalé) à l'adresse e-mail de votre compte, via Resend. L'adresse que vous utilisez et votre session sont gardées dans votre navigateur (stockage local).</p></section>
 <section class="c"><h2>Comptes</h2><p>Si vous créez un compte, nous conservons votre adresse e-mail, vos adresses réservées et la date de fin de votre Premium, tant que le compte existe. Les codes de connexion sont envoyés par Resend (Resend, Inc., États-Unis). Le paiement du Premium est géré par Gumroad (Gumroad, Inc., États-Unis), qui nous transmet uniquement l'e-mail d'achat et le statut de l'abonnement. Pour supprimer votre compte, écrivez à <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a>.</p></section>
+<section class="c"><h2>Liens affiliés</h2><p>Certains liens du site sont des liens affiliés (NordVPN) : si vous vous abonnez via ces liens, nous touchons une commission, sans surcoût pour vous. Ils sont signalés par la mention « Partenaire » ou « Lien affilié ».</p></section>
 <section class="c"><h2>Cookies et statistiques</h2><p>Le site n'utilise pas de cookies. Seul un compteur anonyme du nombre d'adresses créées et de messages reçus par jour est tenu, sans adresse IP ni identifiant.</p></section>
 <section class="c"><h2>Usage interdit et signalement</h2><p>Il est interdit d'utiliser ce service pour une fraude, du harcèlement, l'usurpation d'identité ou toute activité illégale. Pour signaler un abus ou un contenu illicite, écrivez à <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a> en indiquant l'adresse concernée. Les contenus signalés sont supprimés sans délai.</p></section>
 <section class="c"><h2>Vos droits</h2><p>Conformément au RGPD, vous pouvez demander l'accès ou la suppression de données vous concernant à l'adresse de contact ci-dessus. Les messages étant effacés au bout d'une heure, il est en général impossible d'en fournir une copie après ce délai.</p></section></main>"""
@@ -470,6 +482,7 @@ for a in arts:
 <h1>{esc(a["title"])}</h1><p class="meta">Publié le {fdate(a["date"])}, {rtime(body)} min de lecture</p>
 {first.replace('<p>', '<p class="lead">', 1)}</p>{rest}
 {CTA}
+<aside class="vpn"><span class="sp">Partenaire</span><b>Protégez aussi votre connexion</b><p>Le mail jetable protège votre adresse. Sur un Wi-Fi public ou pour masquer votre adresse IP, un VPN chiffre tout votre trafic. Nous recommandons NordVPN.</p><a class="btn ghost" href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire" target="_blank" rel="sponsored noopener">Découvrir NordVPN</a><small>Lien affilié : nous touchons une commission si vous vous abonnez, sans surcoût pour vous.</small></aside>
 <div class="rel"><h2>À lire aussi</h2><ul>{rel}</ul></div>
 </article></main>""" + bfoot()
     w(f'blog/{a["slug"]}/index.html', html)

@@ -89,7 +89,7 @@ ARTICLES = [
 {
 "slug": "mail-jetable-10-minutes",
 "title": "Mail jetable 10 minutes : combien de temps garder son adresse ?",
-"desc": "10 minutes, 1 heure, 24 heures, 7 jours : quelle durée choisir pour une adresse mail temporaire selon votre usage.",
+"desc": "10 minutes, 1 heure, 24 heures, 30 jours : quelle durée choisir pour une adresse mail temporaire selon votre usage.",
 "date": "2026-11-21",
 "cat": "Les bases",
 "body": """
@@ -100,8 +100,8 @@ ARTICLES = [
 <p>Sur <a href="/">adresse-temporaire.fr</a>, sans compte, les messages sont gardés une heure. C'est assez pour recevoir un code, confirmer une inscription ou télécharger un fichier, et assez court pour que rien ne traîne.</p>
 <h2>24 heures : pour les inscriptions en plusieurs étapes</h2>
 <p>Avec un compte gratuit, vous réservez une adresse qui devient privée, et ses messages sont gardés 24 heures. Utile pour un essai gratuit qui envoie plusieurs messages dans la journée, ou une commande dont la confirmation arrive plus tard.</p>
-<h2>7 jours : pour suivre un essai ou une livraison</h2>
-<p>Le Premium garde les messages une semaine, sur jusqu'à 10 adresses réservées. C'est le bon choix si vous testez un service pendant quelques jours, ou si vous attendez le suivi d'un colis.</p>
+<h2>30 jours : pour suivre un essai ou une livraison</h2>
+<p>Le Premium garde les messages 30 jours, sur jusqu'à 100 adresses réservées, et peut les transférer vers votre vraie boîte. C'est le bon choix si vous testez un service pendant quelques jours, ou si vous attendez le suivi d'un colis.</p>
 <h2>Quelle durée pour quel usage</h2>
 <table>
 <thead><tr><th>Usage</th><th>Durée conseillée</th></tr></thead>
@@ -109,7 +109,7 @@ ARTICLES = [
 <tr><td>Code de vérification, Wi-Fi public</td><td>1 heure</td></tr>
 <tr><td>Téléchargement d'un guide, newsletter à tester</td><td>1 heure</td></tr>
 <tr><td>Inscription avec plusieurs e-mails dans la journée</td><td>24 heures</td></tr>
-<tr><td>Essai gratuit de quelques jours, suivi de commande</td><td>7 jours</td></tr>
+<tr><td>Essai gratuit de quelques jours, suivi de commande</td><td>30 jours</td></tr>
 </tbody></table>
 <p>Pour un compte que vous garderez des mois, aucune adresse jetable n'est adaptée : utilisez votre vraie adresse ou un alias, comme expliqué dans <a href="/blog/mail-jetable-ou-alias/">ce comparatif</a>.</p>
 """},
@@ -150,12 +150,12 @@ ARTICLES = [
 <ul>
 <li>elle devient <strong>privée</strong> : vous seul pouvez lire ses messages, même si quelqu'un tape exactement la même adresse ;</li>
 <li>elle est <strong>gardée sur votre compte</strong>, vous la retrouvez depuis n'importe quel appareil ;</li>
-<li>ses messages sont conservés <strong>24 heures</strong>, ou 7 jours en Premium.</li>
+<li>ses messages sont conservés <strong>24 heures</strong>, ou 30 jours en Premium.</li>
 </ul>
 <h2>Et sans mot de passe à retenir</h2>
 <p>Plutôt qu'un mot de passe de plus, la connexion se fait avec un code à 6 chiffres envoyé sur votre adresse e-mail. Vous tapez le code, vous êtes connecté. Rien à retenir, rien qui puisse fuiter.</p>
 <h2>Gratuit ou Premium ?</h2>
-<p>Le compte gratuit réserve une adresse, idéale pour un usage régulier. Le Premium, à 2,99 € par mois, en réserve jusqu'à 10 et garde les messages une semaine : pratique si vous utilisez une adresse différente par catégorie de sites.</p>
+<p>Le compte gratuit réserve une adresse, idéale pour un usage régulier. Le Premium, à 2,99 € par mois, en réserve jusqu'à 100, garde les messages 30 jours et peut les transférer vers votre vraie boîte : pratique si vous utilisez une adresse différente par catégorie de sites.</p>
 <p><a href="/?compte=1">Créer mon compte gratuit</a></p>
 """},
 {

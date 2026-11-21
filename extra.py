@@ -15,9 +15,9 @@ EXTRA = {
 </ul>
 <h2>Questions fréquentes</h2>
 <h3>Un mail jetable est-il vraiment gratuit ?</h3>
-<p>Oui. Sur adresse-temporaire.fr, l'adresse, la réception et la lecture des messages sont gratuites, sans inscription. Seul le Premium, facultatif, est payant : il permet de garder jusqu'à 10 adresses privées et de conserver les messages une semaine.</p>
+<p>Oui. Sur adresse-temporaire.fr, l'adresse, la réception et la lecture des messages sont gratuites, sans inscription. Seul le Premium, facultatif, est payant : il permet de garder jusqu'à 100 adresses privées, de conserver les messages 30 jours, de recevoir les pièces jointes et de transférer les messages vers votre vraie boîte.</p>
 <h3>Peut-on recevoir des pièces jointes ?</h3>
-<p>Le texte des messages est affiché, avec les liens et les codes. Pour un fichier important, mieux vaut utiliser une adresse que vous gardez.</p>
+<p>Oui, en Premium : les pièces jointes (jusqu'à 10 Mo par message) sont conservées sur vos adresses réservées et téléchargeables depuis le message. Sans Premium, seul le texte du message est affiché.</p>
 <h3>Le site que j'utilise saura-t-il que c'est une adresse jetable ?</h3>
 <p>Certains sites le détectent et la refusent. La plupart ne vérifient pas. Si l'inscription échoue, consultez <a href="/blog/site-refuse-mail-jetable/">notre guide sur les refus</a>.</p>
 """,
@@ -66,13 +66,13 @@ EXTRA = {
 <p>Garder les messages moins longtemps, c'est aussi garder moins de données. Sur adresse-temporaire.fr, rien n'est archivé : un message effacé l'est pour de bon. C'est pour cela qu'il ne faut jamais compter sur une adresse jetable pour un document que vous voudrez retrouver dans un mois.</p>
 <h2>Les cas où une durée longue est vraiment utile</h2>
 <ul>
-<li><strong>Les essais gratuits</strong> : le service envoie souvent un message de bienvenue, puis un rappel avant la fin de l'essai. Avec 7 jours, vous voyez passer le rappel et pouvez résilier à temps.</li>
+<li><strong>Les essais gratuits</strong> : le service envoie souvent un message de bienvenue, puis un rappel avant la fin de l'essai. Avec 30 jours, vous voyez passer le rappel et pouvez résilier à temps.</li>
 <li><strong>Les petites annonces</strong> : si vous vendez un objet sur un site qui envoie les messages des acheteurs par e-mail, une adresse réservée vous évite d'exposer votre vraie adresse.</li>
 <li><strong>Les commandes en ligne</strong> : la confirmation arrive tout de suite, mais le suivi de livraison peut arriver deux ou trois jours après.</li>
 </ul>
 <h2>Questions fréquentes</h2>
 <h3>Peut-on prolonger la durée d'une boîte sans compte ?</h3>
-<p>Non, sans compte les messages restent une heure. Pour une durée plus longue, réservez l'adresse avec un compte gratuit (24 heures) ou Premium (7 jours).</p>
+<p>Non, sans compte les messages restent une heure. Pour une durée plus longue, réservez l'adresse avec un compte gratuit (24 heures) ou Premium (30 jours).</p>
 <h3>Mon adresse disparaît-elle si je ferme le navigateur ?</h3>
 <p>Non, elle est gardée dans votre navigateur. Elle ne disparaît que si vous effacez ses données, ou si vous étiez en navigation privée.</p>
 """,
@@ -116,7 +116,7 @@ EXTRA = {
 <li><strong>Une adresse « essais »</strong> pour tester des applications et des services.</li>
 <li><strong>Une adresse « jeux-concours »</strong> pour participer sans voir votre boîte envahie.</li>
 </ul>
-<p>Avec le compte gratuit, vous gardez une de ces adresses. Avec le Premium, vous pouvez toutes les avoir, et en ajouter d'autres, jusqu'à 10.</p>
+<p>Avec le compte gratuit, vous gardez une de ces adresses. Avec le Premium, vous pouvez toutes les avoir, et en ajouter d'autres, jusqu'à 100. Le Premium peut aussi transférer les messages de chaque adresse vers votre vraie boîte.</p>
 <h2>Questions fréquentes</h2>
 <h3>Puis-je supprimer mon compte ?</h3>
 <p>Oui, il suffit d'écrire à <a href="mailto:contact@adresse-temporaire.fr">contact@adresse-temporaire.fr</a>. Votre compte, vos adresses réservées et leurs messages sont alors supprimés.</p>
