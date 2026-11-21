@@ -673,3 +673,10 @@ w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://
 w("404.html", head(T["fr"], "Page introuvable | Adresse-Temporaire.fr", "Page introuvable", SITE + "/", "", "", '<meta name="robots" content="noindex">') + btop() + '<main><h1>Cette page n\'existe pas.</h1><p class="lead">Elle a peut-être été déplacée. Votre adresse mail jetable vous attend sur la page d\'accueil.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="/">Aller à l\'accueil</a></p></main>' + bfoot())
 print("blog ok", len(arts))
 print("ok")
+# vérification Google Search Console de jetboxmail.com sur toutes les pages anglaises
+for _d, _s, _fs in os.walk(os.path.join(ROOT, "jet")):
+    for _f in _fs:
+        if _f.endswith(".html"):
+            _p = os.path.join(_d, _f); _h = open(_p).read()
+            _h = _h.replace('<meta name="google-site-verification" content="zOVKFpJBh1jvzMQHPHjjrzCtxGgENVeCLLiVSmmgdzg">', '<meta name="google-site-verification" content="YRyT8TIFGofnyG1bvcECIIZoKJFyJ_LC3cA9w4c7yek">')
+            open(_p, "w").write(_h)
