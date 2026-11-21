@@ -67,7 +67,7 @@ ol.steps b{display:block;margin-bottom:4px}
 ol.steps p,section.c>p{margin:0;color:var(--ink2);max-width:66ch}
 details{border-top:1px solid var(--line);padding:14px 0}
 details:last-child{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-weight:600}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font:400 24px/1 "Public Sans",sans-serif;color:var(--blue)}details[open] summary:after{transform:rotate(45deg)}summary:after{transition:transform .15s}
 details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
 footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
 footer a{color:var(--ink2)}
@@ -114,16 +114,16 @@ ul.my .cur{color:var(--blue)}
 ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
 .plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
-</style><style>
+
 .bh{padding:26px 0 8px}
 .bh h1{max-width:20ch}
 .kick{font-size:14px;color:var(--ink2);margin:0}
-.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}.posts.home{margin-top:8px}.more{margin:18px 0 0}.more .btn{display:inline-block;text-decoration:none}
 .post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;align-items:flex-start}
 .post:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
-.post h2{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
-.post h2 a{color:var(--ink);text-decoration:none}.post h2 a:after{content:"";position:absolute;inset:0}
-.post:hover h2 a{color:var(--blue)}
+.post h2,.post .pt{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
+.post h2 a,.post .pt a{color:var(--ink);text-decoration:none}.post h2 a:after,.post .pt a:after{content:"";position:absolute;inset:0}
+.post:hover h2 a,.post:hover .pt a{color:var(--blue)}
 .post p{margin:0 0 14px;color:var(--ink2);font-size:15px;flex:1;width:100%}
 .post .cat{margin-right:70px}
 .meta{font-size:13px;color:var(--ink2)}

@@ -140,7 +140,7 @@ ol.steps b{display:block;margin-bottom:4px}
 ol.steps p,section.c>p{margin:0;color:var(--ink2);max-width:66ch}
 details{border-top:1px solid var(--line);padding:14px 0}
 details:last-child{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-weight:600}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font:400 24px/1 "Public Sans",sans-serif;color:var(--blue)}details[open] summary:after{transform:rotate(45deg)}summary:after{transition:transform .15s}
 details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
 footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
 footer a{color:var(--ink2)}
@@ -189,6 +189,43 @@ ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
 footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
 """
 
+BCSS = """
+.bh{padding:26px 0 8px}
+.bh h1{max-width:20ch}
+.kick{font-size:14px;color:var(--ink2);margin:0}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}.posts.home{margin-top:8px}.more{margin:18px 0 0}.more .btn{display:inline-block;text-decoration:none}
+.post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;align-items:flex-start}
+.post:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.post h2,.post .pt{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
+.post h2 a,.post .pt a{color:var(--ink);text-decoration:none}.post h2 a:after,.post .pt a:after{content:"";position:absolute;inset:0}
+.post:hover h2 a,.post:hover .pt a{color:var(--blue)}
+.post p{margin:0 0 14px;color:var(--ink2);font-size:15px;flex:1;width:100%}
+.post .cat{margin-right:70px}
+.meta{font-size:13px;color:var(--ink2)}
+.cat{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:#e8ecf6;border-radius:20px;padding:3px 9px}
+.stamp{position:absolute;top:16px;right:16px;width:60px;height:60px;border:2px dashed var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--red);transform:rotate(-8deg);line-height:1.05}
+.stamp b{font:700 20px "Familjen Grotesk",sans-serif}.stamp i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.04em}
+article.art{max-width:68ch}
+.crumb{font-size:13px;color:var(--ink2);margin:20px 0 0}.crumb a{color:var(--ink2)}
+article.art h1{max-width:22ch;margin-top:14px}
+article.art .lead{margin-bottom:10px}
+article.art h2{font:700 24px/1.25 "Familjen Grotesk",sans-serif;margin:36px 0 10px;letter-spacing:-.01em}
+article.art p,article.art li{font-size:17px;line-height:1.7}
+article.art ul{padding-left:22px}
+article.art li{margin:6px 0}
+article.art code{font:500 15px "JetBrains Mono",monospace;background:#eef1f7;padding:1px 6px;border-radius:3px;overflow-wrap:anywhere}
+article.art table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+article.art th,article.art td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+article.art th{background:#eef1f7}
+.cta{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 22px 22px;margin:40px 0}
+.cta:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.cta b{font:700 20px "Familjen Grotesk",sans-serif;display:block;margin-bottom:4px}
+.cta p{margin:0 0 14px!important;color:var(--ink2)}
+.cta .btn{display:inline-block;text-decoration:none}
+.rel h2{font:700 20px "Familjen Grotesk",sans-serif!important;margin:10px 0!important}
+.rel ul{padding-left:20px}
+"""
+
 def esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
@@ -199,7 +236,7 @@ def head(t, title, desc, canon, alt_fr, alt_en, extra=""):
 <link rel="canonical" href="{canon}">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='7' width='28' height='19' rx='2' fill='%23fff' stroke='%2316213b' stroke-width='2'/%3E%3Cpath d='M3 9l13 9 13-9' fill='none' stroke='%23c8323a' stroke-width='2'/%3E%3C/svg%3E">
-{FONTS}<style>{CSS}</style>{extra}</head><body><div class="air"></div>"""
+{FONTS}<style>{CSS}{BCSS}</style>{extra}</head><body><div class="air"></div>"""
 
 def topbar(t, other_href):
     return f"""<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="/blog/">Guides</a><button class="acct" id="acct" type="button">Mon compte</button></nav></header>"""
@@ -317,6 +354,17 @@ window.addEventListener("focus",function(){if(tok)refresh()});
 })();
 """
 
+from articles import ARTICLES, CTA
+import re as _re
+MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+def stamp(d):
+    y,m,dd = map(int, d.split("-"))
+    return f'<span class="stamp" aria-hidden="true"><b>{dd:02d}</b><i>{["JANV","FÉVR","MARS","AVR","MAI","JUIN","JUIL","AOÛT","SEPT","OCT","NOV","DÉC"][m-1]}</i><i>{y}</i></span>'
+def rtime(html):
+    n = len(_re.sub(r"<[^>]+>", " ", html).split()); return max(2, round(n/200))
+def card(a):
+    return f'<div class="post">{stamp(a["date"])}<span class="cat">{esc(a["cat"])}</span><h3 class="pt"><a href="/blog/{a["slug"]}/">{esc(a["title"])}</a></h3><p>{esc(a["desc"])}</p><span class="meta">{rtime(a["body"])} min de lecture</span></div>'
+
 def index(t):
     other = t["other"]
     canon = SITE + t["path"]
@@ -324,6 +372,7 @@ def index(t):
              '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "WebApplication", "name": "Adresse-Temporaire.fr", "url": SITE + "/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "inLanguage": "fr", "description": t["desc"], "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "EUR", "name": "Gratuit"}, {"@type": "Offer", "price": "2.99", "priceCurrency": "EUR", "name": "Premium"}]}, ensure_ascii=False) + '</script><script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": t["lang"], "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t["faq"]]}, ensure_ascii=False) + "</script>")
     how = "".join(f"<li><b>{esc(a)}</b><p>{esc(b)}</p></li>" for a, b in t["how"])
     faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in t["faq"])
+    HOMECARDS = "".join(card(a) for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True)[:4])
     jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj"]}
     js = JS.replace("__T__", json.dumps(jsT, ensure_ascii=False)).replace("__API__", API).replace("__DOM__", DOMAIN)
     return h + topbar(t, other) + f"""<main>
@@ -354,12 +403,7 @@ def index(t):
 </div></section>
 <section class="c"><h2>{esc(t['how_h'])}</h2><ol class="steps">{how}</ol></section>
 <section class="c"><h2>{esc(t['why_h'])}</h2><p>{esc(t['why'])}</p></section>
-<section class="c"><h2>Guides du mail jetable</h2><ul class="gl">
-<li><a href="/blog/mail-jetable/">Mail jetable : c'est quoi et comment bien l'utiliser</a></li>
-<li><a href="/blog/creer-adresse-mail-temporaire/">Créer une adresse mail temporaire en 10 secondes</a></li>
-<li><a href="/blog/mail-jetable-gmail/">Mail jetable avec Gmail : les alias et leurs limites</a></li>
-<li><a href="/blog/site-refuse-mail-jetable/">Pourquoi un site refuse votre mail jetable</a></li>
-</ul><p><a href="/blog/">Tous les guides</a></p></section>
+<section class="c"><h2>Guides du mail jetable</h2><div class="posts home">{HOMECARDS}</div><p class="more"><a class="btn ghost" href="/blog/">Voir tous les guides</a></p></section>
 <section class="c"><h2>{esc(t['faq_h'])}</h2>{faq}</section>
 </main>""" + foot(t) + DIALOG + f"<script>{js}</script></body></html>"
 
@@ -394,62 +438,19 @@ w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 w(".nojekyll", "")
 # ---------------- BLOG ----------------
-from articles import ARTICLES, CTA
-import datetime, re as _re
-MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+import datetime
 def fdate(d):
     y,m,dd = map(int, d.split("-")); return f"{dd} {MOIS[m-1]} {y}"
-def stamp(d):
-    y,m,dd = map(int, d.split("-"))
-    return f'<span class="stamp" aria-hidden="true"><b>{dd:02d}</b><i>{["JANV","FÉVR","MARS","AVR","MAI","JUIN","JUIL","AOÛT","SEPT","OCT","NOV","DÉC"][m-1]}</i><i>{y}</i></span>'
-def rtime(html):
-    n = len(_re.sub(r"<[^>]+>", " ", html).split()); return max(2, round(n/200))
-BCSS = """
-.bh{padding:26px 0 8px}
-.bh h1{max-width:20ch}
-.kick{font-size:14px;color:var(--ink2);margin:0}
-.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}
-.post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;align-items:flex-start}
-.post:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
-.post h2{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
-.post h2 a{color:var(--ink);text-decoration:none}.post h2 a:after{content:"";position:absolute;inset:0}
-.post:hover h2 a{color:var(--blue)}
-.post p{margin:0 0 14px;color:var(--ink2);font-size:15px;flex:1;width:100%}
-.post .cat{margin-right:70px}
-.meta{font-size:13px;color:var(--ink2)}
-.cat{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:#e8ecf6;border-radius:20px;padding:3px 9px}
-.stamp{position:absolute;top:16px;right:16px;width:60px;height:60px;border:2px dashed var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--red);transform:rotate(-8deg);line-height:1.05}
-.stamp b{font:700 20px "Familjen Grotesk",sans-serif}.stamp i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.04em}
-article.art{max-width:68ch}
-.crumb{font-size:13px;color:var(--ink2);margin:20px 0 0}.crumb a{color:var(--ink2)}
-article.art h1{max-width:22ch;margin-top:14px}
-article.art .lead{margin-bottom:10px}
-article.art h2{font:700 24px/1.25 "Familjen Grotesk",sans-serif;margin:36px 0 10px;letter-spacing:-.01em}
-article.art p,article.art li{font-size:17px;line-height:1.7}
-article.art ul{padding-left:22px}
-article.art li{margin:6px 0}
-article.art code{font:500 15px "JetBrains Mono",monospace;background:#eef1f7;padding:1px 6px;border-radius:3px;overflow-wrap:anywhere}
-article.art table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
-article.art th,article.art td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-article.art th{background:#eef1f7}
-.cta{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 22px 22px;margin:40px 0}
-.cta:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
-.cta b{font:700 20px "Familjen Grotesk",sans-serif;display:block;margin-bottom:4px}
-.cta p{margin:0 0 14px!important;color:var(--ink2)}
-.cta .btn{display:inline-block;text-decoration:none}
-.rel h2{font:700 20px "Familjen Grotesk",sans-serif!important;margin:10px 0!important}
-.rel ul{padding-left:20px}
-"""
 def bhead(title, desc, canon, schema):
     t = T["fr"]
-    return head(t, title, desc, canon, canon, canon, '<style>' + BCSS + '</style>' + ''.join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False) + '</script>' for x in schema)).replace('<link rel="canonical"', '<link rel="alternate" type="application/rss+xml" title="Guides du mail jetable" href="/blog/rss.xml"><link rel="canonical"')
+    return head(t, title, desc, canon, canon, canon, ''.join('<script type="application/ld+json">' + json.dumps(x, ensure_ascii=False) + '</script>' for x in schema)).replace('<link rel="canonical"', '<link rel="alternate" type="application/rss+xml" title="Guides du mail jetable" href="/blog/rss.xml"><link rel="canonical"')
 def btop():
     return '<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="/blog/">Guides</a><a class="acct" href="/?compte=1" style="text-decoration:none">Mon compte</a></nav></header>'
 def bfoot():
     return foot(T["fr"]) + "</body></html>"
 
 arts = sorted(ARTICLES, key=lambda a: a["date"], reverse=True)
-cards = "".join(f'<div class="post">{stamp(a["date"])}<span class="cat">{esc(a["cat"])}</span><h2><a href="/blog/{a["slug"]}/">{esc(a["title"])}</a></h2><p>{esc(a["desc"])}</p><span class="meta">{rtime(a["body"])} min de lecture</span></div>' for a in arts)
+cards = "".join(card(a) for a in arts)
 bl_schema = [{"@context": "https://schema.org", "@type": "Blog", "name": "Guides du mail jetable", "url": SITE + "/blog/", "inLanguage": "fr", "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": f'{SITE}/blog/{a["slug"]}/', "datePublished": a["date"]} for a in arts]},
              {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": SITE + "/blog/"}]}]
 w("blog/index.html", bhead("Guides du mail jetable et de l'adresse mail temporaire | Adresse-Temporaire.fr", "Nos guides pour utiliser un mail jetable : créer une adresse temporaire, éviter les spams, alias Gmail, sécurité et questions fréquentes.", SITE + "/blog/", bl_schema) + btop() + f"""<main><div class="bh"><p class="kick">Le blog d'adresse-temporaire.fr</p><h1>Guides du mail jetable</h1><p class="lead">Comment protéger votre vraie boîte mail, quand utiliser une adresse temporaire, et les réponses aux questions qu'on nous pose le plus.</p></div>
