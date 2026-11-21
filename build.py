@@ -16,7 +16,8 @@ T = {
   "your": "Votre adresse temporaire",
   "copy": "Copier", "copied": "Copiée", "new": "Nouvelle adresse", "choose": "Choisir mon adresse",
   "choose_ph": "nom-de-votre-choix", "choose_ok": "Utiliser", "choose_bad": "3 à 40 caractères : lettres, chiffres, point, tiret.",
-  "app_t": "Installez l'appli sur votre téléphone", "app_p": "Gratuite, sans store : votre adresse jetable en un geste depuis l'écran d'accueil, avec une alerte à chaque e-mail reçu.", "app_b": "Installer l'appli", "app_ios": "Sur iPhone : touchez le bouton Partager de Safari, puis « Sur l'écran d'accueil ».", "app_other": "Ouvrez le menu de votre navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».",
+  "app_t": "Installez l'appli sur votre téléphone ou votre ordinateur", "app_p": "Gratuite, sans store : votre adresse jetable en un geste depuis l'écran d'accueil, avec une alerte à chaque e-mail reçu.", "app_b": "Installer l'appli", "app_ios": "Sur iPhone : touchez le bouton Partager de Safari, puis « Sur l'écran d'accueil ».", "app_other": "Ouvrez le menu de votre navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».",
+  "ban_t": "Installez l'appli sur votre téléphone", "ban_pc": "Installez l'appli sur votre ordinateur", "app_mac": "Sur Mac avec Safari : menu Fichier, puis « Ajouter au Dock ».", "ban_p": "Gratuit, sans store", "ban_b": "Installer", "ban_x": "Fermer",
   "push_off": "🔔 Être alerté à chaque e-mail", "push_on": "🔔 Alertes activées (désactiver)", "push_no": "Alertes refusées. Autorisez les notifications pour ce site dans les réglages du navigateur.", "push_ios": "Sur iPhone : touchez Partager puis « Sur l'écran d'accueil », ouvrez l'appli et activez les alertes.", "push_ok": "C'est noté : une notification arrivera à chaque nouvel e-mail, même site fermé.",
   "inbox": "Boîte de réception", "live": "Actualisation auto", "waiting": "En attente de messages...", "waiting_sub": "Les nouveaux messages arrivent ici automatiquement.",
   "back": "Retour à la boîte", "delete": "Supprimer", "from": "De", "imgs": "Afficher les images",
@@ -53,7 +54,8 @@ T = {
   "your": "Your temporary address",
   "copy": "Copy", "copied": "Copied", "new": "New address", "choose": "Pick my address",
   "choose_ph": "name-of-your-choice", "choose_ok": "Use", "choose_bad": "3 to 40 characters: letters, numbers, dot, dash.",
-  "app_t": "Get the app on your phone", "app_p": "Free, no app store: your disposable address one tap away on your home screen, with an alert for every email.", "app_b": "Install the app", "app_ios": "On iPhone: tap the Share button in Safari, then Add to Home Screen.", "app_other": "Open your browser menu, then Install app or Add to Home Screen.",
+  "app_t": "Get the app on your phone or computer", "app_p": "Free, no app store: your disposable address one tap away on your home screen, with an alert for every email.", "app_b": "Install the app", "app_ios": "On iPhone: tap the Share button in Safari, then Add to Home Screen.", "app_other": "Open your browser menu, then Install app or Add to Home Screen.",
+  "ban_t": "Install the app on your phone", "ban_pc": "Install the app on your computer", "app_mac": "On a Mac with Safari: File menu, then Add to Dock.", "ban_p": "Free, no app store", "ban_b": "Install", "ban_x": "Close",
   "push_off": "🔔 Alert me for every email", "push_on": "🔔 Alerts on (turn off)", "push_no": "Alerts blocked. Allow notifications for this site in your browser settings.", "push_ios": "On iPhone: tap Share, then Add to Home Screen, open the app and turn alerts on.", "push_ok": "Done: you will get a notification for every new email, even with the site closed.",
   "inbox": "Inbox", "live": "Auto refresh", "waiting": "Waiting for messages...", "waiting_sub": "New messages show up here automatically.",
   "back": "Back to inbox", "delete": "Delete", "from": "From", "imgs": "Show images",
@@ -197,6 +199,7 @@ ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
 .my select{font:13px "Public Sans",sans-serif;border:1px solid var(--line);border-radius:4px;padding:3px 4px;background:var(--card);color:var(--ink);max-width:150px}
 .vpnb{display:grid;grid-template-columns:1fr auto;gap:10px 24px;align-items:center;background:var(--ink);color:#fff;border-radius:6px;padding:22px 24px;margin:28px 0;box-shadow:inset 6px 0 0 var(--red)}.vpnb b{display:block;font:700 21px/1.25 "Familjen Grotesk",sans-serif;margin:4px 0 6px}.vpnb p{margin:0;color:#d5dbea}.vpnb .sp{font-size:12px;color:#aeb8d0}.vpnb small{grid-column:1/-1;font-size:12px;color:#aeb8d0}.top .nav{margin-left:14px}@media(max-width:420px){.top .brand{font-size:14px}.top .nav{margin-left:8px;gap:8px}.top .nav a,.top .acct{font-size:13px}.top .acct{padding:6px 8px}}.vpnb .vb{text-decoration:none;background:#fff;color:var(--ink);border-color:#fff;white-space:nowrap}.vpnb .vb:hover{background:#e8ecf6}@media(max-width:700px){.vpnb{grid-template-columns:1fr}.vpnb .vb{white-space:normal;text-align:center}}
 .tgb{margin:6px 0 14px}.tgb .btn{width:100%}
+.iban{position:fixed;left:10px;right:10px;bottom:10px;z-index:50;display:flex;align-items:center;gap:12px;background:#fff;color:#16213b;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 28px rgba(22,33,59,.22);padding:10px 10px 10px 12px;max-width:520px;margin:0 auto}.iban[hidden]{display:none}.iban img{border-radius:10px;flex:none}.iban div{flex:1;min-width:0;line-height:1.25}.iban b{display:block;font-size:15px}.iban span{font-size:13px;color:#4a5672}.iban .btn{flex:none;background:#2852b8;border-color:#2852b8;color:#fff;padding:9px 14px;font-size:14px}.iban .x{flex:none;background:none;border:0;font-size:24px;line-height:1;color:#4a5672;cursor:pointer;padding:4px 6px}
 .tgx.app{border-left-color:#2852b8}.tgx.app .btn{background:#2852b8;border-color:#2852b8;color:#fff}.tgx.app .sm:empty{display:none}
 .tgx{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-left:4px solid #2aabee;border-radius:6px;padding:18px 22px;margin:0 0 28px}.tgx p{margin:4px 0 0;color:var(--ink2);max-width:560px}.tgx .btn{background:#2aabee;border-color:#2aabee;color:#fff;text-decoration:none}
 .plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
@@ -394,7 +397,15 @@ var standalone=navigator.standalone||matchMedia("(display-mode: standalone)").ma
 if(standalone)$("appx").hidden=true;
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dip=e});
 window.addEventListener("appinstalled",function(){$("appx").hidden=true});
-$("appbtn").onclick=function(){if(dip){dip.prompt();dip.userChoice.finally(function(){dip=null});return}$("appmsg").textContent=/iP(hone|ad|od)/.test(navigator.userAgent)?L.app_ios:L.app_other};
+var mob=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent),banOff=+(lg("at_ban")||0)>Date.now();
+var mac=/Macintosh/.test(navigator.userAgent)&&/Safari/.test(navigator.userAgent)&&!/Chrome|Chromium|Edg|Firefox/.test(navigator.userAgent);
+function showBan(){if(standalone||banOff)return;$("iban").querySelector("b").textContent=mob?L.ban_t:L.ban_pc;$("iban").hidden=false}
+if(mob||mac)setTimeout(showBan,2500);
+window.addEventListener("beforeinstallprompt",function(){if(!mob)setTimeout(showBan,1500)});
+$("ibanx").onclick=function(){$("iban").hidden=true;ls("at_ban",String(Date.now()+14*864e5))};
+$("ibanb").onclick=function(){$("iban").hidden=true;if(dip){dip.prompt();dip.userChoice.finally(function(){dip=null});return}$("appx").scrollIntoView({behavior:"smooth",block:"center"});$("appmsg").textContent=/iP(hone|ad|od)/.test(navigator.userAgent)?L.app_ios:mac?L.app_mac:L.app_other};
+window.addEventListener("appinstalled",function(){$("iban").hidden=true});
+$("appbtn").onclick=function(){if(dip){dip.prompt();dip.userChoice.finally(function(){dip=null});return}$("appmsg").textContent=/iP(hone|ad|od)/.test(navigator.userAgent)?L.app_ios:mac?L.app_mac:L.app_other};
 pushUi(lg("at_push")==="1");if(lg("at_push")==="1")pushSub(false);
 refresh().then(function(){load();if(/[?&]compte=1/.test(location.search))openDlg();if(tok&&lg("at_push")==="1")pushSub(false)});loop();
 window.addEventListener("focus",function(){if(tok)refresh()});
@@ -420,7 +431,7 @@ def index(t):
     how = "".join(f"<li><b>{esc(a)}</b><p>{esc(b)}</p></li>" for a, b in t["how"])
     faq = "".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in t["faq"])
     HOMECARDS = "".join(card(a) for a in sorted(ARTICLES, key=lambda a: a["date"], reverse=True)[:4])
-    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj", "push_off", "push_on", "push_no", "push_ios", "push_ok", "app_ios", "app_other"]}
+    jsT = {k: t[k] for k in ["copy", "copied", "choose_bad", "from", "ago", "nosubj", "push_off", "push_on", "push_no", "push_ios", "push_ok", "app_ios", "app_other", "ban_t", "ban_pc", "app_mac"]}
     js = JS.replace("__T__", json.dumps(jsT, ensure_ascii=False)).replace("__API__", API).replace("__DOM__", DOMAIN)
     return h + topbar(t, other) + f"""<main>
 <h1>{esc(t['h1'])}</h1><p class="lead">{esc(t['lead'])}</p>
@@ -450,6 +461,7 @@ def index(t):
  <div><h3>Compte gratuit</h3><p class="pr">0 €</p><ul><li>1 adresse réservée à votre nom (libérée après 30 jours sans aucun message reçu)</li><li>Privée : vous seul lisez ses messages</li><li>Messages gardés 24 heures</li><li>Alerte sur Telegram à chaque message</li></ul><button class="btn ghost" type="button" data-acct>Créer mon compte</button></div>
  <div class="hi"><h3>Premium</h3><p class="pr">2,99 € <small>par mois</small></p><ul><li>Jusqu'à 100 adresses réservées et privées</li><li>Messages transférés vers votre vraie boîte, ou simple alerte par e-mail (30 par jour)</li><li>Messages gardés 30 jours</li><li>Pièces jointes conservées (10 Mo par message), reçues aussi sur Telegram</li><li>Sans engagement</li></ul><button class="btn" type="button" data-acct>Passer Premium</button></div>
 </div></section>
+<div class="iban" id="iban" hidden role="region" aria-label="{esc(t['ban_t'])}"><img src="/icon-192.png" alt="" width="44" height="44"><div><b>{esc(t['ban_t'])}</b><span>{esc(t['ban_p'])}</span></div><button class="btn" id="ibanb" type="button">{esc(t['ban_b'])}</button><button class="x" id="ibanx" type="button" aria-label="{esc(t['ban_x'])}">&times;</button></div>
 <aside class="tgx app" id="appx"><div><b>{esc(t['app_t'])}</b><p>{esc(t['app_p'])}</p><p class="sm" id="appmsg" role="status"></p></div><button class="btn" id="appbtn" type="button">{esc(t['app_b'])}</button></aside>
 <aside class="tgx"><div><b>Aussi sur Telegram</b><p>Le bot Temp Mail Inbox vous donne une adresse jetable et affiche vos codes de confirmation directement dans Telegram. Gratuit, sans inscription. Déjà inscrit ici ? Reliez votre compte depuis « Mon compte ».</p></div><a class="btn" href="https://t.me/JetboxMailBot?start=src_site" target="_blank" rel="noopener">Ouvrir le bot Telegram</a></aside>
 <section class="c"><h2>{esc(t['how_h'])}</h2><ol class="steps">{how}</ol></section>
