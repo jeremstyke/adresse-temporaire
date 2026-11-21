@@ -656,6 +656,10 @@ for f in ["favicon.ico", "favicon.svg", "apple-touch-icon.png", "icon-192.png", 
 # l'ancienne page anglaise renvoie vers jetboxmail.com
 REDIR = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{u}"><meta http-equiv="refresh" content="0;url={u}"><title>Jetbox Mail</title><script>location.replace("{u}"+location.search)</script></head><body><a href="{u}">jetboxmail.com</a></body></html>'
 w("en/index.html", REDIR.replace("{u}", JET + "/"))
+# lien court vers l'offre partenaire (messages de bienvenue, bot) : adresse-temporaire.fr/vpn et jetboxmail.com/vpn
+VPN_AFF = "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=155375&source=adresse-temporaire-bienvenue"
+_vpn = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta http-equiv="refresh" content="0;url=' + VPN_AFF.replace("&", "&amp;") + '"><title>NordVPN</title><script>location.replace("' + VPN_AFF + '")</script></head><body><a href="' + VPN_AFF.replace("&", "&amp;") + '" rel="sponsored">NordVPN</a></body></html>'
+w("vpn/index.html", _vpn); w("jet/vpn/index.html", _vpn)
 w("en/legal.html", REDIR.replace("{u}", JET + "/legal.html"))
 w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
