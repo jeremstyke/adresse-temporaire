@@ -242,13 +242,13 @@ def head(t, title, desc, canon, alt_fr, alt_en, extra=""):
     return f"""<!DOCTYPE html>
 <html lang="{t['lang']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="google-site-verification" content="zOVKFpJBh1jvzMQHPHjjrzCtxGgENVeCLLiVSmmgdzg">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
-<link rel="canonical" href="{canon}">
-<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
+<link rel="canonical" href="{canon}">{('<link rel="alternate" hreflang="fr" href="' + alt_fr + '"><link rel="alternate" hreflang="en" href="' + alt_en + '"><link rel="alternate" hreflang="x-default" href="' + alt_fr + '">') if alt_fr and alt_en and alt_fr != alt_en else ''}
+<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="{"fr_FR" if t["lang"] == "fr" else "en_US"}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='7' width='28' height='19' rx='2' fill='%23fff' stroke='%2316213b' stroke-width='2'/%3E%3Cpath d='M3 9l13 9 13-9' fill='none' stroke='%23c8323a' stroke-width='2'/%3E%3C/svg%3E">
 {FONTS}<style>{CSS}{BCSS}</style>{extra}</head><body><div class="air"></div>"""
 
 def topbar(t, other_href):
-    return f"""<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-menu" target="_blank" rel="sponsored noopener">VPN</a><a href="/blog/">Guides</a><button class="acct" id="acct" type="button">Mon compte</button></nav></header>"""
+    return f"""<div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="https://go.nordvpn.net/aff_c?offer_id=15&amp;aff_id=155375&amp;source=adresse-temporaire-menu" target="_blank" rel="sponsored noopener">VPN</a><a href="/blog/">Guides</a><a class="lng" href="{other_href}" hreflang="{"en" if t["lang"] == "fr" else "fr"}" lang="{"en" if t["lang"] == "fr" else "fr"}">{"EN" if t["lang"] == "fr" else "FR"}</a><button class="acct" id="acct" type="button">Mon compte</button></nav></header>"""
 
 def foot(t):
     return f"""<footer><div>{esc(t['rules'])}</div><div class="fl"><a href="/blog/">Guides du mail jetable</a><a href="{t['legal_href']}">{esc(t['legal'])}</a><a href="mailto:contact@{DOMAIN}">{esc(t['report'])}</a><span>&copy; 2026 adresse-temporaire.fr</span></div></footer></div>"""
@@ -278,6 +278,8 @@ var tok=lg(KT);
 function H(x){var h=x||{};if(tok)h.Authorization="Bearer "+tok;return h}
 function api(p,o){o=o||{};o.headers=H(o.headers);o.cache="no-store";return fetch(API+p,o).then(function(r){return r.json().then(function(j){j._s=r.status;return j})})}
 function post(p,b){return api(p,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b||{})})}
+if(DOM&&location.pathname==="/"&&/[?&]a=/.test(location.search)&&lg("at_lang")!=="fr"&&!/^fr/i.test(navigator.language||"")){location.replace("/en/"+location.search);return}
+Array.prototype.forEach.call(document.querySelectorAll("a.lng"),function(x){x.onclick=function(){ls("at_lang",x.getAttribute("hreflang"))}});
 var me=lg(K);var qa=(location.search.match(/[?&]a=([a-z0-9._-]{3,40})/)||[])[1];if(qa&&RX.test(qa)){me=qa;ls(K,me)}if(!me||!RX.test(me)){me=rnd();ls(K,me);ping()}
 function ping(){try{fetch(API+"/new",{method:"POST"})}catch(e){}}
 function full(){return me+"@"+DOM}
@@ -442,10 +444,12 @@ LEGAL_FR = f"""<main><h1>Mentions légales et confidentialité</h1>
 LEGAL_EN = f"""<main><h1>Legal notice and privacy</h1>
 <section class="c"><h2>Publisher</h2><p>adresse-temporaire.fr is published by Jérémy Dacier-Jury, sole trader (registration in progress), France. Contact: <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a>.</p></section>
 <section class="c"><h2>Hosting</h2><p>Site pages: GitHub Pages, GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Email reception: Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, USA. Temporary message storage: Supabase, Inc., 970 Toa Payoh North #07-04, Singapore.</p></section>
-<section class="c"><h2>How it works and retention</h2><p>Addresses can only receive messages. Each message is kept for one hour at most, then permanently deleted. No account is created and no personal data is requested. The address you use is stored only in your browser (local storage), which you can clear at any time.</p></section>
+<section class="c"><h2>How it works and retention</h2><p>Addresses can only receive messages. Without an account, each message is kept for one hour at most. On a reserved address, it is kept for 24 hours (free account) or 30 days (Premium), then permanently deleted. With a free account, a reserved address that receives no message for 30 days is released and can be taken by someone else; with Premium, your addresses stay yours while the subscription is active. With Premium, attachments are kept with the message and, if you turn it on, each message received is forwarded (or announced) to your account email address through Resend, up to 30 forwards per day. If you link your account to our Telegram bot (@JetboxMailBot), each message received on your reserved addresses is also sent to you in Telegram (Telegram FZ-LLC), which then keeps a copy in your chat with the bot. The address you use and your session are stored in your browser (local storage).</p></section>
+<section class="c"><h2>Accounts</h2><p>If you create an account, we keep your email address, your reserved addresses and your Premium end date for as long as the account exists. Sign-in codes are sent by Resend (Resend, Inc., USA). Premium payment is handled by Gumroad (Gumroad, Inc., USA), which only sends us the purchase email and the subscription status. If you link Telegram, we also keep your Telegram ID and app language. Premium bought in the bot is paid in Telegram Stars, handled by Telegram. To delete your account, email <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a>.</p></section>
+<section class="c"><h2>Affiliate links</h2><p>Some links on the site are affiliate links (NordVPN): if you subscribe through them, we earn a commission at no extra cost to you. They are marked \u201cPartner\u201d or \u201cAffiliate link\u201d.</p></section>
 <section class="c"><h2>Cookies and statistics</h2><p>The site uses no cookies. Only an anonymous daily count of addresses created and messages received is kept, with no IP address or identifier.</p></section>
 <section class="c"><h2>Forbidden use and reporting</h2><p>Using this service for fraud, harassment, impersonation or any illegal activity is forbidden. To report abuse or illegal content, email <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a> with the address concerned. Reported content is removed without delay.</p></section>
-<section class="c"><h2>Your rights</h2><p>Under the GDPR, you can request access to or deletion of data about you at the contact address above. Since messages are erased after one hour, a copy usually cannot be provided after that time.</p></section></main>"""
+<section class="c"><h2>Your rights</h2><p>Under the GDPR, you can request access to or deletion of data about you at the contact address above. Since messages are erased automatically, a copy usually cannot be provided once they have expired.</p></section></main>"""
 
 def legal(t, body, path, title):
     canon = SITE + path
@@ -457,6 +461,91 @@ def w(p, s):
 
 w("index.html", index(T["fr"]))
 w("mentions-legales.html", legal(T["fr"], LEGAL_FR, "/mentions-legales.html", "Mentions légales et confidentialité | Adresse-Temporaire.fr"))
+# ---------------- VERSION ANGLAISE (/en/) : la page d'accueil et les mentions, sans les guides (en français) ----------------
+GUM_EN = "https://jeremstyke.gumroad.com/l/anvfvt"  # remplacé par l'offre anglaise une fois créée
+EN_REPL = [
+ ('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>'),
+ ("Partenaire recommandé", "Recommended partner"),
+ ("Votre adresse est cachée. Et votre connexion ?", "Your address is hidden. What about your connection?"),
+ ("Sur un Wi-Fi public, à l'hôtel ou au café, n'importe qui peut espionner ce que vous faites. NordVPN chiffre tout votre trafic et masque votre adresse IP, sur téléphone comme sur ordinateur.", "On public Wi-Fi, at a hotel or a café, anyone can snoop on what you do. NordVPN encrypts all your traffic and hides your IP address, on your phone and your computer."),
+ ("Protéger ma connexion avec NordVPN", "Protect my connection with NordVPN"),
+ ("Lien affilié, sans surcoût pour vous.", "Affiliate link, no extra cost for you."),
+ ("source=adresse-temporaire-accueil", "source=adresse-temporaire-en-home"),
+ ("source=adresse-temporaire-menu", "source=adresse-temporaire-en-menu"),
+ ("source=adresse-temporaire\"", "source=adresse-temporaire-en\""),
+ ("<h2>Gratuit ou Premium</h2>", "<h2>Free or Premium</h2>"),
+ ('<p class="pr">0 €</p>', '<p class="pr">$0</p>'),
+ ('<a class="brand" href="/">', '<a class="brand" href="/en/">'),
+ ("<h3>Sans compte</h3>", "<h3>No account</h3>"),
+ ("<li>Une adresse jetable tout de suite</li><li>Messages effacés après 1 heure</li><li>Boîte publique : toute personne qui connaît l'adresse peut la lire</li>", "<li>A disposable address right away</li><li>Messages erased after 1 hour</li><li>Public inbox: anyone who knows the address can read it</li>"),
+ ("<h3>Compte gratuit</h3>", "<h3>Free account</h3>"),
+ ("<li>1 adresse réservée à votre nom (libérée après 30 jours sans aucun message reçu)</li><li>Privée : vous seul lisez ses messages</li><li>Messages gardés 24 heures</li><li>Alerte sur Telegram à chaque message</li>", "<li>1 address reserved for you (released after 30 days without any message)</li><li>Private: only you can read its messages</li><li>Messages kept 24 hours</li><li>Telegram alert for every message</li>"),
+ ("Créer mon compte", "Create my account"),
+ ('2,99 € <small>par mois</small>', '$2.99 <small>per month</small>'),
+ ("<li>Jusqu'à 100 adresses réservées et privées</li><li>Messages transférés vers votre vraie boîte, ou simple alerte par e-mail (30 par jour)</li><li>Messages gardés 30 jours</li><li>Pièces jointes conservées (10 Mo par message), reçues aussi sur Telegram</li><li>Sans engagement</li>", "<li>Up to 100 reserved, private addresses</li><li>Messages forwarded to your real inbox, or a simple email alert (30 per day)</li><li>Messages kept 30 days</li><li>Attachments kept (10 MB per message), also delivered on Telegram</li><li>Cancel anytime</li>"),
+ ("Passer Premium, 2,99 € par mois", "Go Premium, $2.99 per month"),
+ ("Passer Premium", "Go Premium"),
+ ("<b>Aussi sur Telegram</b><p>Le bot Temp Mail Inbox vous donne une adresse jetable et affiche vos codes de confirmation directement dans Telegram. Gratuit, sans inscription. Déjà inscrit ici ? Reliez votre compte depuis « Mon compte ».</p>", "<b>Also on Telegram</b><p>The Temp Mail Inbox bot gives you a disposable address and shows your verification codes right inside Telegram. Free, no sign-up. Already have an account here? Link it from \u201cMy account\u201d.</p>"),
+ ("Ouvrir le bot Telegram", "Open the Telegram bot"),
+ ("start=src_site", "start=src_site_en"),
+ ("<b>Protégez aussi votre connexion</b><p>Le mail jetable protège votre adresse. Sur un Wi-Fi public ou pour masquer votre adresse IP, un VPN chiffre tout votre trafic. Nous recommandons NordVPN.</p>", "<b>Protect your connection too</b><p>A disposable email protects your address. On public Wi-Fi or to hide your IP address, a VPN encrypts all your traffic. We recommend NordVPN.</p>"),
+ ("Découvrir NordVPN", "Discover NordVPN"),
+ ("Lien affilié : nous touchons une commission si vous vous abonnez, sans surcoût pour vous.", "Affiliate link: we earn a commission if you subscribe, at no extra cost to you."),
+ ('<span class="sp">Partenaire</span>', '<span class="sp">Partner</span>'),
+ ("Guides du mail jetable</a>", "Guides (in French)</a>"),
+ # fenêtre Mon compte
+ ("Mon compte", "My account"),
+ ('aria-label="Fermer"', 'aria-label="Close"'),
+ ("Recevez un code par e-mail pour vous connecter. Pas de mot de passe.", "Get a code by email to sign in. No password."),
+ ("Votre adresse e-mail", "Your email address"), ('placeholder="vous@exemple.fr"', 'placeholder="you@example.com"'),
+ ("Recevoir mon code", "Send me my code"), ("Code à 6 chiffres", "6-digit code"), ("Me connecter", "Sign in"),
+ ("Changer d'adresse e-mail", "Use another email address"),
+ ("Mes adresses réservées", "My reserved addresses"), ('placeholder="nom-de-votre-choix"', 'placeholder="name-of-your-choice"'),
+ ('aria-label="Adresse à réserver"', 'aria-label="Address to reserve"'), (">Réserver</button>", ">Reserve</button>"),
+ ("Me déconnecter", "Sign out"),
+ ("Recevoir mes e-mails sur Telegram", "Get my emails on Telegram"),
+ # textes du script
+ ('"il y a "+Math.floor(d/1440)+" j"', 'Math.floor(d/1440)+" d ago"'),
+ ('"Adresse privée"', '"Private address"'),
+ ('" : réservée à votre compte, messages gardés "+(acct.premium?"30 jours":"24 heures")+"."', '": reserved for your account, messages kept "+(acct.premium?"30 days":"24 hours")+"."'),
+ ('"Seul votre compte peut lire cette boîte."', '"Only your account can read this inbox."'),
+ ('"Réserver cette adresse":"Garder cette adresse et la rendre privée"', '"Reserve this address":"Keep this address and make it private"'),
+ ('" (compte gratuit)"', '" (free account)"'),
+ ('"Cette adresse est réservée par un autre compte. Choisissez-en une autre."', '"This address is reserved by another account. Pick another one."'),
+ ('" Mo":', '" MB":'), ('" Ko"', '" KB"'), ('"piece-jointe"', '"attachment"'),
+ ('"Téléchargement impossible."', '"Download failed."'),
+ ('{email:"Adresse e-mail invalide.",rate:"Trop de tentatives. Réessayez dans un moment.",send:"Le code n\'a pas pu être envoyé. Réessayez.",expired:"Code expiré. Demandez-en un nouveau.",code:"Code incorrect.",limit:"Limite atteinte pour votre offre.",taken:"Cette adresse est déjà réservée par quelqu\'un d\'autre.",addr:"3 à 40 caractères : lettres, chiffres, point, tiret."}',
+  '{email:"Invalid email address.",rate:"Too many attempts. Try again in a moment.",send:"The code could not be sent. Try again.",expired:"Code expired. Ask for a new one.",code:"Wrong code.",limit:"Your plan limit is reached.",taken:"This address is already reserved by someone else.",addr:"3 to 40 characters: letters, numbers, dot, dash."}'),
+ ('"Code envoyé à "+email+". Pensez à regarder dans les spams."', '"Code sent to "+email+". Check your spam folder too."'),
+ ('"Erreur, réessayez."', '"Error, try again."'), ('"Connexion impossible."', '"Can\'t connect."'),
+ ('"My account Premium"', '"My Premium account"'),
+ ('"Premium":"Compte gratuit"', '"Premium":"Free account"'),
+ ('" adresse"+(acct.max>1?"s":"")+" réservée"+(acct.max>1?"s":"")+", messages gardés "+(acct.premium?"30 jours":"24 heures")+(acct.premium&&acct.premium_until?", jusqu\'au "+new Date(acct.premium_until).toLocaleDateString("fr-FR"):"")',
+  '" reserved address"+(acct.max>1?"es":"")+", messages kept "+(acct.premium?"30 days":"24 hours")+(acct.premium&&acct.premium_until?", until "+new Date(acct.premium_until).toLocaleDateString("en-GB"):"")'),
+ ('"Premium":"Gratuit"', '"Premium":"Free"'),
+ ('"Aucune adresse réservée pour l\'instant."', '"No reserved address yet."'),
+ ('"Ouverte":"Ouvrir"', '"Open now":"Open"'), ('"Libérer"', '"Release"'),
+ ('"Libérer "+a+"@"+DOM+" ? Ses messages seront supprimés."', '"Release "+a+"@"+DOM+"? Its messages will be deleted."'),
+ ('"Transfert de "+a', '"Forwarding for "+a'),
+ ('[["off","Pas de transfert"],["notif","Alerte par e-mail"],["full","Transfert complet"]]', '[["off","No forwarding"],["notif","Email alert"],["full","Full forwarding"]]'),
+ ('"Transfert : les messages reçus sont envoyés à "+acct.email+" (alerte simple ou message complet avec pièces jointes), jusqu\'à 30 par jour. Au-delà, les messages restent lisibles ici."', '"Forwarding: received messages are sent to "+acct.email+" (simple alert or full message with attachments), up to 30 per day. Beyond that, messages stay readable here."'),
+ ('"Telegram relié : chaque message reçu sur vos adresses réservées arrive aussi dans Telegram"+(acct.premium?", avec ses pièces jointes.":"."):"Gratuit : une alerte Telegram à chaque message reçu sur vos adresses réservées."', '"Telegram linked: every message received on your reserved addresses also arrives in Telegram"+(acct.premium?", with its attachments.":"."):"Free: a Telegram alert for every message received on your reserved addresses."'),
+ ('"Relier un autre compte Telegram":"Get my emails on Telegram"', '"Link another Telegram account":"Get my emails on Telegram"'),
+ ('"Connecté avec "', '"Signed in as "'),
+ ('"Le compte gratuit permet 1 adresse. Passez Premium pour en avoir jusqu\'à 100."', '"The free account allows 1 address. Go Premium for up to 100."'),
+]
+def index_en():
+    t = T["en"]
+    h = index(t)
+    i = h.index('<section class="c"><h2>Guides du mail jetable</h2>'); h = h[:i] + h[h.index('</section>', i) + 10:]
+    h = h.replace('"name": "Gratuit"', '"name": "Free"')
+    for a, b in EN_REPL:
+        assert a in h, ("EN manquant", a[:60])
+        h = h.replace(a, b)
+    h = h.replace('GUM="https://jeremstyke.gumroad.com/l/anvfvt"', 'GUM="' + GUM_EN + '"').replace('"inLanguage": "fr"', '"inLanguage": "en"').replace('"priceCurrency": "EUR", "name": "Premium"', '"priceCurrency": "USD", "name": "Premium"')
+    return h
+w("en/index.html", index_en())
+w("en/legal.html", legal(T["en"], LEGAL_EN, "/en/legal.html", "Legal notice and privacy | Adresse-Temporaire.fr").replace("Mon compte", "My account").replace('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>').replace("Guides du mail jetable</a>", "Guides (in French)</a>").replace('<a class="brand" href="/">', '<a class="brand" href="/en/">'))
 w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 w(".nojekyll", "")
@@ -503,7 +592,7 @@ w("blog/rss.xml", f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><ch
 
 # sitemap complet
 today = datetime.date.today().isoformat()
-urls = [(SITE + "/", today, "1.0"), (SITE + "/blog/", today, "0.8")] + [(f'{SITE}/blog/{a["slug"]}/', a["date"], "0.7") for a in arts] + [(SITE + "/mentions-legales.html", today, "0.2")]
+urls = [(SITE + "/", today, "1.0"), (SITE + "/en/", today, "0.6"), (SITE + "/blog/", today, "0.8")] + [(f'{SITE}/blog/{a["slug"]}/', a["date"], "0.7") for a in arts] + [(SITE + "/mentions-legales.html", today, "0.2")]
 w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n" for u, d, pr in urls) + "</urlset>\n")
 w("404.html", head(T["fr"], "Page introuvable | Adresse-Temporaire.fr", "Page introuvable", SITE + "/", "", "", '<meta name="robots" content="noindex">') + btop() + '<main><h1>Cette page n\'existe pas.</h1><p class="lead">Elle a peut-être été déplacée. Votre adresse mail jetable vous attend sur la page d\'accueil.</p><p><a class="btn" style="display:inline-block;text-decoration:none" href="/">Aller à l\'accueil</a></p></main>' + bfoot())
 print("blog ok", len(arts))
