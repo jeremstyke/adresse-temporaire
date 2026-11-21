@@ -245,7 +245,7 @@ def head(t, title, desc, canon, alt_fr, alt_en, extra=""):
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{canon}">{('<link rel="alternate" hreflang="fr" href="' + alt_fr + '"><link rel="alternate" hreflang="en" href="' + alt_en + '"><link rel="alternate" hreflang="x-default" href="' + alt_fr + '">') if alt_fr and alt_en and alt_fr != alt_en else ''}
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{canon}"><meta property="og:type" content="website"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="{"fr_FR" if t["lang"] == "fr" else "en_US"}"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
-<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="{"Adresse temp" if t["lang"] == "fr" else "Jetbox Mail"}"><script>if("serviceWorker"in navigator)addEventListener("load",function(){{navigator.serviceWorker.register("/sw.js").catch(function(){{}})}})</script>
 {FONTS}<style>{CSS}{BCSS}</style>{extra}</head><body><div class="air"></div>"""
 
 def topbar(t, other_href):
@@ -613,9 +613,9 @@ _jh = _jh.replace("</main><footer>", f'<section class="c"><h2>Disposable email g
 w("jet/index.html", _jh)
 w("jet/robots.txt", f"User-agent: *\nAllow: /\nSitemap: {JET}/sitemap.xml\n")
 w("jet/sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{JET}/</loc><priority>1.0</priority></url><url><loc>{JET}/guides/</loc><priority>0.8</priority></url>' + "".join(f'<url><loc>{JET}/guides/{a["slug"]}/</loc><lastmod>{a.get("updated", a["date"])}</lastmod><priority>0.7</priority></url>' for a in garts) + f'<url><loc>{JET}/legal.html</loc><priority>0.2</priority></url></urlset>\n')
-w("jet/site.webmanifest", json.dumps({"name": "Jetbox Mail", "short_name": "Jetbox", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}], "theme_color": "#16213b", "background_color": "#ffffff", "display": "standalone", "start_url": "/"}))
+w("jet/site.webmanifest", json.dumps({"id": "/", "name": "Jetbox Mail", "short_name": "Jetbox Mail", "description": "Free disposable email address. Get verification codes without giving your real email.", "lang": "en", "start_url": "/?source=pwa", "scope": "/", "display": "standalone", "orientation": "portrait", "theme_color": "#16213b", "background_color": "#1d3c94", "categories": ["utilities", "productivity"], "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}, {"src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, ensure_ascii=False))
 import shutil
-for f in ["favicon.ico", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png"]:
+for f in ["favicon.ico", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "sw.js"]:
     shutil.copy(f, "jet/" + f)
 # l'ancienne page anglaise renvoie vers jetboxmail.com
 REDIR = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="{u}"><meta http-equiv="refresh" content="0;url={u}"><title>Jetbox Mail</title><script>location.replace("{u}"+location.search)</script></head><body><a href="{u}">jetboxmail.com</a></body></html>'
@@ -624,7 +624,7 @@ w("en/legal.html", REDIR.replace("{u}", JET + "/legal.html"))
 w("CNAME", DOMAIN + "\n")
 w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
 w(".nojekyll", "")
-w("site.webmanifest", json.dumps({"name": "Adresse-Temporaire.fr", "short_name": "Adresse temp", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}], "theme_color": "#16213b", "background_color": "#ffffff", "display": "standalone", "start_url": "/"}))
+w("site.webmanifest", json.dumps({"id": "/", "name": "Adresse-Temporaire.fr", "short_name": "Adresse temp", "description": "Adresse mail jetable gratuite. Recevez vos codes sans donner votre vraie adresse.", "lang": "fr", "start_url": "/?source=pwa", "scope": "/", "display": "standalone", "orientation": "portrait", "theme_color": "#16213b", "background_color": "#1d3c94", "categories": ["utilities", "productivity"], "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}, {"src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]}, ensure_ascii=False))
 # ---------------- BLOG ----------------
 import datetime
 def fdate(d):
