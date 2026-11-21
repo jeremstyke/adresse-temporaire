@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le mail jetable est-il légal et sûr ? | Adresse-Temporaire.fr</title><meta name="description" content="Utiliser une adresse mail jetable est-il autorisé en France ? Ce qui est permis, ce qui ne l'est pas, et les règles de sécurité à connaître.">
+<link rel="alternate" type="application/rss+xml" title="Guides du mail jetable" href="/blog/rss.xml"><link rel="canonical" href="https://adresse-temporaire.fr/blog/mail-jetable-legal-securite/">
+<meta property="og:title" content="Le mail jetable est-il légal et sûr ? | Adresse-Temporaire.fr"><meta property="og:description" content="Utiliser une adresse mail jetable est-il autorisé en France ? Ce qui est permis, ce qui ne l'est pas, et les règles de sécurité à connaître."><meta property="og:url" content="https://adresse-temporaire.fr/blog/mail-jetable-legal-securite/"><meta property="og:type" content="article"><meta property="og:image" content="https://adresse-temporaire.fr/og.png"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#16213b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='7' width='28' height='19' rx='2' fill='%23fff' stroke='%2316213b' stroke-width='2'/%3E%3Cpath d='M3 9l13 9 13-9' fill='none' stroke='%23c8323a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"><style>
+:root{--ink:#16213b;--ink2:#4a5672;--paper:#f6f7fa;--card:#fff;--line:#dde2ec;--red:#c8323a;--blue:#2852b8;--blue-d:#1d3f92;--ok:#1d7a4b}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 "Public Sans",system-ui,sans-serif}
+a{color:var(--blue)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.air{height:8px;background:repeating-linear-gradient(-45deg,var(--red) 0 14px,#fff 14px 22px,var(--blue) 22px 36px,#fff 36px 44px)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font:700 18px "Familjen Grotesk",sans-serif;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand span{color:var(--red)}
+.lng{font-size:14px;color:var(--ink2)}
+h1{font:700 clamp(30px,5.4vw,46px)/1.08 "Familjen Grotesk",sans-serif;letter-spacing:-.025em;margin:18px 0 12px;max-width:16ch}
+.lead{color:var(--ink2);max-width:60ch;margin:0 0 26px;font-size:17px}
+.env{background:var(--card);border:1px solid var(--line);border-radius:6px;position:relative;box-shadow:0 1px 0 var(--line)}
+.env:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.addr{padding:24px 22px 18px}
+.addr label{display:block;font-size:14px;color:var(--ink2);margin-bottom:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+#addr{flex:1 1 320px;min-width:0;font:500 clamp(16px,3.4vw,22px) "JetBrains Mono",monospace;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;overflow-wrap:anywhere}
+.btn{cursor:pointer;font:600 15px "Public Sans",sans-serif;border-radius:4px;padding:12px 18px;border:1px solid var(--blue);background:var(--blue);color:#fff}
+.btn:hover{background:var(--blue-d)}
+.btn.ghost{background:#fff;color:var(--blue)}.btn.ghost:hover{background:#eef2fb}
+.btn.done{background:var(--ok);border-color:var(--ok)}
+.tools{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px}
+.link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#pick{display:none;margin-top:12px;gap:8px;flex-wrap:wrap;align-items:center}
+#pick.on{display:flex}
+#pick input{font:500 15px "JetBrains Mono",monospace;padding:9px 10px;border:1px solid var(--line);border-radius:4px;width:220px}
+#pick .dom{font:500 15px "JetBrains Mono",monospace;color:var(--ink2)}
+#pickerr{color:var(--red);font-size:14px;width:100%}
+.box{border-top:1px solid var(--line)}
+.boxh{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;font-weight:600}
+.live{font-size:13px;color:var(--ink2);font-weight:400;display:flex;align-items:center;gap:7px}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+@media (prefers-reduced-motion:no-preference){.live i{animation:p 2s ease-in-out infinite}@keyframes p{50%{opacity:.25}}}
+ul.msgs{list-style:none;margin:0;padding:0}
+ul.msgs li{border-top:1px solid var(--line)}
+ul.msgs button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:2px 14px;width:100%;padding:14px 22px;cursor:pointer}
+ul.msgs button:hover{background:#f3f5fa}ul.msgs button:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.f{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.t{font-size:13px;color:var(--ink2);white-space:nowrap}
+.s{grid-column:1/-1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.p{grid-column:1/-1;font-size:14px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.new .f:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:8px;vertical-align:middle}
+.empty{padding:34px 22px 38px;text-align:center;color:var(--ink2)}
+.empty b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+#view{display:none;border-top:1px solid var(--line);padding:16px 22px 22px}
+#view.on{display:block}
+.vh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#vsubj{font:700 22px/1.25 "Familjen Grotesk",sans-serif;margin:6px 0 4px}
+#vfrom{font-size:14px;color:var(--ink2);overflow-wrap:anywhere}
+.imgbar{font-size:13px;color:var(--ink2);margin:10px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#vframe{width:100%;min-height:420px;border:1px solid var(--line);border-radius:4px;background:#fff}
+#vtext{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px}
+.note{font-size:13px;color:var(--ink2);padding:0 22px 16px}
+#err{display:none;color:var(--red);font-size:14px;padding:0 22px 12px}
+section.c{margin:56px 0}
+section.c h2{font:700 26px/1.2 "Familjen Grotesk",sans-serif;letter-spacing:-.015em;margin:0 0 18px}
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+ol.steps li{counter-increment:s}
+ol.steps li:before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border:2px solid var(--blue);color:var(--blue);border-radius:50%;font:700 15px "Familjen Grotesk";margin-bottom:8px}
+ol.steps b{display:block;margin-bottom:4px}
+ol.steps p,section.c>p{margin:0;color:var(--ink2);max-width:66ch}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--ink2);max-width:66ch}
+footer{margin-top:60px;padding:26px 0 40px;border-top:1px solid var(--line);font-size:14px;color:var(--ink2)}
+footer a{color:var(--ink2)}
+@media (max-width:520px){.row .btn{flex:1}}
+.nav{display:flex;align-items:center;gap:16px}.brand,.acct{white-space:nowrap}@media (max-width:420px){.brand{font-size:15px}.nav{gap:10px}.acct{padding:7px 9px;font-size:13px}.nav>a{font-size:13px}}.nav>a{color:var(--ink);font-weight:600;font-size:14px;text-decoration:none}.nav>a:hover{color:var(--blue)}
+.acct{cursor:pointer;font:600 14px "Public Sans",sans-serif;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:4px;padding:8px 12px}
+.acct:hover{border-color:var(--blue);color:var(--blue)}
+.acct.on{border-color:var(--blue);color:var(--blue)}
+.keep{margin:12px 0 0;font-size:14px;color:var(--ink2)}
+.keep b{color:var(--ok)}
+dialog{border:1px solid var(--line);border-radius:6px;padding:0;max-width:460px;width:calc(100% - 32px);color:var(--ink);box-shadow:0 20px 60px rgba(22,33,59,.25)}
+dialog::backdrop{background:rgba(22,33,59,.45)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{font:700 20px "Familjen Grotesk",sans-serif;margin:0}
+.x{all:unset;cursor:pointer;font-size:24px;line-height:1;padding:4px 8px;color:var(--ink2)}
+.x:focus-visible{outline:3px solid var(--blue)}
+.db{padding:18px 20px 22px}
+.db p{margin:0 0 12px;color:var(--ink2);font-size:15px}
+.db label{display:block;font-size:14px;margin:0 0 6px;color:var(--ink2)}
+.db input{width:100%;font:16px "Public Sans",sans-serif;padding:11px 12px;border:1px solid var(--line);border-radius:4px;margin-bottom:12px}
+.db input.code{font:500 24px "JetBrains Mono",monospace;letter-spacing:8px;text-align:center}
+.db .btn{width:100%}
+.derr{color:var(--red);font-size:14px;min-height:20px;margin:6px 0 0}
+.plan{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:0 0 16px}
+.plan b{font:700 16px "Familjen Grotesk",sans-serif}
+.tag{font-size:12px;font-weight:600;padding:3px 8px;border-radius:20px;background:#e8ecf6;color:var(--blue)}
+.tag.p{background:var(--red);color:#fff}
+ul.my{list-style:none;padding:0;margin:0 0 14px}
+ul.my li{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding:9px 0}
+ul.my li:last-child{border-bottom:1px solid var(--line)}
+ul.my .a{flex:1;min-width:0;font:500 14px "JetBrains Mono",monospace;overflow-wrap:anywhere}
+ul.my .cur{color:var(--blue)}
+.sm{font-size:13px}
+.row2{display:flex;gap:8px;margin-bottom:12px}.row2 input{margin:0;flex:1;min-width:0;font-family:"JetBrains Mono",monospace;font-size:15px}.row2 .btn{width:auto}
+.prem{display:block;text-align:center;text-decoration:none;margin:4px 0 12px;background:var(--red);border-color:var(--red)}
+.prem:hover{background:#a8272e}
+.out{margin-top:6px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.plans>div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px}
+.plans h3{font:700 19px "Familjen Grotesk",sans-serif;margin:0 0 4px}
+.plans .pr{font:700 26px "Familjen Grotesk",sans-serif;margin:0 0 10px}
+.plans .pr small{font:400 14px "Public Sans",sans-serif;color:var(--ink2)}
+.plans ul{margin:0 0 14px;padding-left:18px;color:var(--ink2)}
+ul.gl{margin:0 0 10px;padding-left:20px}ul.gl li{margin:6px 0}
+.plans .hi{border-color:var(--red);box-shadow:inset 0 4px 0 var(--red)}
+footer .fl{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+</style><style>
+.bh{padding:26px 0 8px}
+.bh h1{max-width:20ch}
+.kick{font-size:14px;color:var(--ink2);margin:0}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:26px 0 10px}
+.post{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 22px 20px;display:flex;flex-direction:column;align-items:flex-start}
+.post:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.post h2{font:700 20px/1.25 "Familjen Grotesk",sans-serif;margin:12px 0 8px;padding-right:8px;letter-spacing:-.01em}
+.post h2 a{color:var(--ink);text-decoration:none}.post h2 a:after{content:"";position:absolute;inset:0}
+.post:hover h2 a{color:var(--blue)}
+.post p{margin:0 0 14px;color:var(--ink2);font-size:15px;flex:1;width:100%}
+.post .cat{margin-right:70px}
+.meta{font-size:13px;color:var(--ink2)}
+.cat{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:#e8ecf6;border-radius:20px;padding:3px 9px}
+.stamp{position:absolute;top:16px;right:16px;width:60px;height:60px;border:2px dashed var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--red);transform:rotate(-8deg);line-height:1.05}
+.stamp b{font:700 20px "Familjen Grotesk",sans-serif}.stamp i{font-style:normal;font-size:10px;font-weight:600;letter-spacing:.04em}
+article.art{max-width:68ch}
+.crumb{font-size:13px;color:var(--ink2);margin:20px 0 0}.crumb a{color:var(--ink2)}
+article.art h1{max-width:22ch;margin-top:14px}
+article.art .lead{margin-bottom:10px}
+article.art h2{font:700 24px/1.25 "Familjen Grotesk",sans-serif;margin:36px 0 10px;letter-spacing:-.01em}
+article.art p,article.art li{font-size:17px;line-height:1.7}
+article.art ul{padding-left:22px}
+article.art li{margin:6px 0}
+article.art code{font:500 15px "JetBrains Mono",monospace;background:#eef1f7;padding:1px 6px;border-radius:3px;overflow-wrap:anywhere}
+article.art table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+article.art th,article.art td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+article.art th{background:#eef1f7}
+.cta{position:relative;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 22px 22px;margin:40px 0}
+.cta:before{content:"";position:absolute;inset:0 0 auto 0;height:5px;border-radius:6px 6px 0 0;background:repeating-linear-gradient(-45deg,var(--red) 0 10px,#fff 10px 15px,var(--blue) 15px 25px,#fff 25px 30px)}
+.cta b{font:700 20px "Familjen Grotesk",sans-serif;display:block;margin-bottom:4px}
+.cta p{margin:0 0 14px!important;color:var(--ink2)}
+.cta .btn{display:inline-block;text-decoration:none}
+.rel h2{font:700 20px "Familjen Grotesk",sans-serif!important;margin:10px 0!important}
+.rel ul{padding-left:20px}
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Le mail jetable est-il légal et sûr ?", "description": "Utiliser une adresse mail jetable est-il autorisé en France ? Ce qui est permis, ce qui ne l'est pas, et les règles de sécurité à connaître.", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "inLanguage": "fr", "mainEntityOfPage": "https://adresse-temporaire.fr/blog/mail-jetable-legal-securite/", "image": "https://adresse-temporaire.fr/og.png", "author": {"@type": "Organization", "name": "Adresse-Temporaire.fr", "url": "https://adresse-temporaire.fr/"}, "publisher": {"@type": "Organization", "name": "Adresse-Temporaire.fr", "url": "https://adresse-temporaire.fr/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://adresse-temporaire.fr/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://adresse-temporaire.fr/blog/"}, {"@type": "ListItem", "position": 3, "name": "Le mail jetable est-il légal et sûr ?", "item": "https://adresse-temporaire.fr/blog/mail-jetable-legal-securite/"}]}</script></head><body><div class="air"></div><div class="wrap"><header class="top"><a class="brand" href="/">adresse<span>-</span>temporaire.fr</a><nav class="nav"><a href="/blog/">Guides</a><a class="acct" href="/?compte=1" style="text-decoration:none">Mon compte</a></nav></header><main><article class="art">
+<p class="crumb"><a href="/">Accueil</a> / <a href="/blog/">Guides</a> / Questions fréquentes</p>
+<h1>Le mail jetable est-il légal et sûr ?</h1><p class="meta">Publié le 21 novembre 2026, 2 min de lecture</p>
+<p class="lead">Utiliser une <strong>adresse mail jetable</strong> est une pratique courante pour protéger sa vie privée. Mais est-ce légal, et est-ce sûr ? Voici les points essentiels, sans jargon. Cet article ne remplace pas un avis juridique.</p>
+<h2>Est-ce légal ?</h2>
+<p>Oui, utiliser une adresse temporaire pour éviter les spams ou limiter le partage de ses données est une démarche normale. Rien n'oblige à donner son adresse principale à un site qui n'en a pas besoin.</p>
+<p>Ce qui est interdit, ce n'est pas l'outil mais certains usages : fraude, usurpation d'identité, harcèlement, ou toute activité illégale. Ces usages sont interdits sur adresse-temporaire.fr, et les contenus signalés sont supprimés.</p>
+<p>Un site peut aussi interdire les adresses jetables dans ses conditions d'utilisation. Dans ce cas, mieux vaut utiliser une vraie adresse, comme expliqué dans <a href="/blog/site-refuse-mail-jetable/">pourquoi un site refuse votre mail jetable</a>.</p>
+<h2>Est-ce sûr ?</h2>
+<p>Pour l'usage prévu, oui. Quelques règles de bon sens :</p>
+<ul>
+<li><strong>Ne recevez jamais d'informations sensibles</strong> sur une adresse jetable : documents d'identité, relevés bancaires, données de santé.</li>
+<li><strong>Sans compte, la boîte est publique</strong> : préférez une adresse aléatoire, difficile à deviner.</li>
+<li><strong>Pour un compte que vous voulez garder</strong>, réservez l'adresse avec un compte, ou utilisez votre vraie adresse.</li>
+<li><strong>Méfiez-vous des pièces jointes et des liens</strong> d'expéditeurs inconnus, comme dans n'importe quelle boîte mail.</li>
+</ul>
+<h2>Et la protection des messages affichés ?</h2>
+<p>Sur adresse-temporaire.fr, les images des messages sont masquées par défaut pour éviter le pistage, et les scripts contenus dans les e-mails ne sont jamais exécutés. Les messages sont effacés automatiquement après leur durée de conservation.</p>
+<div class="cta"><b>Besoin d'une adresse tout de suite ?</b><p>Votre adresse jetable est prête sur la page d'accueil, sans inscription.</p><a class="btn" href="/">Obtenir mon adresse temporaire</a></div>
+<div class="rel"><h2>À lire aussi</h2><ul><li><a href="/blog/mail-jetable/">Mail jetable : c'est quoi et comment bien l'utiliser</a></li><li><a href="/blog/creer-adresse-mail-temporaire/">Créer une adresse mail temporaire en 10 secondes</a></li><li><a href="/blog/mail-jetable-gmail/">Mail jetable avec Gmail : les alias « + » et leurs limites</a></li><li><a href="/blog/mail-jetable-10-minutes/">Mail jetable 10 minutes : combien de temps garder son adresse ?</a></li></ul></div>
+</article></main><footer><div>Usage interdit pour toute fraude, harcèlement ou activité illégale.</div><div class="fl"><a href="/blog/">Guides du mail jetable</a><a href="/mentions-legales.html">Mentions légales et confidentialité</a><a href="mailto:contact@adresse-temporaire.fr">Signaler un abus</a><span>&copy; 2026 adresse-temporaire.fr</span></div></footer></div></body></html>
