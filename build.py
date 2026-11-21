@@ -462,7 +462,7 @@ def w(p, s):
 w("index.html", index(T["fr"]))
 w("mentions-legales.html", legal(T["fr"], LEGAL_FR, "/mentions-legales.html", "Mentions légales et confidentialité | Adresse-Temporaire.fr"))
 # ---------------- VERSION ANGLAISE (/en/) : la page d'accueil et les mentions, sans les guides (en français) ----------------
-GUM_EN = "https://jeremstyke.gumroad.com/l/anvfvt"  # remplacé par l'offre anglaise une fois créée
+GUM_EN = "https://jeremstyke.gumroad.com/l/jssxfa"  # offre Premium en anglais, 2,99 dollars par mois
 EN_REPL = [
  ('href="/blog/">Guides</a>', 'href="/blog/" hreflang="fr">Guides (FR)</a>'),
  ("Partenaire recommandé", "Recommended partner"),
