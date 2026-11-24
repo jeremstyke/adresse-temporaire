@@ -3,7 +3,7 @@ Règles : la tâche automatique prend la PREMIÈRE ligne « - [ ] », écrit le 
 
 ## Faciles (à publier en premier)
 - [ ] adresse-mail-temporaire-gmail | adresse mail temporaire gmail (590, SD 15) / adresse mail jetable gmail (140, SD 18) | ce que Gmail permet (alias +, points) et ne permet pas, quand préférer une vraie adresse temporaire ; lien vers /blog/mail-jetable-gmail/
-- [ ] mail-jetable-avec-piece-jointe | mail jetable avec pièce jointe / mail jetable pièce jointe | recevoir un fichier sur une adresse temporaire : limites, prudence, Premium (pièces jointes gardées jusqu'à 10 Mo)
+- [x] mail-jetable-avec-piece-jointe | mail jetable avec pièce jointe / mail jetable pièce jointe | recevoir un fichier sur une adresse temporaire : limites, prudence, Premium (pièces jointes gardées jusqu'à 10 Mo)
 - [ ] adresse-mail-temporaire-longue-duree | adresse mail temporaire 1 mois / mail jetable durable / mail jetable 24h | quelle durée choisir, garder une adresse plusieurs semaines (compte gratuit 24 h, Premium 30 jours)
 - [ ] generateur-mail-jetable | générateur mail jetable / générer adresse mail temporaire (30, SD 6) | comment fonctionne un générateur, nom aléatoire ou personnalisé
 - [ ] adresse-mail-temporaire-personnalisee | adresse mail temporaire personnalisée | choisir son nom, risques d'un nom simple, réserver son adresse

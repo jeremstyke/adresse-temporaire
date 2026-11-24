@@ -256,6 +256,68 @@ ARTICLES = [
 <p>Le moyen le plus simple de ne plus recevoir de spams après une inscription, c'est de ne pas donner votre vraie adresse aux sites de passage. Une <a href="/">adresse mail jetable</a> reçoit le code ou le lien dont vous avez besoin, puis s'efface. Votre vraie boîte ne voit rien passer.</p>
 <p>Pour savoir quand utiliser une adresse jetable et quand l'éviter, lisez notre <a href="/blog/mail-jetable/">guide complet</a>.</p>
 """},
+{
+"slug": "mail-jetable-avec-piece-jointe",
+"title": "Mail jetable avec pièce jointe : comment recevoir un fichier",
+"desc": "Recevoir une pièce jointe sur un mail jetable : ce qui est possible, les limites de taille, les précautions à prendre et quand préférer votre vraie adresse.",
+"date": "2026-11-24",
+"cat": "Mode d'emploi",
+"body": """
+<p>Vous attendez un fichier, un bon de réduction en PDF ou un document envoyé après une inscription, et vous ne voulez pas donner votre vraie adresse ? Un <strong>mail jetable avec pièce jointe</strong> peut faire l'affaire, à condition de savoir ce que le service garde, combien de temps, et ce qu'il vaut mieux ne jamais recevoir sur une adresse temporaire.</p>
+<h2>Peut-on recevoir une pièce jointe sur un mail jetable ?</h2>
+<p>Oui, mais pas sur tous les services, et pas toujours gratuitement. Beaucoup de sites de mail temporaire n'affichent que le texte du message et ignorent les fichiers joints. C'est un choix volontaire : stocker des fichiers coûte cher et attire les abus, comme l'envoi de fichiers douteux.</p>
+<p>Sur <a href="/">adresse-temporaire.fr</a>, voici comment cela fonctionne :</p>
+<ul>
+<li><strong>Sans compte ou avec le compte gratuit</strong>, le texte du message s'affiche normalement, mais les pièces jointes ne sont pas conservées.</li>
+<li><strong>Avec le Premium</strong> (2,99 € par mois), les pièces jointes jusqu'à 10 Mo par message sont gardées sur vos adresses réservées et se téléchargent directement depuis le message.</li>
+</ul>
+<p>Pour la plupart des usages courants, un code de vérification ou un lien de confirmation, la version gratuite suffit largement, puisque ces informations sont dans le texte du mail.</p>
+<h2>Les situations où une pièce jointe sur une adresse jetable a du sens</h2>
+<p>Quelques cas typiques où un fichier joint arrive sur une adresse de passage :</p>
+<ul>
+<li>un guide ou un livre blanc envoyé en PDF après avoir rempli un formulaire ;</li>
+<li>un bon de réduction ou un code promo envoyé sous forme de fichier ;</li>
+<li>un modèle de document (tableur, lettre type) proposé par un site que vous ne connaissez pas ;</li>
+<li>une facture d'essai ou un récapitulatif d'inscription pour un service que vous testez.</li>
+</ul>
+<p>Dans tous ces cas, le fichier n'a rien de personnel et vous n'aurez pas besoin de le retrouver dans six mois. C'est exactement le terrain du mail jetable.</p>
+<h2>Les limites à connaître</h2>
+<h3>La taille</h3>
+<p>Une pièce jointe de plus de 10 Mo ne sera pas conservée, même en Premium. Pour un gros fichier, l'expéditeur passe d'ailleurs souvent par un lien de téléchargement plutôt que par une pièce jointe : dans ce cas, le lien apparaît dans le texte du message et fonctionne aussi en version gratuite.</p>
+<h3>La durée</h3>
+<p>Sans compte, les messages sont effacés au bout d'une heure. Avec le compte gratuit, ils restent 24 heures, et 30 jours en Premium. Si le fichier compte pour vous, téléchargez-le dès qu'il arrive et rangez-le sur votre appareil.</p>
+<h3>La confidentialité</h3>
+<p>Sans compte, une boîte temporaire est publique : toute personne qui tape exactement la même adresse voit les mêmes messages. Avec un nom généré au hasard, le risque est très faible, mais il n'est pas nul. Les adresses réservées avec un compte sont privées : vous seul y avez accès.</p>
+<h2>Les précautions à prendre avec un fichier reçu</h2>
+<p>Une adresse jetable protège votre vraie boîte du spam, pas votre ordinateur des fichiers dangereux. Les règles habituelles s'appliquent :</p>
+<ul>
+<li><strong>N'ouvrez que les fichiers que vous attendiez</strong>, envoyés par le site auquel vous venez de vous inscrire.</li>
+<li><strong>Méfiez-vous des formats exécutables</strong> (.exe, .scr, .bat) et des archives protégées par un mot de passe envoyées par un inconnu.</li>
+<li><strong>Attention aux documents qui demandent d'activer les macros</strong> à l'ouverture : c'est une technique classique pour installer un logiciel malveillant.</li>
+<li><strong>Gardez votre antivirus et votre système à jour</strong>, comme pour n'importe quelle boîte mail.</li>
+</ul>
+<p>Nous détaillons ces bons réflexes dans notre guide <a href="/blog/mail-jetable-legal-securite/">mail jetable : est-ce légal et sécurisé ?</a></p>
+<h2>Ce qu'il ne faut jamais recevoir sur un mail jetable</h2>
+<p>Certains documents doivent arriver sur une adresse que vous garderez longtemps et que vous seul consultez :</p>
+<ul>
+<li>vos documents d'identité, vos bulletins de salaire ou vos avis d'imposition ;</li>
+<li>vos factures d'achat réel, utiles pour une garantie ou un retour ;</li>
+<li>les documents de votre banque, de votre assurance, de votre médecin ou d'un organisme public ;</li>
+<li>un contrat de travail ou une réponse à une candidature.</li>
+</ul>
+<p>Pour ces envois, utilisez votre vraie adresse. Et si vous devez vous-même envoyer des pièces justificatives à la CAF, à l'ANTS ou aux impôts, <a href="https://demarches.cvlibre.com/">PDF Démarches</a> vous aide à les mettre au bon format et à la bonne taille.</p>
+<h2>Transférer le fichier vers votre vraie boîte</h2>
+<p>Si un message mérite finalement d'être gardé, le Premium permet de transférer les messages reçus vers votre vraie adresse, dans la limite de 30 par jour. Vous recevez alors le message complet dans votre boîte habituelle, sans avoir donné votre adresse au site d'origine.</p>
+<h2>En résumé</h2>
+<p>Recevoir une pièce jointe sur un mail jetable est possible pour les fichiers de passage : guides, bons de réduction, modèles. En gratuit, vous voyez le texte et les liens ; en Premium, les fichiers jusqu'à 10 Mo sont gardés 30 jours. Pour tout document personnel ou important, gardez votre vraie adresse. Et si vous vous demandez s'il est possible de répondre depuis une adresse temporaire, lisez <a href="/blog/envoyer-mail-jetable/">peut-on envoyer un mail avec une adresse jetable</a>.</p>
+<h2>Questions fréquentes</h2>
+<h3>Les pièces jointes sont-elles gratuites sur adresse-temporaire.fr ?</h3>
+<p>Non. Sans compte et avec le compte gratuit, seul le texte du message s'affiche. Les pièces jointes jusqu'à 10 Mo sont conservées avec le Premium, à 2,99 € par mois.</p>
+<h3>Combien de temps la pièce jointe reste-t-elle disponible ?</h3>
+<p>Aussi longtemps que le message : 30 jours en Premium. Téléchargez quand même le fichier dès réception si vous en avez besoin.</p>
+<h3>Puis-je envoyer une pièce jointe depuis une adresse jetable ?</h3>
+<p>Non. Une adresse temporaire sert uniquement à recevoir. Cela évite que le service soit détourné pour envoyer du spam.</p>
+"""},
 ]
 
 from extra import EXTRA

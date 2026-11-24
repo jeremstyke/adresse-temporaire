@@ -20,6 +20,7 @@ GUIDES_EN = [
 <h2>How does a disposable email address actually work?</h2>
 <p>A temp mail service owns one or more domain names, like <code>jetboxmail.com</code>. It accepts every message sent to any name on that domain and shows it on a web page. When you open the site, it simply picks a random name for you, for example <code>k7xq2mfa9p@jetboxmail.com</code>, and watches for mail sent to it.</p>
 <p>There is no account to create, because the address does not need one. The service never sends anything from it either: it only receives. That is a big part of why these addresses exist. They are a mailbox with a front door and no back door.</p>
+<p>For a step by step walkthrough, see <a href="/guides/how-to-make-a-temporary-email/">how to make a temporary email</a>.</p>
 <p>On Jetbox Mail, the same name works on two domains, <code>@jetboxmail.com</code> and <code>@adresse-temporaire.fr</code>, and both land in the same inbox. If a website refuses one, you switch to the other in one tap.</p>
 <h2>When is a temp mail address worth using?</h2>
 <p>Any time a website wants your email for something you do not plan to keep. A few typical cases:</p>
@@ -188,4 +189,59 @@ GUIDES_EN = [
 <p>For browsing deals and getting a discount code, yes. For an actual order, use an address you keep, so that receipts, delivery updates and refunds reach you.</p>
 """
 },
+{
+"slug": "how-to-make-a-temporary-email",
+"title": "How to Make a Temporary Email Address in Seconds",
+"desc": "How to make a temporary email address step by step: get a random address, pick your own name, switch domains and keep it private when you need it longer.",
+"date": "2026-11-24",
+"cat": "How-to",
+"body": """
+<p>You need an email address for a form, a download or a free trial, but you do not want another newsletter landing in your real inbox. The fix takes about ten seconds: <strong>make a temporary email address</strong>, use it, and let it go. This guide walks through the steps on Jetbox Mail, explains the difference between a random and a chosen name, and shows how to keep an address when you need it for longer.</p>
+<h2>What do you need before you start?</h2>
+<p>Nothing. There is no app to install, no form to fill in and no password to invent. A temporary address works in any browser, on a phone or a computer. If you want a quick refresher on what temp mail is and how it works behind the scenes, read <a href="/guides/what-is-temp-mail/">what is temp mail</a> first.</p>
+<h2>How do you create a temporary email, step by step?</h2>
+<ol>
+<li><strong>Open <a href="/">jetboxmail.com</a>.</strong> An address is already waiting at the top of the page, something like <code>k7xq2mfa9p@jetboxmail.com</code>.</li>
+<li><strong>Tap "Copy".</strong> The full address goes to your clipboard.</li>
+<li><strong>Paste it into the website's form</strong> and submit, just as you would with your usual email.</li>
+<li><strong>Come back to the Jetbox Mail tab.</strong> The message shows up in the inbox below the address, usually within a few seconds. Open it to read the code or click the confirmation link.</li>
+<li><strong>Done.</strong> Close the tab when you no longer need it. Without an account, messages are erased after one hour.</li>
+</ol>
+<p>That is the whole process. Most verification codes expire within minutes anyway, so one hour is plenty for a typical sign-up.</p>
+<h2>Should you use a random name or pick your own?</h2>
+<p>Next to the address you will see two buttons: "New address" gives you another random name, and "Pick my address" lets you type your own, from 3 to 40 characters using letters, numbers, dots and dashes.</p>
+<table>
+<thead><tr><th>Option</th><th>Best for</th><th>Watch out for</th></tr></thead>
+<tbody>
+<tr><td>Random name</td><td>One-off sign-ups, codes, downloads</td><td>Hard to remember, so copy it right away</td></tr>
+<tr><td>Chosen name</td><td>An address you want to type again later</td><td>A simple name like "john" may be used by others</td></tr>
+<tr><td>Reserved name (free account)</td><td>An address only you can read</td><td>Released after 30 days without any message</td></tr>
+</tbody>
+</table>
+<p>The key point: without an account, an inbox is public. Anyone who types exactly the same address sees the same messages. A long random name makes that very unlikely, while a short, common name does not. If privacy matters, reserve the address with a free account.</p>
+<h2>What if a website refuses the address?</h2>
+<p>Some sites block known temp mail domains. Jetbox Mail gives you two domains that share the same inbox: <code>@jetboxmail.com</code> and <code>@adresse-temporaire.fr</code>. Switch the domain under the address and try again. If the site still refuses both, it probably wants a long-term relationship with you, and that is often a sign you should use your real address for it.</p>
+<h2>How do you keep a temporary address longer?</h2>
+<p>A one-hour inbox is perfect for codes, less so for a trial that lasts two weeks. Here is how the options compare:</p>
+<ul>
+<li><strong>No account:</strong> public inbox, messages erased after 1 hour.</li>
+<li><strong>Free account:</strong> one private, reserved address, messages kept 24 hours, plus alerts on Telegram. The address is released after 30 days without any message.</li>
+<li><strong>Premium ($2.99 a month):</strong> up to 100 private addresses, messages kept 30 days, attachments up to 10 MB, and forwarding to your real inbox or an email alert, up to 30 per day.</li>
+</ul>
+<p>We cover the account side in more detail in <a href="/guides/temporary-email-with-password/">temporary email with a password</a>.</p>
+<h2>Can you get an alert when a message arrives?</h2>
+<p>Yes. Under the address you will find an "Alert me for every email" button. Turn it on and your browser tells you as soon as a new message lands, so you do not have to keep the tab in view while you finish the sign-up elsewhere. With a free account you can also link Telegram and receive the alerts there. This is handy when a site takes a few minutes to send its code, or when you are waiting for a reply to a form and want to get on with something else.</p>
+<p>A practical tip: if you use temp mail often, keep the page pinned in a browser tab or add it to your home screen. The address you were using stays on screen until you ask for a new one, so you can come back to it within the hour without losing the inbox.</p>
+<h2>Can you send email from a temporary address?</h2>
+<p>No. A temp mail address on Jetbox Mail is receive only. That is deliberate: it keeps the service from being used for spam and keeps the domains trusted by the sites you sign up on. If you need to reply to someone, use an address you own.</p>
+<h2>When should you not use a temporary email?</h2>
+<p>Use your real address for anything you will need to recover later: your bank, taxes, health insurance, a job application, an online order you may need to return, or any account protected by a password you might forget. Password resets go to the email on file, and a temporary inbox will not be there in three months.</p>
+<h2>Frequently asked questions</h2>
+<h3>Is making a temporary email free?</h3>
+<p>Yes. Getting an address, receiving messages and reading them is free, with no sign-up. Only the optional Premium plan is paid.</p>
+<h3>How long does a temporary email address last?</h3>
+<p>Without an account, messages are erased after one hour. A free account keeps them 24 hours on one reserved address, and Premium keeps them 30 days.</p>
+<h3>Can I use the same temporary address again tomorrow?</h3>
+<p>You can type the same name again, but without an account anyone else could do the same. Reserve it with a free account if you want to be the only one who can read it.</p>
+"""},
 ]

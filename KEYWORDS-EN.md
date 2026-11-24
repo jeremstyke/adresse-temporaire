@@ -3,7 +3,7 @@ Rules: the scheduled task takes the FIRST "- [ ]" line, writes the guide in guid
 IndexNow key for jetboxmail.com: 1bd8c8377a47ff093f479d26ad3a5b4d (file jet/1bd8c8377a47ff093f479d26ad3a5b4d.txt).
 
 ## Queue
-- [ ] how-to-make-a-temporary-email | how to make a temporary email / create temp mail (8100, SD 35) / create temporary email address | step by step on Jetbox Mail, random vs chosen name, both domains ; link to what-is-temp-mail
+- [x] how-to-make-a-temporary-email | how to make a temporary email / create temp mail (8100, SD 35) / create temporary email address | step by step on Jetbox Mail, random vs chosen name, both domains ; link to what-is-temp-mail
 - [ ] temp-mail-gmail | temp mail gmail / gmail temporary email / temporary email generator gmail | what Gmail allows (plus addressing, dots), its limits, when a real temp address is better
 - [ ] 10-minute-mail | 10 minute mail / temp mail 10 minutes / 10 minute mail temporary email | what "10 minute" means, why one hour or a reserved address is often more practical
 - [ ] temporary-email-for-verification | temporary email for verification / temporary email to sign up | receiving codes and links, why codes sometimes do not arrive, what to do
