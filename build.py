@@ -272,7 +272,7 @@ DIALOG = """<dialog id="dlg" aria-labelledby="dlgt"><div class="dh"><h2 id="dlgt
 <form id="f3"><div class="row2"><input id="ra" maxlength="40" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="nom-de-votre-choix" aria-label="Adresse à réserver"><button class="btn ghost" type="submit">Réserver</button></div></form>
 <p class="derr" id="e3" role="alert"></p>
 <a class="btn prem" id="gopro" href="#" target="_blank" rel="noopener">Passer Premium, 2,99 € par mois</a><p class="sm" id="gonote" style="margin:6px 0 0;color:#4a5672">Paiement sécurisé par Gumroad, débité en dollars (l'équivalent de 2,99 €, au taux du jour).</p>
-<p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button></div>
+<p class="sm" id="me-em"></p><button class="link sm out" id="logout" type="button">Me déconnecter</button><button class="link sm out" id="delacct" type="button" style="color:#b3261e">Supprimer mon compte</button></div>
 </dialog>"""
 
 JS = r"""
@@ -380,6 +380,7 @@ function reserve(a){$("e3").textContent="";post("/reserve",{addr:a}).then(functi
   if(!dlg.open)openDlg();$("e3").textContent=ERR[j.error]||"Erreur, réessayez."})}
 $("f3").onsubmit=function(e){e.preventDefault();var v=$("ra").value.trim().toLowerCase();if(!RX.test(v)){$("e3").textContent=ERR.addr;return}reserve(v)};
 $("tgl").onclick=function(){var w=window.open("","_blank");post("/tglink").then(function(j){if(j.url){if(w)w.location=j.url;else location.href=j.url}else if(w)w.close()}).catch(function(){if(w)w.close()})};
+$("delacct").onclick=function(){if(!confirm("Supprimer définitivement votre compte ? Vos adresses réservées et tous leurs messages seront effacés. Abonnement Premium : pensez aussi à l'annuler sur Gumroad."))return;post("/account/delete").then(function(j){if(!j.ok)throw 0;tok=null;ls(KT,null);setAcct(null);closeDlg();setAddr(rnd());load();alert("Votre compte a été supprimé.")}).catch(function(){alert("Suppression impossible pour le moment. Écrivez-nous si le problème continue.")})};
 $("logout").onclick=function(){post("/logout").finally(function(){tok=null;ls(KT,null);setAcct(null);closeDlg();if(!RX.test(me))setAddr(rnd());load()})};
 function refresh(){if(!tok){keep();return Promise.resolve()}return api("/me").then(function(j){if(j.email)setAcct(j);else{tok=null;ls(KT,null);setAcct(null)}}).catch(function(){keep()})}
 // alertes à chaque e-mail (notifications du navigateur, même site fermé)
@@ -480,7 +481,7 @@ LEGAL_FR = f"""<main><h1>Mentions légales et confidentialité</h1>
 <section class="c"><h2>Liens affiliés</h2><p>Certains liens du site sont des liens affiliés (NordVPN) : si vous vous abonnez via ces liens, nous touchons une commission, sans surcoût pour vous. Ils sont signalés par la mention « Partenaire » ou « Lien affilié ».</p></section>
 <section class="c"><h2>Cookies et statistiques</h2><p>Le site n'utilise pas de cookies. Seul un compteur anonyme du nombre d'adresses créées et de messages reçus par jour est tenu, sans adresse IP ni identifiant.</p></section>
 <section class="c"><h2>Usage interdit et signalement</h2><p>Il est interdit d'utiliser ce service pour une fraude, du harcèlement, l'usurpation d'identité ou toute activité illégale. Pour signaler un abus ou un contenu illicite, écrivez à <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a> en indiquant l'adresse concernée. Les contenus signalés sont supprimés sans délai.</p></section>
-<section class="c"><h2>Vos droits</h2><p>Conformément au RGPD, vous pouvez demander l'accès ou la suppression de données vous concernant à l'adresse de contact ci-dessus. Les messages étant effacés au bout d'une heure, il est en général impossible d'en fournir une copie après ce délai.</p></section></main>"""
+<section class="c"><h2>Vos droits</h2><p>Conformément au RGPD, vous pouvez demander l'accès ou la suppression de données vous concernant à l'adresse de contact ci-dessus. Si vous avez un compte, vous pouvez aussi le supprimer vous-même à tout moment depuis « Mon compte », bouton « Supprimer mon compte » : votre adresse e-mail, vos adresses réservées et leurs messages sont effacés immédiatement. Les messages étant effacés au bout d'une heure, il est en général impossible d'en fournir une copie après ce délai.</p></section></main>"""
 
 LEGAL_EN = f"""<main><h1>Legal notice and privacy</h1>
 <section class="c"><h2>Publisher</h2><p>adresse-temporaire.fr is published by Jérémy Dacier-Jury, sole trader (registration in progress), France. Contact: <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a>.</p></section>
@@ -490,7 +491,7 @@ LEGAL_EN = f"""<main><h1>Legal notice and privacy</h1>
 <section class="c"><h2>Affiliate links</h2><p>Some links on the site are affiliate links (NordVPN): if you subscribe through them, we earn a commission at no extra cost to you. They are marked \u201cPartner\u201d or \u201cAffiliate link\u201d.</p></section>
 <section class="c"><h2>Cookies and statistics</h2><p>The site uses no cookies. Only an anonymous daily count of addresses created and messages received is kept, with no IP address or identifier.</p></section>
 <section class="c"><h2>Forbidden use and reporting</h2><p>Using this service for fraud, harassment, impersonation or any illegal activity is forbidden. To report abuse or illegal content, email <a href="mailto:contact@{DOMAIN}">contact@{DOMAIN}</a> with the address concerned. Reported content is removed without delay.</p></section>
-<section class="c"><h2>Your rights</h2><p>Under the GDPR, you can request access to or deletion of data about you at the contact address above. Since messages are erased automatically, a copy usually cannot be provided once they have expired.</p></section></main>"""
+<section class="c"><h2>Your rights</h2><p>Under the GDPR, you can request access to or deletion of data about you at the contact address above. If you have an account, you can also delete it yourself at any time from "My account", "Delete my account" button: your email address, reserved addresses and their messages are erased immediately. Since messages are erased automatically, a copy usually cannot be provided once they have expired.</p></section></main>"""
 
 def legal(t, body, path, title):
     canon = SITE + path
@@ -545,6 +546,10 @@ EN_REPL = [
  ("Mes adresses réservées", "My reserved addresses"), ('placeholder="nom-de-votre-choix"', 'placeholder="name-of-your-choice"'),
  ('aria-label="Adresse à réserver"', 'aria-label="Address to reserve"'), (">Réserver</button>", ">Reserve</button>"),
  ("Me déconnecter", "Sign out"),
+ ("Supprimer mon compte", "Delete my account"),
+ ('"Supprimer définitivement votre compte ? Vos adresses réservées et tous leurs messages seront effacés. Abonnement Premium : pensez aussi à l\'annuler sur Gumroad."', '"Delete your account for good? Your reserved addresses and all their messages will be erased. Premium subscription: remember to cancel it on Gumroad too."'),
+ ('"Votre compte a été supprimé."', '"Your account has been deleted."'),
+ ('"Suppression impossible pour le moment. Écrivez-nous si le problème continue."', '"Deletion failed for now. Write to us if the problem continues."'),
  ("Recevoir mes e-mails sur Telegram", "Get my emails on Telegram"),
  # textes du script
  ('"il y a "+Math.floor(d/1440)+" j"', 'Math.floor(d/1440)+" d ago"'),
